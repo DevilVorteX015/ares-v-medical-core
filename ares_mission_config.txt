@@ -1,0 +1,239 @@
+{
+  "earthDistanceKm": 142850400,
+  "shipSpeedKmPerSec": 24.18,
+  "realtimeSimEnabled": true,
+  "crew": [
+    {
+      "id": "rostova",
+      "code": "CDR",
+      "name": "CDR. ELENA ROSTOVA",
+      "roleEn": "Mission Commander • Flight Surgeon Backup",
+      "roleEs": "Comandante de Misión • Respaldo Médico",
+      "color": "#00E5FF",
+      "visorTint": "#38bdf8",
+      "baselines": {
+        "rad_dose": 0.58,
+        "rad_rate": 0.03,
+        "sleep_eff": 91,
+        "sleep_dur": 7.8,
+        "heart_rate": 60,
+        "sys_bp": 114,
+        "spo2_sat": 99,
+        "cabin_co2": 1.8,
+        "cabin_micro": 24,
+        "pvt_ms": 248,
+        "urine_ca": 155,
+        "iop_sans": 15
+      }
+    },
+    {
+      "id": "vance",
+      "code": "PLT",
+      "name": "PLT. MARCUS VANCE",
+      "roleEn": "Vehicle Pilot • EVA Specialist",
+      "roleEs": "Piloto de Nave • Especialista EVA",
+      "color": "#00E676",
+      "visorTint": "#34d399",
+      "baselines": {
+        "rad_dose": 0.61,
+        "rad_rate": 0.03,
+        "sleep_eff": 89,
+        "sleep_dur": 7.5,
+        "heart_rate": 58,
+        "sys_bp": 118,
+        "spo2_sat": 99,
+        "cabin_co2": 1.8,
+        "cabin_micro": 24,
+        "pvt_ms": 252,
+        "urine_ca": 168,
+        "iop_sans": 16
+      }
+    },
+    {
+      "id": "takahashi",
+      "code": "MS1",
+      "name": "MS-1. KENJI TAKAHASHI",
+      "roleEn": "Mission Specialist 1 • Biomedical Officer",
+      "roleEs": "Especialista de Misión 1 • Oficial Biomédico",
+      "color": "#FFAB00",
+      "visorTint": "#fbbf24",
+      "baselines": {
+        "rad_dose": 0.56,
+        "rad_rate": 0.03,
+        "sleep_eff": 92,
+        "sleep_dur": 8.0,
+        "heart_rate": 62,
+        "sys_bp": 112,
+        "spo2_sat": 98,
+        "cabin_co2": 1.8,
+        "cabin_micro": 24,
+        "pvt_ms": 245,
+        "urine_ca": 148,
+        "iop_sans": 14
+      }
+    },
+    {
+      "id": "mendoza",
+      "code": "MS2",
+      "name": "MS-2. SOFIA MENDOZA",
+      "roleEn": "Mission Specialist 2 • Astrobiology & ECLSS",
+      "roleEs": "Especialista de Misión 2 • Astrobiología",
+      "color": "#FF4081",
+      "visorTint": "#f472b6",
+      "baselines": {
+        "rad_dose": 0.59,
+        "rad_rate": 0.03,
+        "sleep_eff": 90,
+        "sleep_dur": 7.7,
+        "heart_rate": 65,
+        "sys_bp": 115,
+        "spo2_sat": 99,
+        "cabin_co2": 1.8,
+        "cabin_micro": 24,
+        "pvt_ms": 260,
+        "urine_ca": 142,
+        "iop_sans": 15
+      }
+    },
+    {
+      "id": "okafor",
+      "code": "ENG",
+      "name": "ENG. DAVID OKAFOR",
+      "roleEn": "Chief Flight Engineer • Radiation Shielding",
+      "roleEs": "Ingeniero Jefe de Vuelo • Blindaje",
+      "color": "#B388FF",
+      "visorTint": "#c084fc",
+      "baselines": {
+        "rad_dose": 0.64,
+        "rad_rate": 0.03,
+        "sleep_eff": 88,
+        "sleep_dur": 7.4,
+        "heart_rate": 64,
+        "sys_bp": 120,
+        "spo2_sat": 98,
+        "cabin_co2": 1.8,
+        "cabin_micro": 24,
+        "pvt_ms": 268,
+        "urine_ca": 176,
+        "iop_sans": 16
+      }
+    }
+  ],
+  "indicators": [
+    {
+      "id": "rad_dose",
+      "unit": "mSv",
+      "optMin": 0.1,
+      "optMax": 2.5,
+      "critVal": 500,
+      "cmEn": "Relocate to the shielded water-wall bay for 45 minutes and suspend EVA.",
+      "cmEs": "Trasládate al refugio blindado de muros de agua por 45 minutos y suspende EVA."
+    },
+    {
+      "id": "rad_rate",
+      "unit": "mSv/h",
+      "optMin": 0.01,
+      "optMax": 0.08,
+      "critVal": 10.0,
+      "cmEn": "Enter central storm shelter immediately until particle flux drops below 0.5 mSv/h.",
+      "cmEs": "Ingresa al refugio central de tormentas hasta que el flujo baje de 0.5 mSv/h."
+    },
+    {
+      "id": "sleep_eff",
+      "unit": "%",
+      "optMin": 85,
+      "optMax": 98,
+      "critVal": 75,
+      "cmEn": "Rest 30 minutes under warm amber cabin lighting and reduce blue-screen exposure.",
+      "cmEs": "Descansa 30 minutos bajo luz cálida ámbar y reduce pantallas de luz azul."
+    },
+    {
+      "id": "sleep_dur",
+      "unit": "hrs",
+      "optMin": 7.0,
+      "optMax": 9.0,
+      "critVal": 6.0,
+      "cmEn": "Schedule an immediate 30-minute recovery rest block and shift non-critical tasks.",
+      "cmEs": "Programa un bloque inmediato de descanso de 30 minutos y pospón tareas no críticas."
+    },
+    {
+      "id": "heart_rate",
+      "unit": "bpm",
+      "optMin": 55,
+      "optMax": 85,
+      "critVal": 110,
+      "cmEn": "Drink 500 mL of electrolyte solution over 15 minutes and perform 5 minutes of paced breathing.",
+      "cmEs": "Bebe 500 mL de solución electrolítica en 15 minutos y realiza 5 minutos de respiración pausada."
+    },
+    {
+      "id": "sys_bp",
+      "unit": "mmHg",
+      "optMin": 110,
+      "optMax": 125,
+      "critVal": 140,
+      "cmEn": "Engage thigh compression cuffs for 20 minutes and drink 400 mL isotonic fluid.",
+      "cmEs": "Activa mangas de compresión en muslos por 20 minutos y bebe 400 mL de líquido isotónico."
+    },
+    {
+      "id": "spo2_sat",
+      "unit": "%",
+      "optMin": 95,
+      "optMax": 100,
+      "critVal": 92,
+      "cmEn": "Verify cabin O2 partial pressure regulator and breathe supplemental O2 for 10 minutes.",
+      "cmEs": "Verifica el regulador de oxígeno en cabina y respira O2 suplementario por 10 minutos."
+    },
+    {
+      "id": "cabin_co2",
+      "unit": "mmHg",
+      "optMin": 1.5,
+      "optMax": 2.2,
+      "critVal": 3.5,
+      "cmEn": "Purge CDRA CO2 scrubber bed #2 immediately and maximize module airflow fans for 15 minutes.",
+      "cmEs": "Purga el lecho depurador CO2 #2 de inmediato y activa ventilación máxima por 15 minutos."
+    },
+    {
+      "id": "cabin_micro",
+      "unit": "CFU/cm2",
+      "optMin": 5,
+      "optMax": 50,
+      "critVal": 200,
+      "cmEn": "Run HEPA UV-C air scrubbers at high cycle and sanitize high-touch console surfaces.",
+      "cmEs": "Activa depuradores HEPA UV-C en ciclo alto y desinfecta superficies de contacto frecuente."
+    },
+    {
+      "id": "pvt_ms",
+      "unit": "ms",
+      "optMin": 180,
+      "optMax": 380,
+      "critVal": 500,
+      "cmEn": "Schedule a 25-minute restorative rest block and avoid high-precision docking or EVA tasks.",
+      "cmEs": "Programa un descanso reparador de 25 minutos y evita maniobras críticas de precisión."
+    },
+    {
+      "id": "urine_ca",
+      "unit": "mg/24h",
+      "optMin": 100,
+      "optMax": 220,
+      "critVal": 250,
+      "cmEn": "Administer potassium citrate supplement, increase water intake to 2.8 L, and complete ARED squats.",
+      "cmEs": "Administra citrato de potasio, aumenta hidratación a 2.8 L y realiza sentadillas en ARED."
+    },
+    {
+      "id": "iop_sans",
+      "unit": "mmHg",
+      "optMin": 10,
+      "optMax": 19,
+      "critVal": 21,
+      "cmEn": "Apply Lower Body Negative Pressure (Chibis LBNP) for 30 minutes to redistribute cephalic fluids.",
+      "cmEs": "Aplica Presión Negativa Inferior (Chibis LBNP) por 30 minutos para redistribuir fluidos."
+    }
+  ],
+  "mascot": {
+    "name": "ARES",
+    "primaryColor": "#00e5ff",
+    "voiceRate": 1.03,
+    "voicePitch": 1.06,
+    "customSvg": null
+  }
+}
