@@ -246,12 +246,6 @@
       border-color: rgba(255, 59, 92, 0.45);
     }
 
-    .arrow-nav-group {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
     .arrow-btn {
       width: 32px;
       height: 32px;
@@ -602,7 +596,7 @@
     /* Interplanetary Trajectory Map Modal Styles */
     .trajectory-canvas-wrap {
       width: 100%;
-      height: 255px;
+      height: 245px;
       border-radius: 18px;
       background: radial-gradient(circle at 50% 50%, #0f1b33 0%, #050811 100%);
       border: 1.5px solid var(--border-bright);
@@ -614,6 +608,38 @@
       width: 100%;
       height: 100%;
       display: block;
+    }
+
+    .traj-waypoints-bar {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .traj-wp-btn {
+      background: rgba(6, 9, 17, 0.88);
+      border: 1px solid var(--border-bright);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 6px 2px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-align: center;
+    }
+
+    .traj-wp-btn:hover {
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+    }
+
+    .traj-wp-btn.active {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      color: #060911;
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.45);
     }
 
     .trajectory-stats-grid {
@@ -1947,7 +1973,7 @@
       animation: pulseFast 0.65s infinite;
     }
 
-    /* KPI SLIDER BAR MODAL STYLES */
+    /* KPI DYNAMIC TELEMETRY BAR STYLES (READ-ONLY COMPUTED FROM INDICATORS) */
     .kpi-sliders-list {
       display: flex;
       flex-direction: column;
@@ -1974,7 +2000,7 @@
 
     .kpi-slider-track {
       width: 100%;
-      height: 12px;
+      height: 10px;
       background: rgba(30, 43, 69, 0.85);
       border-radius: 999px;
       position: relative;
@@ -1986,28 +2012,6 @@
       height: 100%;
       border-radius: 999px;
       transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-    }
-
-    .kpi-slider-thumb {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #ffffff;
-      border: 2.5px solid var(--accent-cyan);
-      box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
-      transition: left 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .kpi-range-input {
-      width: 100%;
-      accent-color: var(--accent-cyan);
-      cursor: pointer;
-      height: 5px;
-      margin-top: 2px;
     }
 
     @keyframes fadeSlideIn {
@@ -2067,6 +2071,280 @@
       }
       .lsah-cards-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* =========================================================================
+       ISOLATED MOBILE RESPONSIVE LAYER (<= 768px) — PC/LAPTOP UNTOUCHED
+       ========================================================================= */
+    @media (max-width: 768px) {
+      :root {
+        --topbar-h: 56px;
+      }
+
+      .topbar {
+        padding: 0 10px;
+        gap: 6px;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+
+      .brand-title {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+      }
+
+      .kpi-topbar-btn,
+      .nav-pill,
+      .ctrl-btn {
+        padding: 5px 8px;
+        font-size: 10px;
+      }
+
+      .nav-pills {
+        padding: 3px;
+        gap: 4px;
+      }
+
+      .topbar-controls {
+        gap: 6px;
+      }
+
+      .active-crew-chip {
+        width: 30px;
+        height: 30px;
+      }
+
+      .screen {
+        padding: 12px 14px;
+      }
+
+      /* Mobile Screen 1: Welcome */
+      .welcome-container {
+        gap: 18px;
+        padding-bottom: 54px;
+      }
+
+      .welcome-title {
+        font-size: 36px;
+      }
+
+      .welcome-telemetry-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .welcome-stat-box {
+        padding: 14px 16px;
+        border-radius: 16px;
+      }
+
+      .stat-value {
+        font-size: 20px;
+        margin-top: 4px;
+      }
+
+      .btn-start-mission {
+        padding: 15px 46px;
+        font-size: 16px;
+      }
+
+      /* Mobile Screen 2: Crew Selection */
+      .crew-screen {
+        justify-content: flex-start;
+        overflow-y: auto;
+        padding-bottom: 110px;
+      }
+
+      .crew-header h2 {
+        font-size: 17px;
+      }
+
+      .zigzag-grid {
+        gap: 10px;
+      }
+
+      .crew-zig-btn {
+        width: calc(50% - 6px);
+        min-width: 145px;
+        height: 150px;
+        padding: 10px 10px;
+        border-radius: 16px;
+      }
+
+      .crew-avatar-frame {
+        width: 48px;
+        height: 48px;
+      }
+
+      .crew-name-large {
+        font-size: 12.5px;
+      }
+
+      .crew-role-sub {
+        font-size: 9px;
+      }
+
+      /* Mobile Screen 3: Medical Dashboard */
+      .dashboard-screen {
+        padding: 8px 10px;
+        gap: 8px;
+      }
+
+      .sim-bar {
+        padding: 6px 8px;
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+
+      .sim-btn-list {
+        flex-wrap: nowrap;
+      }
+
+      .sim-btn {
+        white-space: nowrap;
+        font-size: 9.5px;
+        padding: 5px 8px;
+      }
+
+      .dashboard-split {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        gap: 12px;
+        padding-bottom: 118px;
+      }
+
+      .indicators-column {
+        overflow: visible;
+        padding-right: 0;
+        padding-bottom: 4px;
+        flex-shrink: 0;
+      }
+
+      .indicator-circles-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px 6px;
+        height: auto;
+      }
+
+      .ind-circle-btn {
+        width: 92px;
+        height: 92px;
+      }
+
+      .ind-expanded-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .body-column {
+        padding: 8px 4px 12px 4px;
+        overflow: visible;
+        flex-shrink: 0;
+      }
+
+      .body-svg-stage svg {
+        max-height: 250px;
+      }
+
+      .finish-session-dock {
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+      }
+
+      .btn-finish-session {
+        padding: 8px 14px;
+        font-size: 10px;
+      }
+
+      /* Mobile Screen 4: LSAH Database */
+      .lsah-topbar {
+        gap: 6px;
+      }
+
+      .lsah-topbar h2 {
+        font-size: 15px;
+      }
+
+      .ridge-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        width: 100%;
+        padding-bottom: 2px;
+      }
+
+      .ridge-tab {
+        white-space: nowrap;
+        padding: 5px 9px;
+        font-size: 10px;
+      }
+
+      .lsah-cards-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px 8px;
+        padding: 6px 4px 126px 4px;
+      }
+
+      .lsah-circle-btn {
+        width: 94px;
+        height: 94px;
+      }
+
+      .lsah-full-grid,
+      .lsah-ranges,
+      .lab-form-grid,
+      .trajectory-stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .traj-waypoints-bar {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      /* Mobile Floating Badges & Mascot */
+      .stargazers-corner-badge {
+        width: 48px;
+        height: 48px;
+        bottom: 10px;
+        left: 10px;
+      }
+
+      .nlsp-portal-dock {
+        left: 66px;
+        bottom: 10px;
+      }
+
+      .btn-nlsp-portal {
+        padding: 4px 8px;
+      }
+
+      .aura-mascot-wrapper.state-docked {
+        bottom: 6px;
+        right: 6px;
+        transform: scale(0.64);
+      }
+
+      .aura-speech-pill.pos-docked {
+        display: block;
+        bottom: 68px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: none;
+        font-size: 11px;
+        padding: 8px 11px;
+      }
+
+      .touch-overlay {
+        padding: 12px 12px 92px 12px;
+      }
+
+      .overlay-card {
+        padding: 14px 16px;
+        max-height: calc(100vh - 105px);
       }
     }
 
@@ -2423,11 +2701,6 @@
         </svg>
         <span id="voice-label">VOICE</span>
       </button>
-
-      <div class="arrow-nav-group">
-        <button class="arrow-btn" id="btn-prev-screen" onclick="prevScreen()" title="Previous Screen">&#9664;</button>
-        <button class="arrow-btn" id="btn-next-screen" onclick="nextScreen()" title="Next Screen">&#9654;</button>
-      </div>
     </div>
   </header>
 
@@ -2886,7 +3159,7 @@
                 <g class="sensor-node" id="body-node-ambient" onclick="handleBodyNodeClick('rad_dose')">
                   <rect x="14" y="24" width="42" height="28" rx="7" fill="rgba(0, 229, 255, 0.14)" stroke="#00e676" stroke-width="1.6" id="box-ambient" />
                   <circle cx="35" cy="38" r="6" fill="#00e676" filter="url(#glowNode)" class="node-core-dot" id="dot-ambient" />
-                  <text x="8" y="66" fill="#e2e8f0" font-family="monospace" font-size="10" font-weight="bold">RAD / CO₂</text>
+                  <text x="8" y="66" fill="#e2e8f0" font-family="monospace" font-size="10.5" font-weight="bold">RAD / CO₂</text>
                 </g>
               </svg>
 
@@ -3215,7 +3488,7 @@
   </div>
 
   <!-- =========================================================================
-       SLIDE-IN OVERLAY 6: EARTH -> MARS ASTRONOMICAL TRAJECTORY
+       SLIDE-IN OVERLAY 6: EARTH -> MARS ASTRONOMICAL TRAJECTORY (10 POSITIONS)
        ========================================================================= -->
   <div class="touch-overlay" id="overlay-trajectory">
     <div class="overlay-card" style="max-width: 760px;">
@@ -3233,6 +3506,8 @@
         <canvas id="trajectory-canvas"></canvas>
       </div>
 
+      <div class="traj-waypoints-bar" id="traj-waypoints-bar"></div>
+
       <div class="trajectory-stats-grid">
         <div class="traj-stat-card">
           <span id="lbl-traj-from-earth">DISTANCE FROM EARTH</span>
@@ -3244,7 +3519,7 @@
         </div>
         <div class="traj-stat-card">
           <span id="lbl-traj-velocity">HELIOCENTRIC VELOCITY</span>
-          <strong id="val-traj-velocity" style="color: var(--accent-emerald);">24.18 km/s</strong>
+          <strong id="val-traj-velocity" style="color: var(--accent-emerald);">18 km/s</strong>
         </div>
       </div>
 
@@ -3265,7 +3540,7 @@
   </div>
 
   <!-- =========================================================================
-       SLIDE-IN OVERLAY 7: CREW HEALTH KPIs WITH SLIDER BARS
+       SLIDE-IN OVERLAY 7: CREW HEALTH KPIs (DYNAMICALLY DRIVEN BY INDICATORS)
        ========================================================================= -->
   <div class="touch-overlay" id="overlay-kpis">
     <div class="overlay-card" style="max-width: 600px;">
@@ -3273,7 +3548,7 @@
         <div>
           <div class="overlay-title" id="kpi-overlay-title">CREW HEALTH KPIs // EDGE-AI TELEMETRY</div>
           <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin-top: 2px;" id="kpi-overlay-sub">
-            REAL-TIME PHYSIOLOGICAL READINESS & SLIDER BAR TELEMETRY
+            REAL-TIME PHYSIOLOGICAL READINESS COMPUTED FROM 12 BIOMEDICAL INDICATORS
           </div>
         </div>
         <button class="btn-close-overlay" onclick="closeAllOverlays()" id="btn-close-kpi">CLOSE</button>
@@ -3955,14 +4230,14 @@
         btnConfirmFinish: "YES, FINISH SESSION",
         btnCancelFinish: "CONTINUE MONITORING",
         trajTitle: "ARES-V // EARTH TO MARS INTERPLANETARY TRAJECTORY",
-        trajSub: "HOHMANN TRANSFER ORBIT • REAL ASTRONOMICAL DISTANCES",
+        trajSub: "HOHMANN TRANSFER ORBIT • 10 SELECTABLE TRANSIT POSITIONS",
         trajFromEarth: "DISTANCE FROM EARTH",
         trajToMars: "REMAINING TO MARS",
         trajVel: "HELIOCENTRIC VELOCITY",
         trajMilestone: "CELESTIAL WAYPOINT TELEMETRY",
-        trajNextBtn: "NEXT TRANSIT WINDOW",
+        trajNextBtn: "NEXT POSITION",
         kpiTitle: "CREW HEALTH KPIs // EDGE-AI TELEMETRY",
-        kpiSub: "REAL-TIME PHYSIOLOGICAL READINESS & SLIDER BAR TELEMETRY",
+        kpiSub: "REAL-TIME PHYSIOLOGICAL READINESS COMPUTED FROM 12 BIOMEDICAL INDICATORS",
         bootPrompt: "Select your preferred language flag below to initialize ARES-V.",
         welcomeGreet: "Greetings, crew. I am ARES, your onboard medical assistant. All nine automated biosensors are optimal. Press START whenever you are ready to begin your checkup.",
         crewPrompt: "Please identify yourself by tapping your profile once, then tapping a second time to confirm entry.",
@@ -4036,14 +4311,14 @@
         btnConfirmFinish: "SÍ, FINALIZAR SESIÓN",
         btnCancelFinish: "SEGUIR MONITOREANDO",
         trajTitle: "ARES-V // TRAYECTORIA INTERPLANETARIA TIERRA A MARTE",
-        trajSub: "ÓRBITA DE TRANSFERENCIA HOHMANN • DISTANCIAS ASTRONÓMICAS REALES",
+        trajSub: "ÓRBITA DE TRANSFERENCIA HOHMANN • 10 POSICIONES DE TRÁNSITO SELECCIONABLES",
         trajFromEarth: "DISTANCIA DESDE LA TIERRA",
         trajToMars: "RESTANTE HASTA MARTE",
         trajVel: "VELOCIDAD HELIOCÉNTRICA",
         trajMilestone: "TELEMETRÍA DE CUERPOS CELESTES",
-        trajNextBtn: "SIGUIENTE VENTANA",
+        trajNextBtn: "SIGUIENTE POSICIÓN",
         kpiTitle: "KPIs DE SALUD // TELEMETRÍA EDGE-AI",
-        kpiSub: "DISPONIBILIDAD FISIOLÓGICA EN TIEMPO REAL Y GRÁFICA DE BARRA DESLIZADORA",
+        kpiSub: "DISPONIBILIDAD FISIOLÓGICA CALCULADA EN TIEMPO REAL SEGÚN LOS 12 INDICADORES",
         bootPrompt: "Selecciona la bandera de tu idioma preferido para iniciar ARES-V.",
         welcomeGreet: "Saludos, tripulación. Soy ARES, tu asistente médico de a bordo. Los nueve biosensores automáticos están óptimos. Presiona COMENZAR cuando estés listo.",
         crewPrompt: "Por favor identifícate tocando tu perfil una vez y luego tócalo por segunda vez para confirmar tu ingreso.",
@@ -4102,16 +4377,10 @@
       okafor:  { pvt: 268, ared: 99 }
     };
 
-    let kpiSliderOverrides = {
-      readiness: null,
-      autonomic: null,
-      circadian: null
-    };
-
     let earthDistanceKm = 142850400;
     let shipSpeedKmPerSec = 18;
     let realtimeSimEnabled = false;
-    let trajectoryWindowOffset = 0;
+    let selectedTransitWaypointIdx = 6;
     let trajectoryAnimId = null;
     let audioCtx = null;
 
@@ -4306,6 +4575,10 @@
       }
       renderLsahDatabase();
       if (document.getElementById("overlay-kpis").classList.contains("open")) renderKpiSliders();
+      if (document.getElementById("overlay-trajectory").classList.contains("open")) {
+        renderTrajectoryWaypointsBar();
+        updateTrajectoryStats();
+      }
     }
 
     function initializeWithLanguage(lang) {
@@ -4608,12 +4881,14 @@
         lsahBtn.classList.toggle("active", currentScreen === 3);
       }
 
-      if (isCrewAuthenticated) {
-        prevBtn.disabled = currentScreen <= 2;
-        nextBtn.disabled = currentScreen >= 3;
-      } else {
-        prevBtn.disabled = currentScreen <= 0;
-        nextBtn.disabled = currentScreen >= 1;
+      if (prevBtn && nextBtn) {
+        if (isCrewAuthenticated) {
+          prevBtn.disabled = currentScreen <= 2;
+          nextBtn.disabled = currentScreen >= 3;
+        } else {
+          prevBtn.disabled = currentScreen <= 0;
+          nextBtn.disabled = currentScreen >= 1;
+        }
       }
     }
 
@@ -4758,7 +5033,7 @@
       if (idx === -1) return "a";
       const crew = CREW_DATABASE[idx];
       if (crew.slotKey) return crew.slotKey.toLowerCase();
-      return String.fromCharCode(97 + idx); // a, b, c, d, e...
+      return String.fromCharCode(97 + idx);
     }
 
     function getMemoryStorageKey(crewId) {
@@ -4876,7 +5151,6 @@
         const logs = getCrewMemoryLogs(selectedCrewId);
         const now = new Date();
 
-        // Compact telemetry snapshot for ultra-high capacity (up to 10,000 logs per slot)
         const compactMetrics = {};
         Object.entries(liveMetrics).forEach(([k, v]) => {
           compactMetrics[k] = v;
@@ -4893,7 +5167,6 @@
           ...entry
         });
 
-        // Keep up to 10,000 records per astronaut slot with automatic safe quota fallback
         let cappedLogs = logs.slice(0, MAX_EDGE_MEMORY_RECORDS_PER_SLOT);
         try {
           localStorage.setItem(storageKey, JSON.stringify(cappedLogs));
@@ -4956,7 +5229,6 @@
       const storageKey = getMemoryStorageKey(targetId);
       const logs = getCrewMemoryLogs(targetId);
 
-      // Orden cronológico ascendente (del más antiguo al más reciente por fecha y hora)
       const chronologicalLogs = [...logs].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
       const now = new Date();
@@ -5132,7 +5404,6 @@
       const crew = CREW_DATABASE.find((c) => c.id === crewId) || CREW_DATABASE[0];
       selectedCrewId = crew.id;
       symptomFlashingIndicators = [];
-      kpiSliderOverrides = { readiness: null, autonomic: null, circadian: null };
 
       const chip = document.getElementById("active-crew-chip");
       if (isCrewAuthenticated) {
@@ -5542,62 +5813,84 @@
     }
 
     /* =========================================================================
-       9. CREW HEALTH KPIs WITH SLIDER BARS
+       9. CREW HEALTH KPIs (DYNAMICALLY COMPUTED FROM ALL 12 INDICATORS)
        ========================================================================= */
     function computeCrewHealthKpis() {
-      const sensorIds = NASA_LSAH_STANDARDS.filter((s) => s.group === "sensor").map((s) => s.id);
-      let optCount = 0;
-      sensorIds.forEach((id) => {
-        if (getIndicatorStatus(id, liveMetrics[id]) === "nominal") optCount++;
+      const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
+
+      // 1. Overall Biometric Readiness Index (evaluates all 12 NASA LSAH indicators)
+      let totalScore = 0;
+      NASA_LSAH_STANDARDS.forEach((std) => {
+        const val = liveMetrics[std.id] !== undefined ? liveMetrics[std.id] : crew.baselines[std.id];
+        const status = getIndicatorStatus(std.id, val);
+        const isSymFlash = symptomFlashingIndicators.includes(std.id);
+        if (isSymFlash || status === "critical") {
+          totalScore += 25;
+        } else if (status === "warning") {
+          totalScore += 62;
+        } else {
+          totalScore += 100;
+        }
       });
-      const autoReadiness = Math.round((optCount / sensorIds.length) * 100);
+      const readinessVal = Math.max(0, Math.min(100, Math.round(totalScore / NASA_LSAH_STANDARDS.length)));
 
-      const hr = liveMetrics.heart_rate || 62;
-      const bp = liveMetrics.sys_bp || 115;
-      const spo2 = liveMetrics.spo2_sat || 99;
-      const hrPenalty = Math.max(0, Math.abs(hr - 65) - 12) * 1.1;
-      const bpPenalty = Math.max(0, Math.abs(bp - 115) - 10) * 1.2;
-      const spo2Bonus = (spo2 - 90) * 2;
-      const autoAutonomic = Math.max(35, Math.min(100, Math.round(82 + spo2Bonus - hrPenalty - bpPenalty)));
+      // 2. Cardiovascular, Autonomic & Fluid Stability (Heart Rate, Sys BP, SpO2, Cabin CO2, Urine Ca, IOP SANS)
+      const hr = liveMetrics.heart_rate ?? crew.baselines.heart_rate;
+      const bp = liveMetrics.sys_bp ?? crew.baselines.sys_bp;
+      const spo2 = liveMetrics.spo2_sat ?? crew.baselines.spo2_sat;
+      const co2 = liveMetrics.cabin_co2 ?? crew.baselines.cabin_co2;
+      const ca = liveMetrics.urine_ca ?? crew.baselines.urine_ca;
+      const iop = liveMetrics.iop_sans ?? crew.baselines.iop_sans;
 
-      const sleepEff = liveMetrics.sleep_eff || 90;
-      const pvt = liveMetrics.pvt_ms || 255;
-      const pvtScore = Math.max(40, Math.min(100, Math.round(135 - (pvt - 200) * 0.22)));
-      const autoCircadian = Math.max(30, Math.min(100, Math.round(sleepEff * 0.55 + pvtScore * 0.45)));
+      const hrPenalty = Math.max(0, Math.abs(hr - 68) - 10) * 0.9;
+      const bpPenalty = Math.max(0, Math.abs(bp - 116) - 8) * 1.1;
+      const spo2Penalty = Math.max(0, 98 - spo2) * 5.5;
+      const co2Penalty = Math.max(0, co2 - 2.2) * 14;
+      const caPenalty = Math.max(0, ca - 220) * 0.25;
+      const iopPenalty = Math.max(0, iop - 19) * 5;
+      const autonomicVal = Math.max(15, Math.min(100, Math.round(100 - hrPenalty - bpPenalty - spo2Penalty - co2Penalty - caPenalty - iopPenalty)));
+
+      // 3. Circadian, Radiation & Neuro-Cognitive Alertness (Sleep Eff, Sleep Dur, PVT, Rad Dose, Rad Rate, Microbes)
+      const sleepEff = liveMetrics.sleep_eff ?? crew.baselines.sleep_eff;
+      const sleepDur = liveMetrics.sleep_dur ?? crew.baselines.sleep_dur;
+      const pvt = liveMetrics.pvt_ms ?? crew.baselines.pvt_ms;
+      const radRate = liveMetrics.rad_rate ?? crew.baselines.rad_rate;
+      const radDose = liveMetrics.rad_dose ?? crew.baselines.rad_dose;
+      const micro = liveMetrics.cabin_micro ?? crew.baselines.cabin_micro;
+
+      const sleepEffScore = Math.max(20, Math.min(100, Math.round((sleepEff / 92) * 100)));
+      const sleepDurScore = Math.max(20, Math.min(100, Math.round((sleepDur / 7.8) * 100)));
+      const pvtScore = Math.max(20, Math.min(100, Math.round(135 - Math.max(0, pvt - 220) * 0.25)));
+      const envPenalty = Math.max(0, radRate - 0.08) * 3.2 + Math.max(0, radDose - 250) * 0.1 + Math.max(0, micro - 50) * 0.15;
+      const circadianVal = Math.max(15, Math.min(100, Math.round((sleepEffScore * 0.35 + sleepDurScore * 0.25 + pvtScore * 0.40) - envPenalty)));
 
       return [
         {
           key: "readiness",
           titleEn: "1. Overall Biometric Readiness Index",
           titleEs: "1. Índice Global de Disponibilidad Biométrica",
-          descEn: "Composite percentage of optimal NASA LSAH sensors & clinical checks",
-          descEs: "Porcentaje compuesto de sensores NASA LSAH y controles clínicos óptimos",
-          value: kpiSliderOverrides.readiness !== null ? kpiSliderOverrides.readiness : autoReadiness,
-          unit: "%",
-          min: 0,
-          max: 100
+          descEn: "Live composite score across all 12 NASA LSAH sensors & clinical checks",
+          descEs: "Puntuación compuesta en tiempo real de los 12 sensores y controles NASA LSAH",
+          value: readinessVal,
+          unit: "%"
         },
         {
           key: "autonomic",
-          titleEn: "2. Cardiovascular & Autonomic Stability",
-          titleEs: "2. Estabilidad Cardiovascular y Autonómica",
-          descEn: "Derived from resting ECG rate, systolic pressure & arterial SpO₂",
-          descEs: "Derivado de frecuencia ECG, presión sistólica y saturación arterial SpO₂",
-          value: kpiSliderOverrides.autonomic !== null ? kpiSliderOverrides.autonomic : autoAutonomic,
-          unit: "%",
-          min: 0,
-          max: 100
+          titleEn: "2. Cardiovascular, Fluid & Metabolic Stability",
+          titleEs: "2. Estabilidad Cardiovascular, Fluidos y Metabólica",
+          descEn: "Calculated from ECG rate, systolic BP, SpO₂, cabin CO₂, renal Ca²⁺ & IOP",
+          descEs: "Calculado según pulso ECG, presión sistólica, SpO₂, CO₂, calcio urinario y PIO",
+          value: autonomicVal,
+          unit: "%"
         },
         {
           key: "circadian",
-          titleEn: "3. Circadian & Neuro-Cognitive Alertness",
-          titleEs: "3. Alerta Circadiana y Neurocognitiva",
-          descEn: "Correlates nocturnal sleep efficiency with NASA PVT-B reflex speed",
-          descEs: "Correlaciona eficiencia del sueño nocturno con velocidad de reflejos NASA PVT-B",
-          value: kpiSliderOverrides.circadian !== null ? kpiSliderOverrides.circadian : autoCircadian,
-          unit: "%",
-          min: 0,
-          max: 100
+          titleEn: "3. Circadian, Radiation & Cognitive Alertness",
+          titleEs: "3. Alerta Circadiana, Radiación y Neurocognitiva",
+          descEn: "Calculated from sleep efficiency, sleep hours, PVT-B reflexes & radiation flux",
+          descEs: "Calculado según eficiencia/horas de sueño, reflejos PVT-B y flujo de radiación",
+          value: circadianVal,
+          unit: "%"
         }
       ];
     }
@@ -5606,11 +5899,6 @@
       lastInteractionTime = Date.now();
       renderKpiSliders();
       document.getElementById("overlay-kpis").classList.add("open");
-    }
-
-    function handleKpiSliderAdjust(key, newVal) {
-      kpiSliderOverrides[key] = Number(newVal);
-      renderKpiSliders();
     }
 
     function renderKpiSliders() {
@@ -5632,9 +5920,7 @@
             </div>
             <div class="kpi-slider-track">
               <div class="kpi-slider-fill" style="width:${pct}%; background:${barColor};"></div>
-              <div class="kpi-slider-thumb" style="left:${pct}%; border-color:${barColor};"></div>
             </div>
-            <input type="range" class="kpi-range-input" min="0" max="100" value="${pct}" oninput="handleKpiSliderAdjust('${k.key}', this.value)" />
           </div>
         `;
       }).join("");
@@ -5657,7 +5943,6 @@
 
       if (type === "restore") {
         symptomFlashingIndicators = [];
-        kpiSliderOverrides = { readiness: null, autonomic: null, circadian: null };
         loadCrewProfile(crew.id, false);
         appendCrewMemoryLog({
           type: "INDICATOR_EVENT",
@@ -6516,24 +6801,154 @@
     }
 
     /* =========================================================================
-       16. INTERPLANETARY EARTH -> MARS TRAJECTORY MAP
+       16. INTERPLANETARY EARTH -> MARS TRAJECTORY MAP (10 SELECTABLE POSITIONS)
        ========================================================================= */
     const MARS_TOTAL_TRANSIT_KM = 225000000;
+
+    const TRANSIT_WAYPOINTS = [
+      {
+        id: 1,
+        code: "01",
+        earthKm: 384400,
+        nameEn: "01 • Cislunar Departure Orbit (Near Earth)",
+        nameEs: "01 • Órbita de Salida Cislunar (Cerca de la Tierra)",
+        descEn: "Stage 1 Trans-Mars Injection burn complete. Passing Lunar orbital altitude (384,400 km) departing Earth's gravity well.",
+        descEs: "Encendido de inyección trans-marciana completado. Cruzando altitud orbital lunar (384,400 km) saliendo de la gravedad terrestre."
+      },
+      {
+        id: 2,
+        code: "02",
+        earthKm: 12500000,
+        nameEn: "02 • Earth-Sun L2 Deep Space Gate",
+        nameEs: "02 • Puerta de Espacio Profundo L2 Tierra-Sol",
+        descEn: "12.5M km from Earth. Leaving Earth's magnetosphere; full galactic cosmic radiation dosimetry active.",
+        descEs: "A 12.5M km de la Tierra. Saliendo de la magnetósfera terrestre; dosimetría de radiación cósmica galáctica activa."
+      },
+      {
+        id: 3,
+        code: "03",
+        earthKm: 34000000,
+        nameEn: "03 • Inner Heliocentric Cruise Arc",
+        nameEs: "03 • Arco Interno de Crucero Heliocéntrico",
+        descEn: "34.0M km from Earth. Communications latency reaches ~1m 53s one-way; autonomous Edge-AI medical core primary.",
+        descEs: "A 34.0M km de la Tierra. Latencia de comunicaciones en ~1m 53s por vía; núcleo médico autónomo Edge-AI primario."
+      },
+      {
+        id: 4,
+        code: "04",
+        earthKm: 62000000,
+        nameEn: "04 • (99942) Apophis Orbital Corridor",
+        nameEs: "04 • Corredor Orbital (99942) Apophis",
+        descEn: "62.0M km from Earth. Traversing near-Earth asteroid heliocentric belt with micrometeoroid radar tracking.",
+        descEs: "A 62.0M km de la Tierra. Cruzando cinturón heliocéntrico de asteroides cercanos con rastreo de micrometeoritos."
+      },
+      {
+        id: 5,
+        code: "05",
+        earthKm: 92500000,
+        nameEn: "05 • First Solar Conjunction Approach",
+        nameEs: "05 • Aproximación a Primera Conjunción Solar",
+        descEn: "92.5M km from Earth. Solar particle flux monitoring elevated; ARED musculoskeletal countermeasures at 100%.",
+        descEs: "A 92.5M km de la Tierra. Monitoreo elevado de flujo solar; contramedidas musculoesqueléticas ARED al 100%."
+      },
+      {
+        id: 6,
+        code: "06",
+        earthKm: 112500000,
+        nameEn: "06 • Interplanetary Midpoint (50% Transit)",
+        nameEs: "06 • Punto Medio Interplanetario (50% Tránsito)",
+        descEn: "112.5M km from Earth / 112.5M km to Mars. Exact Hohmann transfer midpoint; full crew circadian & SANS review.",
+        descEs: "112.5M km de la Tierra / 112.5M km a Marte. Punto medio exacto de transferencia Hohmann; revisión circadiana y SANS."
+      },
+      {
+        id: 7,
+        code: "07",
+        earthKm: 142850400,
+        nameEn: "07 • Deep-Space Cruise Sector Beta",
+        nameEs: "07 • Sector Beta de Crucero Profundo",
+        descEn: "142.85M km from Earth. Standard cruise telemetry window; signal delay ~7m 56s one-way to Houston Mission Control.",
+        descEs: "A 142.85M km de la Tierra. Ventana estándar de crucero; retraso de señal ~7m 56s hacia Control de Misión."
+      },
+      {
+        id: 8,
+        code: "08",
+        earthKm: 176000000,
+        nameEn: "08 • Outer Hohmann Trajectory Inflection",
+        nameEs: "08 • Inflexión Exterior de Trayectoria Hohmann",
+        descEn: "176.0M km from Earth (49.0M km to Mars). Beginning trajectory alignment for Martian atmospheric entry corridor.",
+        descEs: "A 176.0M km de la Tierra (49.0M km a Marte). Iniciando alineación de trayectoria hacia corredor marciano."
+      },
+      {
+        id: 9,
+        code: "09",
+        earthKm: 206000000,
+        nameEn: "09 • Mars Gravitational Sphere Approach",
+        nameEs: "09 • Aproximación a Esfera Gravitacional de Marte",
+        descEn: "206.0M km from Earth (19.0M km to Mars). Red Planet visible as a bright disc; preparing orthostatic re-adaptation.",
+        descEs: "A 206.0M km de la Tierra (19.0M km a Marte). Planeta Rojo visible como disco brillante; preparando readaptación ortostática."
+      },
+      {
+        id: 10,
+        code: "10",
+        earthKm: 224150000,
+        nameEn: "10 • Mars Orbital Insertion / Phobos Gate (Near Mars)",
+        nameEs: "10 • Inserción Orbital Marciana / Puerta Phobos (Cerca de Marte)",
+        descEn: "224.15M km from Earth (only 850,000 km from Mars). Entering Martian SOI and Phobos orbital altitude for capture burn.",
+        descEs: "224.15M km de la Tierra (a solo 850,000 km de Marte). Entrando en esfera marciana y órbita de Phobos para captura."
+      }
+    ];
+
+    function syncSelectedWaypointFromDistance() {
+      let bestIdx = 0;
+      let bestDiff = Infinity;
+      TRANSIT_WAYPOINTS.forEach((wp, idx) => {
+        const diff = Math.abs(earthDistanceKm - wp.earthKm);
+        if (diff < bestDiff) {
+          bestDiff = diff;
+          bestIdx = idx;
+        }
+      });
+      selectedTransitWaypointIdx = bestIdx;
+    }
+
+    function renderTrajectoryWaypointsBar() {
+      const bar = document.getElementById("traj-waypoints-bar");
+      if (!bar) return;
+      bar.innerHTML = TRANSIT_WAYPOINTS.map((wp, idx) => `
+        <button class="traj-wp-btn ${idx === selectedTransitWaypointIdx ? "active" : ""}"
+                onclick="selectTrajectoryWaypoint(${idx})"
+                title="${currentLang === "es" ? wp.nameEs : wp.nameEn}">
+          P${wp.code}
+        </button>
+      `).join("");
+    }
+
+    function selectTrajectoryWaypoint(idx) {
+      lastInteractionTime = Date.now();
+      selectedTransitWaypointIdx = Math.max(0, Math.min(TRANSIT_WAYPOINTS.length - 1, idx));
+      const wp = TRANSIT_WAYPOINTS[selectedTransitWaypointIdx];
+      earthDistanceKm = wp.earthKm;
+      savePersistentSessionState();
+      renderTrajectoryWaypointsBar();
+      updateTrajectoryStats();
+    }
 
     function openTrajectoryOverlay(evt) {
       if (evt) evt.stopPropagation();
       lastInteractionTime = Date.now();
       closeAllOverlays();
+      syncSelectedWaypointFromDistance();
+      renderTrajectoryWaypointsBar();
       updateTrajectoryStats();
       document.getElementById("overlay-trajectory").classList.add("open");
       startTrajectoryCanvasLoop();
 
-      const fromEarth = Math.round(earthDistanceKm + trajectoryWindowOffset).toLocaleString("en-US");
-      const toMars = Math.max(0, Math.round(MARS_TOTAL_TRANSIT_KM - (earthDistanceKm + trajectoryWindowOffset))).toLocaleString("en-US");
+      const fromEarth = Math.round(earthDistanceKm).toLocaleString("en-US");
+      const toMars = Math.max(0, Math.round(MARS_TOTAL_TRANSIT_KM - earthDistanceKm)).toLocaleString("en-US");
       speakAura(
         currentLang === "es"
-          ? `Trayectoria interplanetaria hacia Marte. Distancia desde la Tierra: ${fromEarth} kilómetros. Distancia restante a Marte: ${toMars} kilómetros.`
-          : `Interplanetary transit map to Mars. Distance from Earth: ${fromEarth} kilometers. Remaining distance to Mars: ${toMars} kilometers.`,
+          ? `Trayectoria interplanetaria hacia Marte. Posición ${selectedTransitWaypointIdx + 1} de 10. Distancia desde la Tierra: ${fromEarth} kilómetros. Distancia restante a Marte: ${toMars} kilómetros.`
+          : `Interplanetary transit map to Mars. Position ${selectedTransitWaypointIdx + 1} of 10. Distance from Earth: ${fromEarth} kilometers. Remaining distance to Mars: ${toMars} kilometers.`,
         "happy"
       );
     }
@@ -6546,24 +6961,31 @@
 
     function shiftTrajectoryWindow() {
       lastInteractionTime = Date.now();
-      trajectoryWindowOffset = (trajectoryWindowOffset + 28000000) % 75000000;
-      updateTrajectoryStats();
+      const nextIdx = (selectedTransitWaypointIdx + 1) % TRANSIT_WAYPOINTS.length;
+      selectTrajectoryWaypoint(nextIdx);
     }
 
     function updateTrajectoryStats() {
-      const distEarth = Math.min(MARS_TOTAL_TRANSIT_KM - 1200000, Math.round(earthDistanceKm + trajectoryWindowOffset));
-      const distMars = Math.max(1200000, MARS_TOTAL_TRANSIT_KM - distEarth);
-      const pct = Math.round((distEarth / MARS_TOTAL_TRANSIT_KM) * 100);
+      const distEarth = Math.max(0, Math.min(MARS_TOTAL_TRANSIT_KM, Math.round(earthDistanceKm)));
+      const distMars = Math.max(0, MARS_TOTAL_TRANSIT_KM - distEarth);
+      const pct = Math.min(100, Math.max(0, Math.round((distEarth / MARS_TOTAL_TRANSIT_KM) * 100)));
+      const wp = TRANSIT_WAYPOINTS[selectedTransitWaypointIdx] || TRANSIT_WAYPOINTS[0];
 
-      document.getElementById("val-traj-from-earth").textContent = `${distEarth.toLocaleString("en-US")} km`;
-      document.getElementById("val-traj-to-mars").textContent = `${distMars.toLocaleString("en-US")} km`;
-      document.getElementById("val-traj-velocity").textContent = "24.18 km/s";
-
+      const fromEl = document.getElementById("val-traj-from-earth");
+      const toEl = document.getElementById("val-traj-to-mars");
+      const velEl = document.getElementById("val-traj-velocity");
+      const titleEl = document.getElementById("lbl-traj-milestone");
       const descEl = document.getElementById("val-traj-milestone-desc");
+
+      if (fromEl) fromEl.textContent = `${distEarth.toLocaleString("en-US")} km`;
+      if (toEl) toEl.textContent = `${distMars.toLocaleString("en-US")} km`;
+      if (velEl) velEl.textContent = `${Number(shipSpeedKmPerSec).toLocaleString("en-US")} km/s`;
+      if (titleEl) titleEl.textContent = currentLang === "es" ? wp.nameEs : wp.nameEn;
       if (descEl) {
+        const baseDesc = currentLang === "es" ? wp.descEs : wp.descEn;
         descEl.textContent = currentLang === "es"
-          ? `Progreso de transferencia Hohmann: ${pct}%. Cruzando corredor orbital cercano a (99942) Apophis y Phobos en ruta hacia órbita areocéntrica.`
-          : `Hohmann transfer progress: ${pct}%. Traversing deep-space corridor past Near-Earth Asteroid (99942) Apophis toward Martian capture.`;
+          ? `[Progreso: ${pct}%] ${baseDesc}`
+          : `[Progress: ${pct}%] ${baseDesc}`;
       }
     }
 
@@ -6605,15 +7027,15 @@
         ctx.font = "bold 10px monospace";
         ctx.fillText("SOL", sunX - 10, sunY + 38);
 
-        const earthX = w * 0.22;
+        const earthX = w * 0.20;
         const earthY = h * 0.68;
-        const marsX = w * 0.86;
+        const marsX = w * 0.87;
         const marsY = h * 0.30;
-        const ctrlX = w * 0.54;
+        const ctrlX = w * 0.53;
         const ctrlY = h * 0.14;
 
         ctx.save();
-        ctx.strokeStyle = "rgba(0, 229, 255, 0.5)";
+        ctx.strokeStyle = "rgba(0, 229, 255, 0.45)";
         ctx.lineWidth = 2.2;
         ctx.setLineDash([7, 7]);
         ctx.beginPath();
@@ -6622,15 +7044,22 @@
         ctx.stroke();
         ctx.restore();
 
-        const astX = w * 0.44;
-        const astY = h * 0.35;
-        ctx.fillStyle = "#94a3b8";
-        ctx.beginPath();
-        ctx.arc(astX, astY, 3.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = "#94a3b8";
-        ctx.font = "9px monospace";
-        ctx.fillText("99942 APOPHIS", astX - 30, astY - 8);
+        // Draw the 10 selectable waypoint markers along the quadratic Bezier curve
+        TRANSIT_WAYPOINTS.forEach((wp, idx) => {
+          const wt = Math.max(0.03, Math.min(0.97, wp.earthKm / MARS_TOTAL_TRANSIT_KM));
+          const wx = (1 - wt) * (1 - wt) * earthX + 2 * (1 - wt) * wt * ctrlX + wt * wt * marsX;
+          const wy = (1 - wt) * (1 - wt) * earthY + 2 * (1 - wt) * wt * ctrlY + wt * wt * marsY;
+          const isSelected = idx === selectedTransitWaypointIdx;
+
+          ctx.fillStyle = isSelected ? "#00e5ff" : "rgba(148, 163, 184, 0.65)";
+          ctx.beginPath();
+          ctx.arc(wx, wy, isSelected ? 4.5 : 2.6, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = isSelected ? "#00e5ff" : "rgba(148, 163, 184, 0.75)";
+          ctx.font = isSelected ? "bold 10px monospace" : "9px monospace";
+          ctx.fillText(String(wp.id), wx - 4, wy + 14);
+        });
 
         ctx.fillStyle = "#2979ff";
         ctx.beginPath();
@@ -6642,7 +7071,7 @@
         ctx.fill();
         ctx.fillStyle = "#ffffff";
         ctx.font = "bold 11px monospace";
-        ctx.fillText(currentLang === "es" ? "TIERRA" : "EARTH", earthX - 18, earthY + 25);
+        ctx.fillText(currentLang === "es" ? "TIERRA" : "EARTH", earthX - 18, earthY + 26);
 
         ctx.fillStyle = "#ff5722";
         ctx.beginPath();
@@ -6650,16 +7079,16 @@
         ctx.fill();
         ctx.fillStyle = "#ffab91";
         ctx.font = "bold 11px monospace";
-        ctx.fillText(currentLang === "es" ? "MARTE" : "MARS", marsX - 16, marsY + 23);
+        ctx.fillText(currentLang === "es" ? "MARTE" : "MARS", marsX - 16, marsY + 24);
 
-        const distEarth = Math.min(MARS_TOTAL_TRANSIT_KM - 1200000, earthDistanceKm + trajectoryWindowOffset);
-        const t = Math.max(0.1, Math.min(0.92, distEarth / MARS_TOTAL_TRANSIT_KM));
+        const distEarth = Math.max(0, Math.min(MARS_TOTAL_TRANSIT_KM, earthDistanceKm));
+        const t = Math.max(0.03, Math.min(0.97, distEarth / MARS_TOTAL_TRANSIT_KM));
         const shipX = (1 - t) * (1 - t) * earthX + 2 * (1 - t) * t * ctrlX + t * t * marsX;
         const shipY = (1 - t) * (1 - t) * earthY + 2 * (1 - t) * t * ctrlY + t * t * marsY;
 
         const pulseR = 11 + Math.sin(now * 0.006) * 3;
-        ctx.strokeStyle = "rgba(0, 229, 255, 0.75)";
-        ctx.lineWidth = 1.6;
+        ctx.strokeStyle = "rgba(0, 229, 255, 0.85)";
+        ctx.lineWidth = 1.8;
         ctx.beginPath();
         ctx.arc(shipX, shipY, pulseR, 0, Math.PI * 2);
         ctx.stroke();
@@ -6677,6 +7106,7 @@
         ctx.font = "bold 11px monospace";
         ctx.fillText("ARES-V", shipX - 18, shipY - 16);
 
+        updateTrajectoryStats();
         trajectoryAnimId = requestAnimationFrame(drawMap);
       }
       trajectoryAnimId = requestAnimationFrame(drawMap);
@@ -6686,7 +7116,7 @@
        17. LIVE EARTH DISTANCE TELEMETRY TICKER & CLEAN BOOT
        ========================================================================= */
     setInterval(() => {
-      earthDistanceKm += shipSpeedKmPerSec;
+      earthDistanceKm = Math.min(MARS_TOTAL_TRANSIT_KM, earthDistanceKm + shipSpeedKmPerSec);
       const distEl = document.getElementById("val-earth-dist");
       if (distEl) {
         distEl.textContent = `${Math.round(earthDistanceKm).toLocaleString("en-US")} km`;
@@ -6705,7 +7135,6 @@
       initWelcomeSpaceCanvas();
       migrateLegacyNamedMemoryToLetterSlots();
 
-      // Garantizar limpieza de cualquier clave antigua precargada si no existe estructura válida
       CREW_DATABASE.forEach((c) => {
         const logs = getCrewMemoryLogs(c.id);
         if (!Array.isArray(logs)) {
