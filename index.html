@@ -439,7 +439,6 @@
       transition: all 0.25s ease;
     }
 
-    /* Happy / Smiling dot eyes with gentle blink */
     .aura-mascot-wrapper.mood-happy .aura-eye {
       width: 11px;
       height: 11px;
@@ -481,14 +480,12 @@
       transition: transform 0.25s ease, height 0.15s ease, background 0.25s ease;
     }
 
-    /* Gentle default smile curve across the 5 mouth bars */
     .aura-wave span:nth-child(1) { transform: translateY(-2.5px); }
     .aura-wave span:nth-child(2) { transform: translateY(0px); }
     .aura-wave span:nth-child(3) { transform: translateY(1.8px); }
     .aura-wave span:nth-child(4) { transform: translateY(0px); }
     .aura-wave span:nth-child(5) { transform: translateY(-2.5px); }
 
-    /* Pronounced happy smile curve when ARES is smiling */
     .aura-mascot-wrapper.mood-happy .aura-wave span {
       background: #0b3954;
       box-shadow: 0 0 6px rgba(0, 180, 216, 0.45);
@@ -551,7 +548,6 @@
       max-width: 92vw;
     }
 
-    /* Language prompt buttons with USA & Spain flags shown under ARES on boot */
     .boot-lang-selector {
       display: none;
       gap: 14px;
@@ -825,7 +821,7 @@
     }
 
     /* =========================================================================
-       SCREEN 2: CREW SELECTION (UNIFORM ORGANIZED GRID — FITS 100% INSIDE VIEWPORT)
+       SCREEN 2: CREW SELECTION
        ========================================================================= */
     .crew-screen {
       justify-content: center;
@@ -963,14 +959,13 @@
     }
 
     /* =========================================================================
-       SCREEN 3: MAIN MEDICAL DASHBOARD (UNIFIED INDICATORS / BOXLESS BODY)
+       SCREEN 3: MAIN MEDICAL DASHBOARD
        ========================================================================= */
     .dashboard-screen {
       padding: 12px 20px;
       gap: 10px;
     }
 
-    /* Top Simulator Bar */
     .sim-bar {
       display: flex;
       align-items: center;
@@ -1020,7 +1015,6 @@
     .sim-btn.sim-warn { color: var(--accent-amber); border-color: rgba(255, 171, 0, 0.35); }
     .sim-btn.sim-ok { color: var(--accent-emerald); border-color: rgba(0, 230, 118, 0.35); }
 
-    /* Split Workspace: Left Unified Indicators (~58%) | Right Boxless Human Body (~42%) */
     .dashboard-split {
       display: grid;
       grid-template-columns: 1.42fr 1fr;
@@ -1029,7 +1023,6 @@
       min-height: 0;
     }
 
-    /* RIGHT COLUMN: BOXLESS HOLOGRAPHIC ANATOMY + RAPID SCAN BUTTON */
     .body-column {
       background: transparent;
       border: none;
@@ -1072,7 +1065,6 @@
       overflow: visible;
     }
 
-    /* Stabilized Anatomical Sensor Nodes (No Bounding-Box Scale Vibration Bug) */
     .sensor-node {
       cursor: pointer;
     }
@@ -1130,7 +1122,6 @@
       transform: scale(0.98);
     }
 
-    /* Centered Safe Dock for Finish Session Button */
     .finish-session-dock {
       position: absolute;
       bottom: 16px;
@@ -1151,7 +1142,7 @@
       font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.06em;
-      padding: 10px 20px;
+      padding: 10px 24px;
       border-radius: 14px;
       cursor: pointer;
       display: flex;
@@ -1437,7 +1428,6 @@
       color: var(--text-secondary);
     }
 
-    /* Official NASA NLSP / LSAH Verification Link Button */
     .nlsp-portal-dock {
       position: absolute;
       bottom: 16px;
@@ -1490,7 +1480,6 @@
       text-align: left;
     }
 
-    /* Full Un-summarized Detail View in LSAH Database */
     .lsah-full-detail-wrap {
       flex: 1;
       overflow-y: auto;
@@ -1612,21 +1601,6 @@
         background: radial-gradient(circle at 32% 28%, rgba(255, 59, 92, 0.14) 0%, #110b14 88%);
         box-shadow: 0 0 6px rgba(255, 59, 92, 0.2);
       }
-    }
-
-    @keyframes spinSlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes spinReverse {
-      from { transform: rotate(360deg); }
-      to { transform: rotate(0deg); }
-    }
-
-    @keyframes spinFast {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
     }
 
     @keyframes auraSpin360 {
@@ -1789,7 +1763,7 @@
     .ind-circle-btn.status-critical .ind-circle-val,
     .ind-circle-btn.symptom-flash-red .ind-circle-val { color: var(--accent-red); }
 
-    /* EXPANDED DETAIL PANEL (SHOWN WHEN CLICKING ANY CIRCULAR INDICATOR) */
+    /* EXPANDED DETAIL PANEL */
     .ind-detail-panel {
       width: 100%;
       background: linear-gradient(180deg, #14213b 0%, #0d1526 100%);
@@ -2085,7 +2059,7 @@
         bottom: 12px;
       }
       .btn-finish-session {
-        padding: 8px 12px;
+        padding: 8px 16px;
         font-size: 10.5px;
       }
       .aura-speech-pill.pos-docked {
@@ -2105,17 +2079,19 @@
       z-index: 350;
       background: rgba(4, 7, 15, 0.84);
       backdrop-filter: blur(12px);
-      display: none;
+      display: none !important;
       align-items: center;
       justify-content: center;
       padding: 20px 20px 115px 20px;
       opacity: 0;
+      pointer-events: none;
       transition: opacity 0.24s ease;
     }
 
     .touch-overlay.open {
-      display: flex;
+      display: flex !important;
       opacity: 1;
+      pointer-events: auto;
     }
 
     .overlay-card {
@@ -2431,7 +2407,7 @@
     </nav>
 
     <div class="topbar-controls">
-      <div class="active-crew-chip" id="active-crew-chip" onclick="promptFinishSession()" title="Active Crew Session • Tap to finish session">
+      <div class="active-crew-chip" id="active-crew-chip" onclick="openCrewHistoryOverlay()" title="Active Crew Clinical History • Tap to view & export .TXT report">
         <span id="active-crew-icon"></span>
       </div>
 
@@ -2532,7 +2508,7 @@
         </g>
       </svg>
 
-      <!-- Existing Animated Eyes & Smile Waveform Inside the Visor -->
+      <!-- Animated Eyes & Smile Waveform Inside the Visor -->
       <div class="aura-core">
         <div class="aura-eyes" id="aura-eyes">
           <div class="aura-eye"></div>
@@ -2560,7 +2536,7 @@
   </div>
 
   <!-- =========================================================================
-       DEVELOPER TEAM EMBLEM ("STARGAZERS") — EXACT ORIGINAL LOGO
+       DEVELOPER TEAM EMBLEM ("STARGAZERS")
        ========================================================================= -->
   <div class="stargazers-corner-badge" id="stargazers-logo-badge" onclick="openTrajectoryOverlay(event)" title="STARGAZERS Team • Tap to open Mars Transit Map">
     <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
@@ -2588,14 +2564,12 @@
         <path id="sgOriginalArc" d="M 35,142 A 86,86 0 0,0 205,142" />
       </defs>
 
-      <!-- Exact Concentric Patch Borders (Light Gray -> Deep Indigo -> Gold -> Thin White Line -> Navy Field) -->
       <circle cx="120" cy="120" r="117" fill="#e6e7e8" />
       <circle cx="120" cy="120" r="109" fill="#2e2a72" />
       <circle cx="120" cy="120" r="101.5" fill="url(#sgGoldTone)" />
       <circle cx="120" cy="120" r="95.5" fill="#ffffff" />
       <circle cx="120" cy="120" r="94" fill="url(#sgNavyField)" />
 
-      <!-- Left & Right Star Constellations -->
       <g stroke="#556896" stroke-width="0.9" fill="none" opacity="0.82">
         <polyline points="82,53 56,57 52,72 67,82 40,104 46,138 66,125 52,72" />
         <polyline points="164,61 186,66 196,87 180,82 164,61" />
@@ -2621,7 +2595,6 @@
         <circle cx="168" cy="96" r="1.5" />
       </g>
 
-      <!-- Two Four-Point Gold/Cream Sparkle Stars -->
       <g>
         <path d="M93,48 L95,54 L101,56 L95,58 L93,64 L91,58 L85,56 L91,54 Z" fill="#f3e7c3" />
         <path d="M93,48 L93,64 L91,58 L85,56 L91,54 Z" fill="url(#sgGoldTone)" />
@@ -2629,7 +2602,6 @@
         <path d="M147,48 L147,64 L145,58 L139,56 L145,54 Z" fill="url(#sgGoldTone)" />
       </g>
 
-      <!-- Inner Segmented Blue Compass Ring & 6 Gold Triangles -->
       <circle cx="120" cy="115" r="46.5" fill="#2b4c73" stroke="#182c47" stroke-width="1.2" />
       <g stroke="#1b3452" stroke-width="0.9">
         <line x1="120" y1="68.5" x2="120" y2="76" />
@@ -2644,7 +2616,6 @@
       </g>
       <circle cx="120" cy="115" r="39" fill="#213d5e" stroke="#3c638f" stroke-width="1" />
 
-      <!-- 6 Gold Triangles on the Compass Ring -->
       <g fill="url(#sgGoldTone)" stroke="#182538" stroke-width="0.9" stroke-linejoin="round">
         <polygon points="84,82 99,73 97,91" />
         <polygon points="156,82 141,73 143,91" />
@@ -2654,7 +2625,6 @@
         <polygon points="152,151 142,139 137,154" />
       </g>
 
-      <!-- Central Space Shuttle Orbiter -->
       <g stroke="#1f242d" stroke-width="1.15" stroke-linejoin="round">
         <path d="M111,64 L88,107 L88,117 L112,117 Z" fill="#cfd3d9" />
         <path d="M111,64 L88,107 L91,108 L112,69 Z" fill="#262b34" />
@@ -2680,7 +2650,6 @@
         <polygon points="120,101 122.4,136 117.6,136" fill="#e5e7eb" />
       </g>
 
-      <!-- Astronaut Helmet Below Shuttle -->
       <g>
         <circle cx="120" cy="154" r="22.5" fill="#d1d5db" stroke="#1f242d" stroke-width="1.3" />
         <circle cx="120" cy="154" r="19" fill="#9ca3af" stroke="#4b5563" stroke-width="0.9" />
@@ -2690,7 +2659,6 @@
         <path d="M129.5,151.5 L130.4,154 L133,155 L130.4,156 L129.5,158.5 L128.6,156 L126,155 L128.6,154 Z" fill="#ffffff" />
       </g>
 
-      <!-- Curved Gold "STARGAZERS" Typography -->
       <text fill="url(#sgGoldTone)" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="22" letter-spacing="1.8">
         <textPath href="#sgOriginalArc" startOffset="50%" text-anchor="middle">STARGAZERS</textPath>
       </text>
@@ -2704,7 +2672,7 @@
     <div class="horizontal-track" id="horizontal-track">
 
       <!-- ---------------------------------------------------------------------
-           SCREEN 1: MINIMALIST CENTERED WELCOME SCREEN WITH DEEP-SPACE BACKGROUND
+           SCREEN 1: MINIMALIST CENTERED WELCOME SCREEN
            --------------------------------------------------------------------- -->
       <section class="screen welcome-screen" id="screen-0">
         <canvas id="welcome-space-canvas"></canvas>
@@ -2749,7 +2717,7 @@
       </section>
 
       <!-- ---------------------------------------------------------------------
-           SCREEN 2: CREW SELECTION (UNIFORM GRID + TWO-TAP CONFIRMATION)
+           SCREEN 2: CREW SELECTION
            --------------------------------------------------------------------- -->
       <section class="screen crew-screen" id="screen-1">
         <div class="crew-header">
@@ -2757,16 +2725,13 @@
           <p id="crew-select-sub">Tap your assigned profile once to verify, then tap again to enter</p>
         </div>
 
-        <div class="zigzag-grid" id="zigzag-crew-list">
-          <!-- Dynamically populated from CREW_DATABASE -->
-        </div>
+        <div class="zigzag-grid" id="zigzag-crew-list"></div>
       </section>
 
       <!-- ---------------------------------------------------------------------
            SCREEN 3: MAIN ASTRONAUT MEDICAL DASHBOARD
            --------------------------------------------------------------------- -->
       <section class="screen dashboard-screen" id="screen-2">
-        <!-- Event Simulator Bar -->
         <div class="sim-bar">
           <span class="sim-bar-label" id="sim-bar-label">EVENT SIMULATOR:</span>
           <div class="sim-btn-list">
@@ -2780,14 +2745,11 @@
           </div>
         </div>
 
-        <!-- Split Workspace: Left 12 Enlarged Circular Indicators (~58%) | Right Enlarged Human Body (~42%) -->
         <div class="dashboard-split">
-          <!-- LEFT: 12 ENLARGED CIRCULAR ICON BUTTONS (4x3) OR EXPANDED GRAPH DETAIL VIEW -->
           <div class="indicators-column" id="indicators-column">
             <div class="indicator-circles-grid" id="unified-indicators-grid"></div>
           </div>
 
-          <!-- RIGHT: ENLARGED BOXLESS REALISTIC ANATOMICAL HOLOGRAM + RAPID SCAN BUTTON -->
           <div class="body-column">
             <div class="body-header">
               <span id="body-map-title">BIOMETRIC SENSOR TOPOGRAPHY</span>
@@ -2815,14 +2777,12 @@
                   </filter>
                 </defs>
 
-                <!-- Subtle Holographic Telemetry Rings Behind Anatomy -->
                 <ellipse cx="148" cy="416" rx="84" ry="13" fill="none" stroke="#00e5ff" stroke-opacity="0.35" stroke-width="1.4" />
                 <ellipse cx="148" cy="416" rx="56" ry="8" fill="none" stroke="#00e5ff" stroke-opacity="0.2" stroke-dasharray="4 4" />
                 <line x1="28" y1="68" x2="272" y2="68" stroke="#1e2b45" stroke-opacity="0.55" stroke-dasharray="2 4" />
                 <line x1="28" y1="168" x2="272" y2="168" stroke="#1e2b45" stroke-opacity="0.55" stroke-dasharray="2 4" />
                 <line x1="28" y1="268" x2="272" y2="268" stroke="#1e2b45" stroke-opacity="0.55" stroke-dasharray="2 4" />
 
-                <!-- Enlarged Realistic Anatomical Human Silhouette -->
                 <g transform="translate(8, -2) scale(1.03)">
                   <path d="M136 14
                            C152 14, 164 25, 164 42
@@ -2877,7 +2837,6 @@
                         stroke-width="1.85"
                         stroke-opacity="0.88" />
 
-                  <!-- Internal Anatomical Musculature & Skeletal Hologram Contours -->
                   <path d="M103 102 Q121 108 136 106 Q151 108 169 102" fill="none" stroke="#00e5ff" stroke-opacity="0.45" stroke-width="1.3" />
                   <line x1="136" y1="84" x2="136" y2="230" stroke="#00e5ff" stroke-opacity="0.34" stroke-width="1.3" stroke-dasharray="3 3" />
                   <path d="M101 126 Q119 136 134 130 M171 126 Q153 136 138 130" fill="none" stroke="#00e5ff" stroke-opacity="0.38" stroke-width="1.2" />
@@ -2889,7 +2848,6 @@
                   <circle cx="136" cy="40" r="17" fill="url(#organGlow)" />
                 </g>
 
-                <!-- SENSOR NODE 1: HEAD / OCULAR SANS & PVT -->
                 <g class="sensor-node" id="body-node-head" onclick="handleBodyNodeClick('iop_sans')">
                   <circle cx="148" cy="40" r="16" fill="none" stroke="#00e676" stroke-width="1.7" class="sensor-pulse-ring" id="ring-head" />
                   <circle cx="148" cy="40" r="7.5" fill="#00e676" filter="url(#glowNode)" class="node-core-dot" id="dot-head" />
@@ -2897,7 +2855,6 @@
                   <text x="216" y="30" fill="#e2e8f0" font-family="monospace" font-size="10.5" font-weight="bold">SANS / PVT</text>
                 </g>
 
-                <!-- SENSOR NODE 2: CHEST / CARDIAC ECG & BP -->
                 <g class="sensor-node" id="body-node-chest" onclick="handleBodyNodeClick('heart_rate')">
                   <circle cx="158" cy="132" r="16" fill="none" stroke="#00e676" stroke-width="1.7" class="sensor-pulse-ring" id="ring-chest" />
                   <circle cx="158" cy="132" r="7.5" fill="#00e676" filter="url(#glowNode)" class="node-core-dot" id="dot-chest" />
@@ -2905,7 +2862,6 @@
                   <text x="218" y="122" fill="#e2e8f0" font-family="monospace" font-size="10.5" font-weight="bold">ECG / SpO₂</text>
                 </g>
 
-                <!-- SENSOR NODE 3: WRIST / ACTIGRAPH SLEEP -->
                 <g class="sensor-node" id="body-node-wrist" onclick="handleBodyNodeClick('sleep_eff')">
                   <circle cx="64" cy="228" r="16" fill="none" stroke="#00e676" stroke-width="1.7" class="sensor-pulse-ring" id="ring-wrist" />
                   <circle cx="64" cy="228" r="7.5" fill="#00e676" filter="url(#glowNode)" class="node-core-dot" id="dot-wrist" />
@@ -2913,7 +2869,6 @@
                   <text x="2" y="207" fill="#e2e8f0" font-family="monospace" font-size="10.5" font-weight="bold">ACTIGRAPH</text>
                 </g>
 
-                <!-- SENSOR NODE 4: KIDNEYS / RENAL & CALCIUM -->
                 <g class="sensor-node" id="body-node-renal" onclick="handleBodyNodeClick('urine_ca')">
                   <circle cx="131" cy="188" r="16" fill="none" stroke="#00e676" stroke-width="1.7" class="sensor-pulse-ring" id="ring-renal" />
                   <circle cx="131" cy="188" r="7.5" fill="#00e676" filter="url(#glowNode)" class="node-core-dot" id="dot-renal" />
@@ -2921,7 +2876,6 @@
                   <text x="2" y="157" fill="#e2e8f0" font-family="monospace" font-size="10.5" font-weight="bold">RENAL / Ca²⁺</text>
                 </g>
 
-                <!-- SENSOR NODE 5: FEMUR / MUSCLE & BONE ARED -->
                 <g class="sensor-node" id="body-node-muscle" onclick="handleBodyNodeClick('urine_ca')">
                   <circle cx="176" cy="304" r="16" fill="none" stroke="#00e676" stroke-width="1.7" class="sensor-pulse-ring" id="ring-muscle" />
                   <circle cx="176" cy="304" r="7.5" fill="#00e676" filter="url(#glowNode)" class="node-core-dot" id="dot-muscle" />
@@ -2929,7 +2883,6 @@
                   <text x="221" y="294" fill="#e2e8f0" font-family="monospace" font-size="10.5" font-weight="bold">ARED / BONE</text>
                 </g>
 
-                <!-- SENSOR NODE 6: AMBIENT CABIN RAD & CO2 -->
                 <g class="sensor-node" id="body-node-ambient" onclick="handleBodyNodeClick('rad_dose')">
                   <rect x="14" y="24" width="42" height="28" rx="7" fill="rgba(0, 229, 255, 0.14)" stroke="#00e676" stroke-width="1.6" id="box-ambient" />
                   <circle cx="35" cy="38" r="6" fill="#00e676" filter="url(#glowNode)" class="node-core-dot" id="dot-ambient" />
@@ -2957,7 +2910,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            <span id="txt-finish-session">SATISFIED / FINISH SESSION</span>
+            <span id="txt-finish-session">SATISFIED</span>
           </button>
         </div>
       </section>
@@ -2990,11 +2943,8 @@
           </div>
         </div>
 
-        <div class="lsah-cards-grid" id="lsah-cards-grid">
-          <!-- Populated dynamically as enlarged circular icon buttons -->
-        </div>
+        <div class="lsah-cards-grid" id="lsah-cards-grid"></div>
 
-        <!-- Bottom-Left Official NASA NLSP / LSAH Verification Button -->
         <div class="nlsp-portal-dock">
           <a href="https://nlsp.nasa.gov/resources/lsah" target="_blank" rel="noopener noreferrer" class="btn-nlsp-portal" title="Verify data at NASA Life Sciences Portal (LSAH)">
             <div class="nlsp-logo-badge">
@@ -3054,7 +3004,6 @@
         </div>
       </div>
 
-      <!-- Step 1: Ask about symptoms -->
       <div id="guided-step-symptom">
         <p style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;" id="guided-symptom-question">
           Do you feel any physical discomfort or symptoms you would like to report?
@@ -3069,7 +3018,6 @@
         </div>
       </div>
 
-      <!-- Step 2: Launch PVT Game or Lab Entry -->
       <div id="guided-step-tests" style="display: none;">
         <p style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;" id="guided-tests-question">
           Which scheduled non-sensor diagnostic check would you like to perform now?
@@ -3087,7 +3035,7 @@
   </div>
 
   <!-- =========================================================================
-       SLIDE-IN OVERLAY 2: VOICE SYMPTOM LOGGER (WITH KEYWORD AUTO-ALERT)
+       SLIDE-IN OVERLAY 2: VOICE SYMPTOM LOGGER
        ========================================================================= -->
   <div class="touch-overlay" id="overlay-symptoms">
     <div class="overlay-card" style="text-align: center;">
@@ -3267,7 +3215,7 @@
   </div>
 
   <!-- =========================================================================
-       SLIDE-IN OVERLAY 6: EARTH -> MARS ASTRONOMICAL TRAJECTORY & CELESTIAL BODIES
+       SLIDE-IN OVERLAY 6: EARTH -> MARS ASTRONOMICAL TRAJECTORY
        ========================================================================= -->
   <div class="touch-overlay" id="overlay-trajectory">
     <div class="overlay-card" style="max-width: 760px;">
@@ -3331,9 +3279,7 @@
         <button class="btn-close-overlay" onclick="closeAllOverlays()" id="btn-close-kpi">CLOSE</button>
       </div>
 
-      <div class="kpi-sliders-list" id="kpi-sliders-container">
-        <!-- Populated dynamically with 3 Health KPIs + interactive slider bars -->
-      </div>
+      <div class="kpi-sliders-list" id="kpi-sliders-container"></div>
     </div>
   </div>
 
@@ -3363,6 +3309,7 @@
     const CREW_DATABASE = [
       {
         id: "rostova",
+        slotKey: "a",
         code: "CDR",
         name: "CDR. ELENA ROSTOVA",
         roleEn: "Mission Commander • Flight Surgeon Backup",
@@ -3386,6 +3333,7 @@
       },
       {
         id: "vance",
+        slotKey: "b",
         code: "PLT",
         name: "PLT. MARCUS VANCE",
         roleEn: "Vehicle Pilot • EVA Specialist",
@@ -3409,6 +3357,7 @@
       },
       {
         id: "takahashi",
+        slotKey: "c",
         code: "MS1",
         name: "MS-1. KENJI TAKAHASHI",
         roleEn: "Mission Specialist 1 • Biomedical Officer",
@@ -3432,6 +3381,7 @@
       },
       {
         id: "mendoza",
+        slotKey: "d",
         code: "MS2",
         name: "MS-2. SOFIA MENDOZA",
         roleEn: "Mission Specialist 2 • Astrobiology & ECLSS",
@@ -3455,6 +3405,7 @@
       },
       {
         id: "okafor",
+        slotKey: "e",
         code: "ENG",
         name: "ENG. DAVID OKAFOR",
         roleEn: "Chief Flight Engineer • Radiation Shielding",
@@ -3478,7 +3429,6 @@
       }
     ];
 
-    /* Authentic NASA LSAH & HRP Standards Matrix: 9 Automated Biosensors + 3 Scheduled Clinical Tests = 12 Indicators */
     const NASA_LSAH_STANDARDS = [
       {
         id: "rad_dose",
@@ -3714,7 +3664,6 @@
         cmEn: "Run HEPA UV-C air scrubbers at high cycle and sanitize high-touch console surfaces.",
         cmEs: "Activa depuradores HEPA UV-C en ciclo alto y desinfecta superficies de contacto frecuente."
       },
-      // --- GROUP 2: 3 SCHEDULED CLINICAL & COGNITIVE TESTS (NON-CONTINUOUS SENSORS) ---
       {
         id: "pvt_ms",
         group: "clinical",
@@ -3795,7 +3744,6 @@
       }
     ];
 
-    /* Symptom Keyword Knowledge Base for Auto-Detection, Indicator Red Flashing & Adaptive Follow-ups */
     const SYMPTOM_KEYWORD_RULES = [
       {
         key: "fatigue",
@@ -3853,7 +3801,6 @@
       { en: "No Symptoms — Feel Great", es: "Sin síntomas — Me siento bien" }
     ];
 
-    /* Pre-established Symptom Chips Mapped Specifically to Each of the 12 Indicators */
     const INDICATOR_SPECIFIC_SYMPTOMS = {
       rad_dose: [
         { en: "Tired / Radiation Fatigue", es: "Cansado / Fatiga por radiación" },
@@ -3980,7 +3927,7 @@
         bodyMapTitle: "BIOMETRIC SENSOR TOPOGRAPHY",
         memoryLogs: (n) => `MEMORY: ${n} LOGS`,
         rapidScan: "RUN RAPID BIOSENSOR SCAN",
-        finishSession: "SATISFIED / FINISH SESSION",
+        finishSession: "SATISFIED",
         lsahTitle: "NASA LSAH / HRP BIOMEDICAL REFERENCE",
         lsahSub: "Tap any card for ARES to explain sensor usage & clinical interpretation",
         resetMem: "Reset Learning Memory",
@@ -4031,7 +3978,7 @@
         finishPromptVoice: "Are you satisfied with your medical telemetry review and ready to conclude your session?",
         sessionCompletedVoice: "Session archived in local Edge-AI memory. Excellent work today. ARES-V is now ready for the next crew member.",
         memoryResetVoice: "Adaptive learning memory cleared for this crew member. Restored to baseline NASA LSAH parameters.",
-        sessionLockedNav: (name) => `Active session locked for ${name}. You may inspect Telemetry or the LSAH Database, or click Finish Session to log out.`
+        sessionLockedNav: (name) => `Active session locked for ${name}. You may inspect Telemetry or the LSAH Database, or click Satisfied to log out.`
       },
       es: {
         navLsah: "LSAH",
@@ -4061,7 +4008,7 @@
         bodyMapTitle: "TOPOGRAFÍA DE SENSORES BIOMÉDICOS",
         memoryLogs: (n) => `MEMORIA: ${n} REGISTROS`,
         rapidScan: "ESCANEAR BIOSENSORES RÁPIDO",
-        finishSession: "SATISFECHO / FINALIZAR SESIÓN",
+        finishSession: "SATISFECHO",
         lsahTitle: "BASE DE REFERENCIA BIOMÉDICA NASA LSAH / HRP",
         lsahSub: "Toca cualquier tarjeta para que ARES explique el sensor y su interpretación clínica",
         resetMem: "Reiniciar Memoria IA",
@@ -4112,12 +4059,12 @@
         finishPromptVoice: "¿Estás satisfecho con tu revisión médica y listo para finalizar tu sesión?",
         sessionCompletedVoice: "Sesión archivada en la memoria local Edge-AI. Excelente trabajo hoy. ARES-V está listo para el siguiente tripulante.",
         memoryResetVoice: "Memoria adaptativa borrada para este tripulante. Se restauraron los parámetros base NASA LSAH.",
-        sessionLockedNav: (name) => `Sesión activa bloqueada para ${name}. Solo puedes navegar entre Telemetría y Base LSAH, o finalizar sesión para salir.`
+        sessionLockedNav: (name) => `Sesión activa bloqueada para ${name}. Solo puedes navegar entre Telemetría y Base LSAH, o presionar Satisfecho para salir.`
       }
     };
 
     /* =========================================================================
-       2. GLOBAL APPLICATION STATE
+       2. GLOBAL APPLICATION STATE (NO USER LOGGED IN AT STARTUP)
        ========================================================================= */
     let currentLang = "en";
     let hasBootedWithLanguage = false;
@@ -4125,7 +4072,7 @@
     let currentScreen = 0;
     let previousScreenBeforeLsah = 0;
     let isVoiceMuted = false;
-    let selectedCrewId = "rostova";
+    let selectedCrewId = null;
     let armedCrewId = null;
     let expandedIndicatorId = null;
     let expandedLsahId = null;
@@ -4222,9 +4169,7 @@
           osc.start(now + idx * 0.16);
           osc.stop(now + idx * 0.16 + 0.45);
         });
-      } catch (err) {
-        // Ignore audio context block if user hasn't interacted yet
-      }
+      } catch (err) {}
     }
 
     function initWelcomeSpaceCanvas() {
@@ -4356,7 +4301,9 @@
 
       updateWelcomeTelemetryCounters();
       renderCrewGrid();
-      if (currentScreen === 2) renderDashboardIndicators();
+      if (isCrewAuthenticated && selectedCrewId && currentScreen === 2) {
+        renderDashboardIndicators();
+      }
       renderLsahDatabase();
       if (document.getElementById("overlay-kpis").classList.contains("open")) renderKpiSliders();
     }
@@ -4365,8 +4312,10 @@
       currentLang = lang;
       hasBootedWithLanguage = true;
       lastInteractionTime = Date.now();
+      closeAllOverlays();
       document.getElementById("boot-lang-selector").classList.remove("active");
       updateUiTexts();
+      goToScreen(0);
 
       setTimeout(() => document.getElementById("welcome-header").classList.add("revealed"), 150);
       setTimeout(() => document.getElementById("welcome-box-dist").classList.add("revealed"), 320);
@@ -4455,7 +4404,6 @@
       orb.classList.add("celebrate-spin");
     }
 
-    // Keep browser SpeechSynthesis engine active so it never stalls after idle periods
     setInterval(() => {
       if ("speechSynthesis" in window && !isVoiceMuted) {
         if (window.speechSynthesis.paused) {
@@ -4488,7 +4436,7 @@
         }
 
         const utter = new SpeechSynthesisUtterance(text);
-        activeUtteranceRef = utter; // Prevent garbage-collection cancellation mid-speech
+        activeUtteranceRef = utter;
         utter.lang = currentLang === "es" ? "es-ES" : "en-US";
         utter.rate = MASCOT_CONFIG.voiceRate;
         utter.pitch = MASCOT_CONFIG.voicePitch;
@@ -4583,7 +4531,6 @@
       clearTimeout(mascotClickTimer);
       lastInteractionTime = Date.now();
 
-      // Disabled on Welcome/Boot screen — only enabled once logged in as a crew member
       if (!hasBootedWithLanguage || !isCrewAuthenticated) return;
 
       if (isUrgentOrTestActive()) {
@@ -4611,7 +4558,6 @@
       }, 240);
     }
 
-    // Subtle natural eye gaze drift
     setInterval(() => {
       const eyes = document.getElementById("aura-eyes");
       if (!eyes) return;
@@ -4620,9 +4566,8 @@
       eyes.className = `aura-eyes ${pick}`;
     }, 3400);
 
-    // Idle conversation: checks adaptive symptom memory first, or tells a space joke when authenticated
     setInterval(() => {
-      if (!hasBootedWithLanguage || !isCrewAuthenticated) return;
+      if (!hasBootedWithLanguage || !isCrewAuthenticated || !selectedCrewId) return;
       if (isUrgentOrTestActive()) return;
       const anyModalOpen = document.querySelector(".touch-overlay.open") !== null;
       if (anyModalOpen) return;
@@ -4651,7 +4596,6 @@
 
       const inIndicatorsOrLsah = isCrewAuthenticated && (currentScreen === 2 || currentScreen === 3);
 
-      // Show LSAH button and KPIs button only once in the indicators interface (screen 2) or LSAH (screen 3)
       if (navPills) {
         navPills.classList.toggle("visible", inIndicatorsOrLsah);
       }
@@ -4669,7 +4613,7 @@
         nextBtn.disabled = currentScreen >= 3;
       } else {
         prevBtn.disabled = currentScreen <= 0;
-        nextBtn.disabled = currentScreen >= 3;
+        nextBtn.disabled = currentScreen >= 1;
       }
     }
 
@@ -4697,7 +4641,7 @@
         return;
       }
 
-      if (!isCrewAuthenticated && index === 2) {
+      if (!isCrewAuthenticated && index >= 2) {
         index = 1;
         speakAura(UI_TEXT[currentLang].crewPrompt, "happy");
       }
@@ -4713,7 +4657,7 @@
 
       updateSessionLockUI();
 
-      if (currentScreen === 2) {
+      if (currentScreen === 2 && isCrewAuthenticated && selectedCrewId) {
         renderDashboardIndicators();
       } else if (currentScreen === 3) {
         renderLsahDatabase();
@@ -4807,31 +4751,183 @@
     /* =========================================================================
        7. ADAPTIVE ASTRONAUT MEMORY & PERSONALIZED CREW TELEMETRY ENGINE
        ========================================================================= */
+    const MAX_EDGE_MEMORY_RECORDS_PER_SLOT = 10000;
+
+    function getCrewSlotLetter(crewId) {
+      const idx = CREW_DATABASE.findIndex((c) => c.id === crewId);
+      if (idx === -1) return "a";
+      const crew = CREW_DATABASE[idx];
+      if (crew.slotKey) return crew.slotKey.toLowerCase();
+      return String.fromCharCode(97 + idx); // a, b, c, d, e...
+    }
+
     function getMemoryStorageKey(crewId) {
-      return `ares_v_memory_${crewId}`;
+      const letter = getCrewSlotLetter(crewId);
+      return `ares_v_memory_${letter}`;
+    }
+
+    function migrateLegacyNamedMemoryToLetterSlots() {
+      CREW_DATABASE.forEach((crew, idx) => {
+        const letter = crew.slotKey || String.fromCharCode(97 + idx);
+        const newKey = `ares_v_memory_${letter}`;
+        const legacyKey = `ares_v_memory_${crew.id}`;
+        try {
+          const legacyRaw = localStorage.getItem(legacyKey);
+          if (legacyRaw) {
+            const legacyLogs = JSON.parse(legacyRaw);
+            if (Array.isArray(legacyLogs) && legacyLogs.length > 0) {
+              const existingRaw = localStorage.getItem(newKey);
+              const existingLogs = existingRaw ? JSON.parse(existingRaw) : [];
+              const merged = [...existingLogs, ...legacyLogs].slice(0, MAX_EDGE_MEMORY_RECORDS_PER_SLOT);
+              localStorage.setItem(newKey, JSON.stringify(merged));
+            }
+            localStorage.removeItem(legacyKey);
+          }
+        } catch (e) {}
+      });
+    }
+
+    const ACTIVE_SESSION_STORAGE_KEY = "ares_v_active_session_state_v1";
+
+    function savePersistentSessionState() {
+      try {
+        const snapshot = {
+          hasBootedWithLanguage,
+          currentLang,
+          isCrewAuthenticated,
+          selectedCrewId,
+          currentScreen,
+          liveMetrics,
+          metricHistory,
+          labExtraData,
+          crewLeaderboard,
+          earthDistanceKm
+        };
+        localStorage.setItem(ACTIVE_SESSION_STORAGE_KEY, JSON.stringify(snapshot));
+      } catch (e) {}
+    }
+
+    function restorePersistentSessionState() {
+      try {
+        const raw = localStorage.getItem(ACTIVE_SESSION_STORAGE_KEY);
+        if (!raw) return false;
+        const snap = JSON.parse(raw);
+        if (!snap || typeof snap !== "object") return false;
+
+        if (snap.currentLang) currentLang = snap.currentLang;
+        if (typeof snap.earthDistanceKm === "number" && snap.earthDistanceKm > 0) {
+          earthDistanceKm = snap.earthDistanceKm;
+        }
+        if (snap.crewLeaderboard && typeof snap.crewLeaderboard === "object") {
+          Object.assign(crewLeaderboard, snap.crewLeaderboard);
+        }
+
+        if (snap.hasBootedWithLanguage) {
+          hasBootedWithLanguage = true;
+          document.getElementById("boot-lang-selector").classList.remove("active");
+          ["welcome-header", "welcome-box-dist", "welcome-box-sensors", "welcome-start-wrap"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add("revealed");
+          });
+          setMascotDockState("docked");
+        }
+
+        if (snap.isCrewAuthenticated && snap.selectedCrewId) {
+          const crew = CREW_DATABASE.find((c) => c.id === snap.selectedCrewId);
+          if (crew) {
+            isCrewAuthenticated = true;
+            selectedCrewId = crew.id;
+            loadCrewProfile(crew.id, false);
+            if (snap.liveMetrics) Object.assign(liveMetrics, snap.liveMetrics);
+            if (snap.metricHistory) Object.assign(metricHistory, snap.metricHistory);
+            if (snap.labExtraData) Object.assign(labExtraData, snap.labExtraData);
+            const targetScreen = snap.currentScreen >= 2 ? snap.currentScreen : 2;
+            goToScreen(targetScreen);
+            renderDashboardIndicators();
+            updateMemoryCounterBadge();
+            return true;
+          }
+        } else if (snap.hasBootedWithLanguage) {
+          updateUiTexts();
+          goToScreen(snap.currentScreen === 1 ? 1 : 0);
+          return true;
+        }
+      } catch (e) {}
+      return false;
     }
 
     function getCrewMemoryLogs(crewId) {
+      if (!crewId) return [];
       try {
         const raw = localStorage.getItem(getMemoryStorageKey(crewId));
-        return raw ? JSON.parse(raw) : [];
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
       } catch (e) {
         return [];
       }
     }
 
     function appendCrewMemoryLog(entry) {
+      if (!selectedCrewId) return;
       try {
+        const storageKey = getMemoryStorageKey(selectedCrewId);
+        const slotLetter = getCrewSlotLetter(selectedCrewId).toUpperCase();
         const logs = getCrewMemoryLogs(selectedCrewId);
-        logs.unshift({ timestamp: new Date().toISOString(), ...entry });
-        localStorage.setItem(getMemoryStorageKey(selectedCrewId), JSON.stringify(logs.slice(0, 30)));
+        const now = new Date();
+
+        // Compact telemetry snapshot for ultra-high capacity (up to 10,000 logs per slot)
+        const compactMetrics = {};
+        Object.entries(liveMetrics).forEach(([k, v]) => {
+          compactMetrics[k] = v;
+        });
+
+        logs.unshift({
+          id: `log_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+          slot: slotLetter,
+          timestamp: now.toISOString(),
+          dateFormatted: now.toLocaleDateString("es-PE", { year: "numeric", month: "2-digit", day: "2-digit" }),
+          timeFormatted: now.toLocaleTimeString("es-PE", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }),
+          metricsSnapshot: compactMetrics,
+          resolved: false,
+          ...entry
+        });
+
+        // Keep up to 10,000 records per astronaut slot with automatic safe quota fallback
+        let cappedLogs = logs.slice(0, MAX_EDGE_MEMORY_RECORDS_PER_SLOT);
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(cappedLogs));
+        } catch (quotaErr) {
+          cappedLogs = cappedLogs.slice(0, Math.max(500, Math.floor(cappedLogs.length * 0.75)));
+          localStorage.setItem(storageKey, JSON.stringify(cappedLogs));
+        }
+
         updateMemoryCounterBadge();
+        savePersistentSessionState();
+      } catch (e) {}
+    }
+
+    function markPreviousSymptomsResolved(crewId) {
+      if (!crewId) return;
+      try {
+        const logs = getCrewMemoryLogs(crewId);
+        let changed = false;
+        logs.forEach((l) => {
+          if (l.type === "SYMPTOM" && !l.resolved) {
+            l.resolved = true;
+            changed = true;
+          }
+        });
+        if (changed) {
+          localStorage.setItem(getMemoryStorageKey(crewId), JSON.stringify(logs));
+          updateMemoryCounterBadge();
+        }
       } catch (e) {}
     }
 
     function getAdaptiveSymptomFollowUp(crewId) {
       const logs = getCrewMemoryLogs(crewId);
-      const pastSymptom = logs.find((l) => l.type === "SYMPTOM" && l.keywordRule);
+      const pastSymptom = logs.find((l) => l.type === "SYMPTOM" && l.keywordRule && !l.resolved);
       if (!pastSymptom) return null;
       const rule = SYMPTOM_KEYWORD_RULES.find((r) => r.key === pastSymptom.keywordRule);
       if (!rule) return null;
@@ -4840,30 +4936,211 @@
 
     function updateMemoryCounterBadge() {
       const logs = getCrewMemoryLogs(selectedCrewId);
+      const slotLetter = getCrewSlotLetter(selectedCrewId).toUpperCase();
       const el = document.getElementById("body-learned-count");
-      if (el) el.textContent = UI_TEXT[currentLang].memoryLogs(logs.length);
+      if (el) {
+        el.style.cursor = "pointer";
+        el.title = currentLang === "es"
+          ? `Ranura de Memoria [${slotLetter}] (${getMemoryStorageKey(selectedCrewId)}) • Capacidad: 10,000 registros`
+          : `Memory Slot [${slotLetter}] (${getMemoryStorageKey(selectedCrewId)}) • Capacity: 10,000 logs`;
+        el.textContent = `[SLOT ${slotLetter}] ${UI_TEXT[currentLang].memoryLogs(logs.length)} ▾`;
+        el.onclick = () => openCrewHistoryOverlay();
+      }
+    }
+
+    function downloadCrewClinicalReportTxt(crewId) {
+      const targetId = crewId || selectedCrewId;
+      if (!targetId) return;
+      const crew = CREW_DATABASE.find((c) => c.id === targetId) || CREW_DATABASE[0];
+      const slotLetter = getCrewSlotLetter(targetId).toUpperCase();
+      const storageKey = getMemoryStorageKey(targetId);
+      const logs = getCrewMemoryLogs(targetId);
+
+      // Orden cronológico ascendente (del más antiguo al más reciente por fecha y hora)
+      const chronologicalLogs = [...logs].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+      const now = new Date();
+      const headerDate = now.toLocaleDateString("es-PE", { year: "numeric", month: "2-digit", day: "2-digit" });
+      const headerTime = now.toLocaleTimeString("es-PE", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+
+      const lines = [
+        "================================================================================",
+        "ARES-V // INFORME CLÍNICO BIOMÉDICO AUTÓNOMO (NASA LSAH / HRP)",
+        "================================================================================",
+        `RANURA MEMORIA   : SLOT_${slotLetter} (${storageKey})`,
+        `ASTRONAUTA       : ${crew.name} [${crew.code}]`,
+        `ROL DE MISIÓN     : ${crew.roleEs} / ${crew.roleEn}`,
+        `FECHA DE EMISIÓN  : ${headerDate}  |  HORA: ${headerTime}`,
+        `REGISTROS GUARDADOS: ${chronologicalLogs.length} / ${MAX_EDGE_MEMORY_RECORDS_PER_SLOT} MAX`,
+        "================================================================================",
+        "",
+        "1. ESTADO ACTUAL DE LOS 12 INDICADORES BIOMÉDICOS:",
+        "--------------------------------------------------------------------------------"
+      ];
+
+      NASA_LSAH_STANDARDS.forEach((std) => {
+        const val = liveMetrics[std.id] !== undefined ? liveMetrics[std.id] : crew.baselines[std.id];
+        const status = getIndicatorStatus(std.id, val).toUpperCase();
+        lines.push(`- ${std.nameEs} (${std.id}): ${val} ${std.unit}  [Estado: ${status} | Base: ${crew.baselines[std.id]} ${std.unit}]`);
+      });
+
+      lines.push("");
+      lines.push("2. HISTORIAL CRONOLÓGICO DE REGISTROS (ORDENADO POR FECHA Y HORA):");
+      lines.push("--------------------------------------------------------------------------------");
+
+      if (chronologicalLogs.length === 0) {
+        lines.push("Sin eventos registrados aún para este astronauta (0 registros).");
+      } else {
+        chronologicalLogs.forEach((log, index) => {
+          const dt = new Date(log.timestamp);
+          const fDate = log.dateFormatted || dt.toLocaleDateString("es-PE", { year: "numeric", month: "2-digit", day: "2-digit" });
+          const fTime = log.timeFormatted || dt.toLocaleTimeString("es-PE", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+
+          lines.push(`[#${String(index + 1).padStart(2, "0")}] FECHA: ${fDate} | HORA: ${fTime} | TIPO: ${log.type}`);
+          if (log.indicatorName) {
+            lines.push(`      INDICADOR : ${log.indicatorName} -> ${log.indicatorValue || ""}`);
+          }
+          if (log.detail) {
+            lines.push(`      DETALLE   : ${log.detail}`);
+          }
+          if (log.type === "PVT_TEST" && log.meanMs !== undefined) {
+            lines.push(`      RESULTADO : Tiempo de Reacción Promedio PVT = ${log.meanMs} ms`);
+          }
+          if (log.type === "LAB_ENTRY") {
+            lines.push(`      ANALÍTICA : Osmolaridad ${log.osm} mOsm/kg | Calcio ${log.ca} mg/24h | IOP ${log.iop} mmHg | Hb ${log.hb} g/dL | ARED ${log.ared}%`);
+          }
+          if (log.metricsSnapshot) {
+            const snapSummary = Object.entries(log.metricsSnapshot)
+              .map(([k, v]) => `${k}=${v}`)
+              .join(", ");
+            lines.push(`      TELEMETRÍA: ${snapSummary}`);
+          }
+          lines.push("--------------------------------------------------------------------------------");
+        });
+      }
+
+      lines.push("");
+      lines.push("FIN DEL INFORME CLÍNICO // GENERADO LOCALMENTE POR ARES-V EDGE-AI CORE");
+
+      const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Informe_Clinico_SLOT_${slotLetter}_${crew.code}_${headerDate.replace(/\//g, "-")}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function openCrewHistoryOverlay() {
+      if (!selectedCrewId) return;
+      const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
+      const slotLetter = getCrewSlotLetter(selectedCrewId).toUpperCase();
+      const storageKey = getMemoryStorageKey(selectedCrewId);
+      const logs = getCrewMemoryLogs(selectedCrewId);
+
+      let existingModal = document.getElementById("overlay-crew-history");
+      if (!existingModal) {
+        existingModal = document.createElement("div");
+        existingModal.id = "overlay-crew-history";
+        existingModal.className = "touch-overlay";
+        document.body.appendChild(existingModal);
+      }
+
+      const itemsHtml = logs.length === 0
+        ? `<div style="padding: 22px; text-align: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: 12px;">
+            ${currentLang === "es" ? `0 registros previos en ${storageKey}. Cada avance y evento se guardará aquí (capacidad hasta 10,000 registros).` : `0 prior records in ${storageKey}. Every progress step and event auto-saves here (up to 10,000 records capacity).`}
+           </div>`
+        : logs.slice(0, 150).map((log) => {
+            const dt = new Date(log.timestamp);
+            const fDate = log.dateFormatted || dt.toLocaleDateString("es-PE", { year: "numeric", month: "2-digit", day: "2-digit" });
+            const fTime = log.timeFormatted || dt.toLocaleTimeString("es-PE", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+
+            let badgeColor = "var(--accent-cyan)";
+            let summary = log.detail || "";
+            if (log.type === "SYMPTOM") {
+              badgeColor = log.resolved ? "var(--accent-emerald)" : "var(--accent-red)";
+              summary = `${log.detail} ${log.resolved ? (currentLang === "es" ? "(Recuperado)" : "(Recovered)") : (currentLang === "es" ? "(Seguimiento activo)" : "(Active follow-up)")}`;
+            } else if (log.type === "PVT_TEST") {
+              badgeColor = "var(--accent-amber)";
+              summary = `PVT Reflex Mean: ${log.meanMs} ms`;
+            } else if (log.type === "LAB_ENTRY") {
+              badgeColor = "var(--accent-violet)";
+              summary = `Lab: Osm ${log.osm} | Ca²⁺ ${log.ca} | IOP ${log.iop} | Hb ${log.hb} | ARED ${log.ared}%`;
+            } else if (log.type === "INDICATOR_EVENT" || log.type === "BIOSENSOR_SCAN") {
+              badgeColor = "var(--accent-cyan)";
+              summary = `${log.indicatorName ? log.indicatorName + ": " : ""}${log.detail}`;
+            }
+            return `
+              <div style="background: rgba(6, 9, 17, 0.85); border: 1px solid var(--border-subtle); border-left: 3px solid ${badgeColor}; border-radius: 10px; padding: 9px 12px; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 800; color: ${badgeColor};">${log.type}</div>
+                  <div style="font-size: 12.5px; color: #ffffff; margin-top: 2px;">${summary}</div>
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); text-align: right; white-space: nowrap;">
+                  <div>${fDate}</div>
+                  <div style="color: var(--accent-cyan);">${fTime}</div>
+                </div>
+              </div>
+            `;
+          }).join("");
+
+      existingModal.innerHTML = `
+        <div class="overlay-card" style="max-width: 680px;">
+          <div class="overlay-header">
+            <div>
+              <div class="overlay-title">[SLOT ${slotLetter}] ${crew.name} // ${currentLang === "es" ? "MEMORIA EDGE-AI" : "EDGE-AI MEMORY"}</div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin-top: 2px;">
+                KEY: ${storageKey} • ${currentLang === "es" ? `REGISTROS: ${logs.length} / ${MAX_EDGE_MEMORY_RECORDS_PER_SLOT} MAX` : `RECORDS: ${logs.length} / ${MAX_EDGE_MEMORY_RECORDS_PER_SLOT} MAX`}
+              </div>
+            </div>
+            <button class="btn-close-overlay" onclick="closeAllOverlays()">CLOSE</button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; max-height: 295px; overflow-y: auto; padding-right: 4px;">
+            ${itemsHtml}
+          </div>
+          <div class="action-btn-row">
+            <button class="btn-primary-touch" onclick="downloadCrewClinicalReportTxt('${crew.id}')">
+              ${currentLang === "es" ? "DESCARGAR INFORME COMPLETO (.TXT)" : "DOWNLOAD FULL REPORT (.TXT)"}
+            </button>
+            <button class="btn-secondary-touch" style="flex: 0 0 auto; min-width: 165px;" onclick="resetLearningMemory()">
+              ${currentLang === "es" ? `LIMPIAR SLOT ${slotLetter} (0)` : `CLEAR SLOT ${slotLetter} (0)`}
+            </button>
+          </div>
+        </div>
+      `;
+      existingModal.classList.add("open");
     }
 
     function resetLearningMemory() {
+      if (!selectedCrewId) return;
       try {
         localStorage.removeItem(getMemoryStorageKey(selectedCrewId));
       } catch (e) {}
       symptomFlashingIndicators = [];
       loadCrewProfile(selectedCrewId, false);
+      savePersistentSessionState();
+      if (document.getElementById("overlay-crew-history")?.classList.contains("open")) {
+        openCrewHistoryOverlay();
+      }
       speakAura(UI_TEXT[currentLang].memoryResetVoice, "happy");
     }
 
     function loadCrewProfile(crewId, announce = false) {
+      if (!crewId) return;
       const crew = CREW_DATABASE.find((c) => c.id === crewId) || CREW_DATABASE[0];
       selectedCrewId = crew.id;
       symptomFlashingIndicators = [];
       kpiSliderOverrides = { readiness: null, autonomic: null, circadian: null };
 
       const chip = document.getElementById("active-crew-chip");
-      chip.classList.add("visible");
-      chip.style.borderColor = crew.color;
-      chip.title = `${crew.name} • ${currentLang === "es" ? "Toca para finalizar sesión" : "Tap to finish session"}`;
-      document.getElementById("active-crew-icon").innerHTML = buildCrewAvatarSvg(crew);
+      if (isCrewAuthenticated) {
+        chip.classList.add("visible");
+        chip.style.borderColor = crew.color;
+        chip.title = `${crew.name} • ${currentLang === "es" ? "Toca para abrir Historial Clínico e Informe .TXT" : "Tap to open Clinical History & .TXT Report"}`;
+        document.getElementById("active-crew-icon").innerHTML = buildCrewAvatarSvg(crew);
+      }
 
       liveMetrics = { ...crew.baselines };
       metricHistory = {};
@@ -4878,6 +5155,7 @@
       lastAlertSignature = "";
       updateMemoryCounterBadge();
       renderDashboardIndicators();
+      savePersistentSessionState();
 
       if (announce) {
         const followUp = getAdaptiveSymptomFollowUp(crew.id);
@@ -5063,9 +5341,11 @@
 
               <div class="ind-detail-header">
                 <div class="ind-detail-title-group">
-                  <div class="ind-detail-icon-badge">${getIndicatorSvgIcon(std.id)}</div>
+                  <div class="ind-detail-icon-badge">
+                    ${getIndicatorSvgIcon(std.id)}
+                  </div>
                   <div>
-                    <div style="font-size:16px; font-weight:800; color:#ffffff;">${currentLang === "es" ? std.nameEs : std.nameEn}</div>
+                    <div style="font-size:15px; font-weight:800; color:#ffffff;">${currentLang === "es" ? std.nameEs : std.nameEn}</div>
                     <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-secondary);">${currentLang === "es" ? std.sensorEs : std.sensorEn}</div>
                   </div>
                 </div>
@@ -5074,86 +5354,98 @@
 
               <div class="ind-expanded-grid">
                 <div class="ind-chart-box">
-                  <canvas id="chart-${std.id}"></canvas>
+                  <canvas id="expanded-detail-canvas"></canvas>
                 </div>
                 <div class="ind-meta-list">
                   <div class="ind-meta-item">
-                    <span>${currentLang === "es" ? "Línea Base Tripulante" : "Crew Baseline"}</span>
+                    <span>${currentLang === "es" ? "Línea Base Pre-Vuelo" : "Pre-Flight Baseline"}</span>
                     <strong>${baseVal} ${std.unit}</strong>
                   </div>
                   <div class="ind-meta-item">
                     <span>${currentLang === "es" ? "Rango Óptimo NASA" : "NASA Optimal Range"}</span>
-                    <strong style="color: var(--accent-emerald);">${currentLang === "es" ? std.optTextEs : std.optTextEn}</strong>
+                    <strong style="color:var(--accent-emerald);">${currentLang === "es" ? std.optTextEs : std.optTextEn}</strong>
                   </div>
                   <div class="ind-meta-item">
                     <span>${currentLang === "es" ? "Umbral Crítico" : "Critical Threshold"}</span>
-                    <strong style="color: var(--accent-red);">${currentLang === "es" ? std.critTextEs : std.critTextEn}</strong>
-                  </div>
-                  <div class="ind-meta-item">
-                    <span>${currentLang === "es" ? "Frecuencia" : "Sampling"}</span>
-                    <strong>${currentLang === "es" ? std.intervalEs : std.intervalEn}</strong>
+                    <strong style="color:var(--accent-red);">${currentLang === "es" ? std.critTextEs : std.critTextEn}</strong>
                   </div>
                 </div>
               </div>
 
               <div class="ind-clinical-banner">
-                ${status === "nominal" ? (currentLang === "es" ? std.descEs : std.descEn) : (currentLang === "es" ? std.cmEs : std.cmEn)}
+                <strong>${currentLang === "es" ? "Protocolo Edge-AI:" : "Edge-AI Protocol:"}</strong>
+                ${currentLang === "es" ? std.cmEs : std.cmEn}
               </div>
             </div>
           `;
 
           requestAnimationFrame(() => {
-            drawIndicatorExpandedChart(`chart-${std.id}`, metricHistory[std.id], status, std, baseVal);
+            const canvas = document.getElementById("expanded-detail-canvas");
+            if (canvas) drawSparklineCanvas(canvas, metricHistory[std.id], std, status);
           });
         }
       } else {
         colWrap.innerHTML = `<div class="indicator-circles-grid" id="unified-indicators-grid"></div>`;
-        const grid = document.getElementById("unified-indicators-grid");
+        const gridEl = document.getElementById("unified-indicators-grid");
 
         NASA_LSAH_STANDARDS.forEach((std) => {
           const currentVal = liveMetrics[std.id];
+          const isSymFlash = symptomFlashingIndicators.includes(std.id);
           const status = getIndicatorStatus(std.id, currentVal);
           const isNonSensor = std.group !== "sensor";
-          const isSymptomFlashing = symptomFlashingIndicators.includes(std.id);
 
           const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = `ind-circle-btn ${isNonSensor ? "non-sensor-circle" : ""} status-${status} ${isSymptomFlashing ? "symptom-flash-red" : ""}`;
-          btn.id = `card-${std.id}`;
-          btn.title = `${currentLang === "es" ? std.nameEs : std.nameEn}: ${currentVal} ${std.unit}`;
-          btn.onclick = () => toggleIndicatorExpand(std);
+          btn.className = `ind-circle-btn ${isNonSensor ? "non-sensor-circle" : ""} status-${status} ${isSymFlash ? "symptom-flash-red" : ""}`;
+          btn.title = currentLang === "es" ? std.nameEs : std.nameEn;
 
+          const effectiveLed = isSymFlash ? "critical" : status;
           btn.innerHTML = `
-            <span class="ind-circle-led status-led ${isSymptomFlashing ? "critical" : status}"></span>
+            <span class="ind-circle-led status-led ${effectiveLed}"></span>
             <div class="ind-circle-icon">${getIndicatorSvgIcon(std.id)}</div>
             <div class="ind-circle-short">${currentLang === "es" ? std.shortEs : std.shortEn}</div>
-            <div class="ind-circle-val">${currentVal}<span style="font-size:8.5px; opacity:0.8;"> ${std.unit}</span></div>
+            <div class="ind-circle-val">${currentVal} <span style="font-size:9px; font-weight:600; color:var(--text-secondary);">${std.unit}</span></div>
           `;
 
-          grid.appendChild(btn);
+          btn.onclick = () => toggleIndicatorExpand(std);
+          gridEl.appendChild(btn);
         });
       }
 
-      updateBodySilhouetteColors(nodeSeverities);
+      updateBodyNodeColors(nodeSeverities);
       updateWelcomeTelemetryCounters();
 
-      const led = document.getElementById("global-led");
+      const globalLed = document.getElementById("global-led");
       if (overallWorst === "critical") {
-        led.style.background = "var(--accent-red)";
-        led.style.boxShadow = "0 0 14px var(--accent-red)";
+        globalLed.style.background = "var(--accent-red)";
+        globalLed.style.boxShadow = "0 0 12px var(--accent-red)";
       } else if (overallWorst === "warning") {
-        led.style.background = "var(--accent-amber)";
-        led.style.boxShadow = "0 0 14px var(--accent-amber)";
+        globalLed.style.background = "var(--accent-amber)";
+        globalLed.style.boxShadow = "0 0 12px var(--accent-amber)";
       } else {
-        led.style.background = "var(--accent-cyan)";
-        led.style.boxShadow = "0 0 12px var(--accent-cyan)";
+        globalLed.style.background = "var(--accent-cyan)";
+        globalLed.style.boxShadow = "0 0 12px var(--accent-cyan)";
       }
 
-      const alertSig = `${overallWorst}:${Object.entries(liveMetrics).filter(([k, v]) => getIndicatorStatus(k, v) !== "nominal").map(([k]) => k).join(",")}:${symptomFlashingIndicators.join(",")}`;
-      if (overallWorst !== "nominal" && alertSig !== lastAlertSignature) {
-        playSoftAlertChime(overallWorst);
+      if (document.getElementById("overlay-kpis").classList.contains("open")) {
+        renderKpiSliders();
       }
-      lastAlertSignature = alertSig;
+    }
+
+    function toggleIndicatorExpand(std) {
+      lastInteractionTime = Date.now();
+      expandedIndicatorId = expandedIndicatorId === std.id ? null : std.id;
+      renderDashboardIndicators();
+
+      if (expandedIndicatorId) {
+        const currentVal = liveMetrics[std.id];
+        const status = getIndicatorStatus(std.id, currentVal);
+        const name = currentLang === "es" ? std.nameEs : std.nameEn;
+        const cm = currentLang === "es" ? std.cmEs : std.cmEn;
+        const msg = currentLang === "es"
+          ? `${name}: lectura actual ${currentVal} ${std.unit}. ${cm}`
+          : `${name}: current reading ${currentVal} ${std.unit}. ${cm}`;
+        speakAura(msg, status === "nominal" ? "happy" : status);
+      }
     }
 
     function closeExpandedIndicator() {
@@ -5162,563 +5454,374 @@
       renderDashboardIndicators();
     }
 
-    function toggleIndicatorExpand(std) {
-      lastInteractionTime = Date.now();
-      if (expandedIndicatorId === std.id) {
-        expandedIndicatorId = null;
-        renderDashboardIndicators();
-        return;
-      }
-      expandedIndicatorId = std.id;
-      renderDashboardIndicators();
-
-      const isSymFlash = symptomFlashingIndicators.includes(std.id);
-      const status = isSymFlash ? "critical" : getIndicatorStatus(std.id, liveMetrics[std.id]);
-      const name = currentLang === "es" ? std.nameEs : std.nameEn;
-      const explain = status === "nominal"
-        ? (currentLang === "es" ? std.descEs : std.descEn)
-        : (currentLang === "es" ? std.cmEs : std.cmEn);
-      speakAura(`${name}: ${liveMetrics[std.id]} ${std.unit}. ${explain}`, status === "nominal" ? "happy" : status);
-    }
-
-    function drawIndicatorExpandedChart(canvasId, series, status, std, baselineVal) {
-      const canvas = document.getElementById(canvasId);
-      if (!canvas || !series || series.length < 2) return;
+    function drawSparklineCanvas(canvas, values, std, status) {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = Math.max(220, rect.width - 14);
+      canvas.height = Math.max(115, rect.height - 14);
       const ctx = canvas.getContext("2d");
-
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = Math.max(240, rect.width || 300);
-      canvas.height = Math.max(120, rect.height || 150);
-
       const w = canvas.width;
       const h = canvas.height;
-      const padL = 34;
-      const padR = 12;
-      const padT = 14;
-      const padB = 22;
-      const plotW = w - padL - padR;
-      const plotH = h - padT - padB;
-
       ctx.clearRect(0, 0, w, h);
 
-      const allVals = [...series, baselineVal];
-      const rawMin = Math.min(...allVals);
-      const rawMax = Math.max(...allVals);
-      const span = Math.max(rawMax - rawMin, Math.abs(baselineVal) * 0.12 || 1);
-      const minVal = rawMin - span * 0.25;
-      const maxVal = rawMax + span * 0.25;
+      const allVals = [...values, std.optMin, std.optMax];
+      const minV = Math.min(...allVals) * 0.92;
+      const maxV = Math.max(...allVals) * 1.06;
+      const range = maxV - minV || 1;
 
-      const yFor = (val) => padT + plotH - ((val - minVal) / (maxVal - minVal)) * plotH;
-      const xFor = (i) => padL + (i / (series.length - 1)) * plotW;
+      const toY = (v) => h - 14 - ((v - minV) / range) * (h - 28);
+      const toX = (i) => 12 + (i / (values.length - 1)) * (w - 24);
 
-      ctx.strokeStyle = "rgba(30, 43, 69, 0.7)";
+      const yTop = toY(std.optMax);
+      const yBot = toY(std.optMin);
+      ctx.fillStyle = "rgba(0, 230, 118, 0.11)";
+      ctx.fillRect(10, Math.min(yTop, yBot), w - 20, Math.abs(yBot - yTop));
+
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
       ctx.lineWidth = 1;
-      for (let g = 0; g <= 3; g++) {
-        const gy = padT + (g / 3) * plotH;
-        ctx.beginPath();
-        ctx.moveTo(padL, gy);
-        ctx.lineTo(w - padR, gy);
-        ctx.stroke();
-
-        const tickVal = maxVal - (g / 3) * (maxVal - minVal);
-        ctx.fillStyle = "#64748b";
-        ctx.font = "9px monospace";
-        ctx.textAlign = "right";
-        ctx.fillText(tickVal.toFixed(tickVal < 10 ? 1 : 0), padL - 5, gy + 3);
-      }
-
-      const baseY = yFor(baselineVal);
-      ctx.save();
-      ctx.setLineDash([4, 4]);
-      ctx.strokeStyle = "rgba(0, 230, 118, 0.55)";
       ctx.beginPath();
-      ctx.moveTo(padL, baseY);
-      ctx.lineTo(w - padR, baseY);
-      ctx.stroke();
-      ctx.restore();
-
-      const strokeColor = status === "critical" ? "#ff3b5c" : (status === "warning" ? "#ffab00" : "#00e5ff");
-      const fillTop = status === "critical" ? "rgba(255, 59, 92, 0.28)" : (status === "warning" ? "rgba(255, 171, 0, 0.28)" : "rgba(0, 229, 255, 0.25)");
-
-      const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
-      grad.addColorStop(0, fillTop);
-      grad.addColorStop(1, "rgba(6, 9, 17, 0)");
-
-      ctx.beginPath();
-      series.forEach((v, i) => {
-        const x = xFor(i);
-        const y = yFor(v);
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.lineTo(xFor(series.length - 1), padT + plotH);
-      ctx.lineTo(xFor(0), padT + plotH);
-      ctx.closePath();
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      ctx.beginPath();
-      series.forEach((v, i) => {
-        const x = xFor(i);
-        const y = yFor(v);
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.strokeStyle = strokeColor;
-      ctx.lineWidth = 2.4;
+      ctx.moveTo(10, yTop); ctx.lineTo(w - 10, yTop);
+      ctx.moveTo(10, yBot); ctx.lineTo(w - 10, yBot);
       ctx.stroke();
 
-      series.forEach((v, i) => {
-        const x = xFor(i);
-        const y = yFor(v);
+      const strokeCol = status === "critical" ? "#ff3b5c" : (status === "warning" ? "#ffab00" : "#00e5ff");
+      ctx.strokeStyle = strokeCol;
+      ctx.lineWidth = 2.6;
+      ctx.beginPath();
+      values.forEach((v, idx) => {
+        const x = toX(idx);
+        const y = toY(v);
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      values.forEach((v, idx) => {
+        const x = toX(idx);
+        const y = toY(v);
+        ctx.fillStyle = idx === values.length - 1 ? "#ffffff" : strokeCol;
         ctx.beginPath();
-        ctx.arc(x, y, i === series.length - 1 ? 4.2 : 2.3, 0, Math.PI * 2);
-        ctx.fillStyle = i === series.length - 1 ? "#ffffff" : strokeColor;
+        ctx.arc(x, y, idx === values.length - 1 ? 4.2 : 2.5, 0, Math.PI * 2);
         ctx.fill();
       });
-
-      ctx.fillStyle = "#64748b";
-      ctx.font = "9px monospace";
-      ctx.textAlign = "center";
-      ctx.fillText("-11h", xFor(0), h - 6);
-      ctx.fillText("-6h", xFor(Math.floor(series.length / 2)), h - 6);
-      ctx.fillText("NOW", xFor(series.length - 1), h - 6);
     }
 
-    function updateBodySilhouetteColors(severities) {
+    function updateBodyNodeColors(nodeSeverities) {
       const colorMap = {
         nominal: "#00e676",
         warning: "#ffab00",
         critical: "#ff3b5c"
       };
 
-      ["head", "chest", "wrist", "renal", "muscle"].forEach((node) => {
-        const col = colorMap[severities[node] || "nominal"];
-        const dot = document.getElementById(`dot-${node}`);
-        const ring = document.getElementById(`ring-${node}`);
+      Object.entries(nodeSeverities).forEach(([nodeKey, sev]) => {
+        const col = colorMap[sev] || "#00e676";
+        const dot = document.getElementById(`dot-${nodeKey}`);
+        const ring = document.getElementById(`ring-${nodeKey}`);
         if (dot) dot.setAttribute("fill", col);
         if (ring) ring.setAttribute("stroke", col);
+        if (nodeKey === "ambient") {
+          const box = document.getElementById("box-ambient");
+          if (box) box.setAttribute("stroke", col);
+        }
       });
-
-      const ambCol = colorMap[severities.ambient || "nominal"];
-      const ambDot = document.getElementById("dot-ambient");
-      const ambBox = document.getElementById("box-ambient");
-      if (ambDot) ambDot.setAttribute("fill", ambCol);
-      if (ambBox) ambBox.setAttribute("stroke", ambCol);
     }
 
-    function handleBodyNodeClick(metricId) {
+    function handleBodyNodeClick(targetIndicatorId) {
       lastInteractionTime = Date.now();
-      const std = NASA_LSAH_STANDARDS.find((s) => s.id === metricId);
+      const std = NASA_LSAH_STANDARDS.find((s) => s.id === targetIndicatorId);
       if (!std) return;
-      toggleIndicatorExpand(std);
+      expandedIndicatorId = std.id;
+      renderDashboardIndicators();
+      const currentVal = liveMetrics[std.id];
+      const status = getIndicatorStatus(std.id, currentVal);
+      const name = currentLang === "es" ? std.nameEs : std.nameEn;
+      const cm = currentLang === "es" ? std.cmEs : std.cmEn;
+      const msg = currentLang === "es"
+        ? `${name}: lectura actual ${currentVal} ${std.unit}. ${cm}`
+        : `${name}: current reading ${currentVal} ${std.unit}. ${cm}`;
+      speakAura(msg, status === "nominal" ? "happy" : status);
     }
 
     /* =========================================================================
-       9. CREW HEALTH KPIs MODAL WITH INTERACTIVE SLIDER BARS
+       9. CREW HEALTH KPIs WITH SLIDER BARS
        ========================================================================= */
-    function computeHealthKpis() {
-      const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
-      const base = crew.baselines;
-      const cur = (id) => (liveMetrics[id] !== undefined ? liveMetrics[id] : base[id]);
-
-      // KPI 1: Overall Physiological Readiness Index (%)
+    function computeCrewHealthKpis() {
       const sensorIds = NASA_LSAH_STANDARDS.filter((s) => s.group === "sensor").map((s) => s.id);
-      let optSensors = 0;
+      let optCount = 0;
       sensorIds.forEach((id) => {
-        if (getIndicatorStatus(id, cur(id)) === "nominal") optSensors++;
+        if (getIndicatorStatus(id, liveMetrics[id]) === "nominal") optCount++;
       });
-      const flashPenalty = symptomFlashingIndicators.length * 6;
-      const calcReadiness = Math.max(35, Math.min(100, Math.round((optSensors / sensorIds.length) * 100 - flashPenalty)));
-      const readiness = kpiSliderOverrides.readiness !== null ? kpiSliderOverrides.readiness : calcReadiness;
+      const autoReadiness = Math.round((optCount / sensorIds.length) * 100);
 
-      // KPI 2: Autonomic & Cardiovascular Stability (%)
-      const hrDiff = Math.abs(cur("heart_rate") - base.heart_rate);
-      const bpDiff = Math.abs(cur("sys_bp") - base.sys_bp);
-      const spo2Bonus = (cur("spo2_sat") - 92) * 3;
-      const calcAutonomic = Math.max(40, Math.min(100, Math.round(82 + spo2Bonus - hrDiff * 0.6 - bpDiff * 0.5)));
-      const autonomic = kpiSliderOverrides.autonomic !== null ? kpiSliderOverrides.autonomic : calcAutonomic;
+      const hr = liveMetrics.heart_rate || 62;
+      const bp = liveMetrics.sys_bp || 115;
+      const spo2 = liveMetrics.spo2_sat || 99;
+      const hrPenalty = Math.max(0, Math.abs(hr - 65) - 12) * 1.1;
+      const bpPenalty = Math.max(0, Math.abs(bp - 115) - 10) * 1.2;
+      const spo2Bonus = (spo2 - 90) * 2;
+      const autoAutonomic = Math.max(35, Math.min(100, Math.round(82 + spo2Bonus - hrPenalty - bpPenalty)));
 
-      // KPI 3: Circadian & Neurocognitive Reserve (%)
-      const sleepScore = (cur("sleep_eff") / 100) * 60;
-      const pvtScore = Math.max(0, Math.min(40, ((500 - cur("pvt_ms")) / 300) * 40));
-      const calcCircadian = Math.max(35, Math.min(100, Math.round(sleepScore + pvtScore)));
-      const circadian = kpiSliderOverrides.circadian !== null ? kpiSliderOverrides.circadian : calcCircadian;
+      const sleepEff = liveMetrics.sleep_eff || 90;
+      const pvt = liveMetrics.pvt_ms || 255;
+      const pvtScore = Math.max(40, Math.min(100, Math.round(135 - (pvt - 200) * 0.22)));
+      const autoCircadian = Math.max(30, Math.min(100, Math.round(sleepEff * 0.55 + pvtScore * 0.45)));
 
       return [
         {
-          id: "readiness",
-          titleEn: "KPI 1 • Physiological Mission Readiness",
-          titleEs: "KPI 1 • Disponibilidad Fisiológica de Misión",
-          descEn: "Composite index of 9 automated biosensors & symptom status",
-          descEs: "Índice compuesto de 9 biosensores automáticos y estado de síntomas",
-          value: readiness,
-          target: 90
+          key: "readiness",
+          titleEn: "1. Overall Biometric Readiness Index",
+          titleEs: "1. Índice Global de Disponibilidad Biométrica",
+          descEn: "Composite percentage of optimal NASA LSAH sensors & clinical checks",
+          descEs: "Porcentaje compuesto de sensores NASA LSAH y controles clínicos óptimos",
+          value: kpiSliderOverrides.readiness !== null ? kpiSliderOverrides.readiness : autoReadiness,
+          unit: "%",
+          min: 0,
+          max: 100
         },
         {
-          id: "autonomic",
-          titleEn: "KPI 2 • Cardiovascular & Hemodynamic Stability",
-          titleEs: "KPI 2 • Estabilidad Cardiovascular y Hemodinámica",
-          descEn: "Microgravity orthostatic tolerance, ECG heart rate & SpO₂ balance",
-          descEs: "Tolerancia ortostática en microgravedad, ritmo ECG y balance SpO₂",
-          value: autonomic,
-          target: 85
+          key: "autonomic",
+          titleEn: "2. Cardiovascular & Autonomic Stability",
+          titleEs: "2. Estabilidad Cardiovascular y Autonómica",
+          descEn: "Derived from resting ECG rate, systolic pressure & arterial SpO₂",
+          descEs: "Derivado de frecuencia ECG, presión sistólica y saturación arterial SpO₂",
+          value: kpiSliderOverrides.autonomic !== null ? kpiSliderOverrides.autonomic : autoAutonomic,
+          unit: "%",
+          min: 0,
+          max: 100
         },
         {
-          id: "circadian",
-          titleEn: "KPI 3 • Circadian & Neurocognitive Reserve",
-          titleEs: "KPI 3 • Reserva Circadiana y Neurocognitiva",
-          descEn: "Actigraph sleep efficiency combined with NASA PVT-B alertness",
-          descEs: "Eficiencia de sueño Actigraph combinada con alerta NASA PVT-B",
-          value: circadian,
-          target: 85
+          key: "circadian",
+          titleEn: "3. Circadian & Neuro-Cognitive Alertness",
+          titleEs: "3. Alerta Circadiana y Neurocognitiva",
+          descEn: "Correlates nocturnal sleep efficiency with NASA PVT-B reflex speed",
+          descEs: "Correlaciona eficiencia del sueño nocturno con velocidad de reflejos NASA PVT-B",
+          value: kpiSliderOverrides.circadian !== null ? kpiSliderOverrides.circadian : autoCircadian,
+          unit: "%",
+          min: 0,
+          max: 100
         }
       ];
-    }
-
-    function renderKpiSliders() {
-      const container = document.getElementById("kpi-sliders-container");
-      if (!container) return;
-      const kpis = computeHealthKpis();
-      container.innerHTML = "";
-
-      kpis.forEach((kpi) => {
-        const color = kpi.value >= kpi.target ? "var(--accent-emerald)" : (kpi.value >= 65 ? "var(--accent-amber)" : "var(--accent-red)");
-        const card = document.createElement("div");
-        card.className = "kpi-slider-card";
-        card.innerHTML = `
-          <div class="kpi-slider-top">
-            <strong style="color:#ffffff;">${currentLang === "es" ? kpi.titleEs : kpi.titleEn}</strong>
-            <span style="font-weight:900; font-size:15px; color:${color};" id="kpi-val-${kpi.id}">${kpi.value}%</span>
-          </div>
-          <div style="font-size:11px; color:var(--text-secondary);">
-            ${currentLang === "es" ? kpi.descEs : kpi.descEn} • <span style="font-family:var(--font-mono); color:var(--accent-cyan);">TARGET &ge; ${kpi.target}%</span>
-          </div>
-          <div class="kpi-slider-track">
-            <div class="kpi-slider-fill" id="kpi-fill-${kpi.id}" style="width:${kpi.value}%; background:${color};"></div>
-            <div class="kpi-slider-thumb" id="kpi-thumb-${kpi.id}" style="left:${kpi.value}%; border-color:${color};"></div>
-          </div>
-          <input type="range" class="kpi-range-input" min="0" max="100" value="${kpi.value}" oninput="handleKpiSliderMove('${kpi.id}', this.value)" />
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function handleKpiSliderMove(kpiId, rawVal) {
-      const val = Number(rawVal);
-      kpiSliderOverrides[kpiId] = val;
-      const kpi = computeHealthKpis().find((k) => k.id === kpiId);
-      const target = kpi ? kpi.target : 85;
-      const color = val >= target ? "var(--accent-emerald)" : (val >= 65 ? "var(--accent-amber)" : "var(--accent-red)");
-
-      const valEl = document.getElementById(`kpi-val-${kpiId}`);
-      const fillEl = document.getElementById(`kpi-fill-${kpiId}`);
-      const thumbEl = document.getElementById(`kpi-thumb-${kpiId}`);
-      if (valEl) {
-        valEl.textContent = `${val}%`;
-        valEl.style.color = color;
-      }
-      if (fillEl) {
-        fillEl.style.width = `${val}%`;
-        fillEl.style.background = color;
-      }
-      if (thumbEl) {
-        thumbEl.style.left = `${val}%`;
-        thumbEl.style.borderColor = color;
-      }
     }
 
     function openKpiOverlay() {
       lastInteractionTime = Date.now();
       renderKpiSliders();
       document.getElementById("overlay-kpis").classList.add("open");
-      const kpis = computeHealthKpis();
-      const summary = currentLang === "es"
-        ? `Indicadores clave de salud activos. Disponibilidad fisiológica en ${kpis[0].value} por ciento.`
-        : `Health KPIs active. Physiological mission readiness is at ${kpis[0].value} percent.`;
-      speakAura(summary, kpis[0].value >= 85 ? "happy" : "warning");
+    }
+
+    function handleKpiSliderAdjust(key, newVal) {
+      kpiSliderOverrides[key] = Number(newVal);
+      renderKpiSliders();
+    }
+
+    function renderKpiSliders() {
+      const container = document.getElementById("kpi-sliders-container");
+      if (!container) return;
+      const kpis = computeCrewHealthKpis();
+
+      container.innerHTML = kpis.map((k) => {
+        const pct = Math.max(0, Math.min(100, k.value));
+        const barColor = pct >= 80 ? "var(--accent-emerald)" : (pct >= 60 ? "var(--accent-amber)" : "var(--accent-red)");
+        return `
+          <div class="kpi-slider-card">
+            <div class="kpi-slider-top">
+              <strong style="color:#ffffff;">${currentLang === "es" ? k.titleEs : k.titleEn}</strong>
+              <span style="font-size:15px; font-weight:900; color:${barColor};">${pct}${k.unit}</span>
+            </div>
+            <div style="font-size:11px; color:var(--text-secondary);">
+              ${currentLang === "es" ? k.descEs : k.descEn}
+            </div>
+            <div class="kpi-slider-track">
+              <div class="kpi-slider-fill" style="width:${pct}%; background:${barColor};"></div>
+              <div class="kpi-slider-thumb" style="left:${pct}%; border-color:${barColor};"></div>
+            </div>
+            <input type="range" class="kpi-range-input" min="0" max="100" value="${pct}" oninput="handleKpiSliderAdjust('${k.key}', this.value)" />
+          </div>
+        `;
+      }).join("");
     }
 
     /* =========================================================================
-       10. EVENT SIMULATOR (WITH CLINICALLY COHERENT MILD RANDOM ANOMALY)
+       10. SPACE ANOMALY SIMULATOR & RAPID BIOSENSOR SCAN
        ========================================================================= */
-    function pushMetricValue(id, val) {
-      liveMetrics[id] = val;
+    function pushMetricValue(id, newVal) {
+      liveMetrics[id] = newVal;
       if (!metricHistory[id]) metricHistory[id] = [];
-      metricHistory[id].push(val);
-      if (metricHistory[id].length > 12) metricHistory[id].shift();
+      metricHistory[id].push(newVal);
+      if (metricHistory[id].length > 14) metricHistory[id].shift();
+      savePersistentSessionState();
     }
 
     function simulateSpaceEvent(type) {
       lastInteractionTime = Date.now();
       const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
 
-      // Restore baseline first before applying a new scenario
-      Object.keys(crew.baselines).forEach((k) => {
-        liveMetrics[k] = crew.baselines[k];
-      });
-      symptomFlashingIndicators = [];
-      kpiSliderOverrides = { readiness: null, autonomic: null, circadian: null };
+      if (type === "restore") {
+        symptomFlashingIndicators = [];
+        kpiSliderOverrides = { readiness: null, autonomic: null, circadian: null };
+        loadCrewProfile(crew.id, false);
+        appendCrewMemoryLog({
+          type: "INDICATOR_EVENT",
+          indicatorName: "BASELINE RESTORED",
+          detail: currentLang === "es" ? "Restauración a valores óptimos NASA LSAH" : "Restored to optimal NASA LSAH baseline"
+        });
+        speakAura(
+          currentLang === "es"
+            ? "Telemetría restaurada a tu línea base óptima NASA LSAH."
+            : "Telemetry restored to your optimal NASA LSAH baseline.",
+          "happy"
+        );
+        return;
+      }
 
-      let voiceMsg = "";
-      let mood = "warning";
+      let chosen = type;
+      if (type === "random") {
+        const pool = ["solar", "co2", "sleep", "fluid", "muscle"];
+        chosen = pool[Math.floor(Math.random() * pool.length)];
+      }
 
-      if (type === "solar") {
-        pushMetricValue("rad_dose", 542);
+      if (chosen === "solar") {
         pushMetricValue("rad_rate", 14.8);
-        mood = "critical";
-        voiceMsg = currentLang === "es"
-          ? "Alerta de tormenta solar. El flujo de partículas subió a 14.8 milisieverts por hora. Refúgiate en el módulo blindado de agua."
-          : "Solar particle alert. Radiation flux surged to 14.8 millisieverts per hour. Relocate to the water-wall storm shelter immediately.";
-      } else if (type === "co2") {
+        pushMetricValue("rad_dose", Number((liveMetrics.rad_dose + 18.5).toFixed(1)));
+      } else if (chosen === "co2") {
         pushMetricValue("cabin_co2", 4.1);
         pushMetricValue("heart_rate", 94);
-        mood = "critical";
-        voiceMsg = currentLang === "es"
-          ? "Precaución: el CO₂ en cabina subió a 4.1 milímetros de mercurio. Purga el depurador número dos de inmediato."
-          : "Alert: Cabin CO₂ partial pressure reached 4.1 millimeters of mercury. Purge CO₂ scrubber bed two immediately.";
-      } else if (type === "sleep") {
-        pushMetricValue("sleep_eff", 71);
-        pushMetricValue("sleep_dur", 5.4);
-        pushMetricValue("pvt_ms", 425);
-        mood = "critical";
-        voiceMsg = currentLang === "es"
-          ? "Deuda de sueño detectada: 5.4 horas de descanso y reflejos PVT en 425 milisegundos. Programa un descanso reparador."
-          : "Circadian sleep debt detected: 5.4 hours of sleep and PVT latency at 425 milliseconds. Schedule a restorative rest block.";
-      } else if (type === "fluid") {
-        pushMetricValue("sys_bp", 136);
-        pushMetricValue("iop_sans", 22);
-        pushMetricValue("heart_rate", 91);
-        mood = "warning";
-        voiceMsg = currentLang === "es"
-          ? "Desplazamiento cefálico de fluidos detectado. Presión intraocular en 22 mmHg. Hidrátate y aplica presión negativa inferior."
-          : "Cephalic fluid shift detected. Intraocular pressure rose to 22 mmHg. Hydrate and initiate lower body negative pressure.";
-      } else if (type === "muscle") {
-        pushMetricValue("urine_ca", 268);
-        pushMetricValue("sys_bp", 96);
-        mood = "warning";
-        voiceMsg = currentLang === "es"
-          ? "Pérdida de calcio urinario elevada a 268 miligramos. Completa tu sesión de fuerza en el equipo ARED y bebe electrolitos."
-          : "Elevated urinary calcium loss at 268 milligrams. Complete your ARED resistance training session and hydrate with electrolytes.";
-      } else if (type === "random") {
-        // Clinically coherent mild physiological perturbations affecting 1 to 3 linked human-in-space indicators
-        const clinicalScenarios = [
-          {
-            apply: () => {
-              pushMetricValue("sleep_eff", 81);
-              pushMetricValue("sleep_dur", 6.5);
-            },
-            en: "Mild circadian shift detected: sleep efficiency dipped slightly to 81% with 6.5 hours of rest. Dim blue light before your next sleep cycle.",
-            es: "Leve desajuste circadiano detectado: eficiencia de sueño en 81% con 6.5 horas de descanso. Reduce luz azul antes de dormir."
-          },
-          {
-            apply: () => {
-              pushMetricValue("sys_bp", 131);
-              pushMetricValue("iop_sans", 20);
-            },
-            en: "Mild microgravity cephalic fluid redistribution: systolic blood pressure is 131 mmHg and intraocular pressure is 20 mmHg. Maintain steady hydration.",
-            es: "Leve redistribución cefálica de fluidos por microgravedad: presión sistólica en 131 mmHg y ocular en 20 mmHg. Mantén buena hidratación."
-          },
-          {
-            apply: () => {
-              pushMetricValue("cabin_co2", 2.6);
-              pushMetricValue("heart_rate", 88);
-              pushMetricValue("spo2_sat", 94);
-            },
-            en: "Minor cabin CO₂ drift to 2.6 mmHg with mild compensatory heart rate at 88 bpm. Increase module ventilation airflow.",
-            es: "Ligero aumento de CO₂ en cabina a 2.6 mmHg con frecuencia cardíaca compensatoria en 88 lpm. Aumenta la ventilación del módulo."
-          },
-          {
-            apply: () => {
-              pushMetricValue("urine_ca", 232);
-            },
-            en: "Mild bone mineral turnover increase: urinary calcium reached 232 mg per 24 hours. Keep up your daily ARED resistance squats.",
-            es: "Leve aumento en recambio mineral óseo: calcio urinario en 232 mg en 24 horas. Mantén tus ejercicios diarios en el ARED."
-          },
-          {
-            apply: () => {
-              pushMetricValue("heart_rate", 89);
-              pushMetricValue("sys_bp", 104);
-              pushMetricValue("pvt_ms", 392);
-            },
-            en: "Mild post-EVA dehydration signature: heart rate 89 bpm, systolic pressure 104 mmHg, and PVT at 392 ms. Drink 400 mL isotonic fluid.",
-            es: "Leve señal de deshidratación post-EVA: frecuencia cardíaca en 89 lpm, presión en 104 mmHg y PVT en 392 ms. Bebe 400 mL de líquido isotónico."
-          }
-        ];
-
-        const chosen = clinicalScenarios[Math.floor(Math.random() * clinicalScenarios.length)];
-        chosen.apply();
-        mood = "warning";
-        voiceMsg = currentLang === "es" ? chosen.es : chosen.en;
-      } else {
-        Object.keys(crew.baselines).forEach((k) => pushMetricValue(k, crew.baselines[k]));
-        mood = "happy";
-        voiceMsg = currentLang === "es"
-          ? "Todos los indicadores biomédicos fueron restaurados a tu línea base óptima."
-          : "All biomedical indicators have been restored to your optimal baseline.";
+      } else if (chosen === "sleep") {
+        pushMetricValue("sleep_eff", 68);
+        pushMetricValue("sleep_dur", 5.2);
+        pushMetricValue("pvt_ms", 445);
+      } else if (chosen === "fluid") {
+        pushMetricValue("sys_bp", 144);
+        pushMetricValue("iop_sans", 23);
+        pushMetricValue("heart_rate", 102);
+      } else if (chosen === "muscle") {
+        pushMetricValue("urine_ca", 285);
+        labExtraData.muscle_ared = 81;
+        crewLeaderboard[crew.id].ared = 81;
       }
 
       renderDashboardIndicators();
-      speakAura(voiceMsg, mood);
-    }
 
-    /* =========================================================================
-       11. GUIDED RAPID BIOSENSOR SCAN & VOICE SYMPTOM KEYWORD WORKFLOW
-       ========================================================================= */
-    function closeAllOverlays() {
-      document.querySelectorAll(".touch-overlay").forEach((el) => el.classList.remove("open"));
-      if (pvtAnimFrame) cancelAnimationFrame(pvtAnimFrame);
-      if (pvtSpawnTimer) clearTimeout(pvtSpawnTimer);
-      pvtPhase = "idle";
-      closeTrajectoryOverlay();
+      const abnormal = NASA_LSAH_STANDARDS.find((s) => getIndicatorStatus(s.id, liveMetrics[s.id]) !== "nominal");
+      if (abnormal) {
+        const sev = getIndicatorStatus(abnormal.id, liveMetrics[abnormal.id]);
+        const name = currentLang === "es" ? abnormal.nameEs : abnormal.nameEn;
+        const cm = currentLang === "es" ? abnormal.cmEs : abnormal.cmEn;
+        appendCrewMemoryLog({
+          type: "INDICATOR_EVENT",
+          indicatorName: name,
+          indicatorValue: `${liveMetrics[abnormal.id]} ${abnormal.unit}`,
+          detail: `${name}: ${liveMetrics[abnormal.id]} ${abnormal.unit} (${sev.toUpperCase()})`
+        });
+        const sig = `${abnormal.id}_${sev}`;
+        if (sig !== lastAlertSignature) {
+          lastAlertSignature = sig;
+          playSoftAlertChime(sev);
+        }
+        speakAura(
+          currentLang === "es"
+            ? `Alerta fisiológica en ${name}. ${cm}`
+            : `Physiological alert in ${name}. ${cm}`,
+          sev
+        );
+      }
     }
 
     function runRapidSensorScan() {
       lastInteractionTime = Date.now();
-      const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
       const t = UI_TEXT[currentLang];
+      const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
 
-      setMascotMood("scanning");
       speakAura(t.scanningVoice, "scanning");
 
       setTimeout(() => {
         const sensorStandards = NASA_LSAH_STANDARDS.filter((s) => s.group === "sensor");
-        const abnormal = sensorStandards.find((s) => getIndicatorStatus(s.id, liveMetrics[s.id]) !== "nominal");
+        const issues = sensorStandards.filter((s) => getIndicatorStatus(s.id, liveMetrics[s.id]) !== "nominal");
 
         const cmBox = document.getElementById("guided-cm-text");
         document.getElementById("guided-step-symptom").style.display = "block";
         document.getElementById("guided-step-tests").style.display = "none";
 
-        if (abnormal) {
-          const metricName = currentLang === "es" ? abnormal.nameEs : abnormal.nameEn;
-          const cmText = currentLang === "es" ? abnormal.cmEs : abnormal.cmEn;
-          cmBox.textContent = `${metricName} (${liveMetrics[abnormal.id]} ${abnormal.unit}): ${cmText}`;
-          speakAura(t.scanIssue(crew.name, metricName, cmText), getIndicatorStatus(abnormal.id, liveMetrics[abnormal.id]));
-        } else {
+        if (issues.length === 0 && symptomFlashingIndicators.length === 0) {
           cmBox.textContent = currentLang === "es"
-            ? "Todos los biosensores automáticos están dentro de los estándares NASA LSAH. Continúa con hidratación y ejercicio ARED."
-            : "All 9 automated biosensors are within NASA LSAH optimal ranges. Maintain scheduled hydration and ARED resistance training.";
+            ? "Todos los biosensores automáticos se encuentran en rango óptimo NASA LSAH. Mantén tu hidratación de 2.5 L/día."
+            : "All automated biosensors are within optimal NASA LSAH thresholds. Maintain 2.5 L/day fluid intake.";
+          appendCrewMemoryLog({
+            type: "BIOSENSOR_SCAN",
+            indicatorName: "9 AUTOMATED SENSORS",
+            indicatorValue: "OPTIMAL",
+            detail: currentLang === "es" ? "Escaneo rápido completado: 9/9 biosensores óptimos" : "Rapid scan completed: 9/9 biosensors optimal"
+          });
           speakAura(t.scanAllOk(crew.name), "happy");
+        } else {
+          const topIssue = issues[0] || NASA_LSAH_STANDARDS.find((s) => s.id === symptomFlashingIndicators[0]);
+          const sev = issues.length > 0 ? getIndicatorStatus(topIssue.id, liveMetrics[topIssue.id]) : "critical";
+          const mName = currentLang === "es" ? topIssue.nameEs : topIssue.nameEn;
+          const cm = currentLang === "es" ? topIssue.cmEs : topIssue.cmEn;
+          cmBox.textContent = `${mName}: ${cm}`;
+          appendCrewMemoryLog({
+            type: "BIOSENSOR_SCAN",
+            indicatorName: mName,
+            indicatorValue: `${liveMetrics[topIssue.id]} ${topIssue.unit}`,
+            detail: currentLang === "es" ? `Escaneo detectó alerta en ${mName} (${liveMetrics[topIssue.id]} ${topIssue.unit})` : `Scan detected alert in ${mName} (${liveMetrics[topIssue.id]} ${topIssue.unit})`
+          });
+          playSoftAlertChime(sev);
+          speakAura(t.scanIssue(crew.name, mName, cm), sev);
         }
 
         document.getElementById("overlay-guided").classList.add("open");
-      }, 1450);
+      }, 1700);
     }
 
     function advanceToDueTestsStep() {
       lastInteractionTime = Date.now();
       document.getElementById("guided-step-symptom").style.display = "none";
       document.getElementById("guided-step-tests").style.display = "block";
-
-      // Show PVT button only when no specific indicator is selected OR when the selected indicator is PVT/Sleep related
-      const pvtRelatedIds = ["pvt_ms", "sleep_eff", "sleep_dur"];
-      const showPvt = !expandedIndicatorId || pvtRelatedIds.includes(expandedIndicatorId);
-      const pvtBtn = document.getElementById("btn-launch-pvt");
-      const testsQuestion = document.getElementById("guided-tests-question");
-
-      if (pvtBtn) {
-        pvtBtn.style.display = showPvt ? "inline-flex" : "none";
-        pvtBtn.style.alignItems = "center";
-        pvtBtn.style.justifyContent = "center";
-      }
-
-      if (testsQuestion) {
-        if (showPvt) {
-          testsQuestion.textContent = UI_TEXT[currentLang].guidedTestsQ;
-        } else {
-          testsQuestion.textContent = currentLang === "es"
-            ? "Puedes ingresar resultados de laboratorio clínico relacionados o cerrar esta ventana arriba."
-            : "You may enter related clinical lab results below or close this window at the top.";
-        }
-      }
+      speakAura(UI_TEXT[currentLang].guidedTestsQ, "happy");
     }
 
-    let currentTranscriptText = "";
-
-    function matchSymptomKeywordRule(text) {
-      if (!text) return null;
-      const lower = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      for (const rule of SYMPTOM_KEYWORD_RULES) {
-        for (const kw of rule.keywords) {
-          const normKw = kw.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-          if (lower.includes(normKw)) {
-            return rule;
-          }
-        }
-      }
-      return null;
+    function closeAllOverlays() {
+      document.querySelectorAll(".touch-overlay").forEach((el) => el.classList.remove("open"));
+      if (pvtLoopId) cancelAnimationFrame(pvtLoopId);
+      if (pvtWaitTimer) clearTimeout(pvtWaitTimer);
+      if (trajectoryAnimId) cancelAnimationFrame(trajectoryAnimId);
     }
 
-    function processDetectedSymptom(rawText, autoCloseFromVoice = false) {
-      const rule = matchSymptomKeywordRule(rawText);
-      const isHealthyPhrase = /no symptom|feel great|sin sintomas|me siento bien/i.test(rawText);
+    /* =========================================================================
+       11. VOICE SYMPTOM LOGGER — AUTO-DETECT, AUTO-CLOSE & BLINK AFFECTED INDICATORS
+       ========================================================================= */
+    let selectedSymptomText = "";
 
-      appendCrewMemoryLog({
-        type: "SYMPTOM",
-        detail: rawText,
-        keywordRule: rule ? rule.key : null
-      });
-
-      if (rule && !isHealthyPhrase) {
-        symptomFlashingIndicators = [...rule.indicators];
-        renderDashboardIndicators();
-        playSoftAlertChime("critical");
-
-        const actionMsg = currentLang === "es" ? rule.actionEs : rule.actionEn;
-        if (autoCloseFromVoice) {
-          closeAllOverlays();
-          speakAura(actionMsg, "critical");
-        } else {
-          closeAllOverlays();
-          speakAura(actionMsg, "critical");
-        }
-      } else {
-        symptomFlashingIndicators = [];
-        renderDashboardIndicators();
-        document.getElementById("overlay-symptoms").classList.remove("open");
-        document.getElementById("overlay-guided").classList.add("open");
-        advanceToDueTestsStep();
-        speakAura(UI_TEXT[currentLang].symLoggedVoice, "happy");
+    function getContextSymptomChips() {
+      if (expandedIndicatorId && INDICATOR_SPECIFIC_SYMPTOMS[expandedIndicatorId]) {
+        return [
+          ...INDICATOR_SPECIFIC_SYMPTOMS[expandedIndicatorId],
+          { en: "No Symptoms — Feel Great", es: "Sin síntomas — Me siento bien" }
+        ];
       }
+      const abnormalInd = NASA_LSAH_STANDARDS.find(
+        (s) => getIndicatorStatus(s.id, liveMetrics[s.id]) !== "nominal"
+      );
+      if (abnormalInd && INDICATOR_SPECIFIC_SYMPTOMS[abnormalInd.id]) {
+        return [
+          ...INDICATOR_SPECIFIC_SYMPTOMS[abnormalInd.id],
+          { en: "No Symptoms — Feel Great", es: "Sin síntomas — Me siento bien" }
+        ];
+      }
+      return SYMPTOM_CHIPS;
     }
 
     function openSymptomVoiceOverlay() {
       lastInteractionTime = Date.now();
-      document.getElementById("overlay-guided").classList.remove("open");
-      document.getElementById("overlay-symptoms").classList.add("open");
-
-      currentTranscriptText = "";
-
-      const selectedStd = expandedIndicatorId
-        ? NASA_LSAH_STANDARDS.find((s) => s.id === expandedIndicatorId)
-        : null;
-
-      if (selectedStd) {
-        const indName = currentLang === "es" ? selectedStd.nameEs : selectedStd.nameEn;
-        document.getElementById("sym-overlay-title").textContent = currentLang === "es"
-          ? `SÍNTOMAS RELACIONADOS // ${indName.toUpperCase()}`
-          : `RELATED SYMPTOMS // ${indName.toUpperCase()}`;
-        document.getElementById("voice-transcript-box").textContent = currentLang === "es"
-          ? `Indicador activo: ${indName}. Habla o elige un síntoma relacionado...`
-          : `Active indicator: ${indName}. Speak or select a related symptom...`;
-      } else {
-        document.getElementById("sym-overlay-title").textContent = UI_TEXT[currentLang].symTitle;
-        document.getElementById("voice-transcript-box").textContent = currentLang === "es"
-          ? "Listo para escuchar palabra clave (ej. 'cansado', 'mareo', 'cabeza')..."
-          : "Ready for voice keyword (e.g., 'tired', 'headache', 'dizzy')...";
-      }
+      closeAllOverlays();
+      selectedSymptomText = "";
+      document.getElementById("voice-transcript-box").textContent =
+        currentLang === "es"
+          ? "Listo para voz o selección rápida (ej. 'cansado', 'dolor de cabeza', 'mareo')..."
+          : "Ready for voice or quick tap (e.g., 'tired', 'headache', 'dizzy')...";
 
       const container = document.getElementById("symptom-chips-container");
+      const activeChips = getContextSymptomChips();
       container.innerHTML = "";
-
-      // Filter pre-established symptom blocks exclusively to the selected indicator if one is selected
-      const activeChips = selectedStd && INDICATOR_SPECIFIC_SYMPTOMS[selectedStd.id]
-        ? [
-            ...INDICATOR_SPECIFIC_SYMPTOMS[selectedStd.id],
-            { en: "No Symptoms — Feel Great", es: "Sin síntomas — Me siento bien" }
-          ]
-        : SYMPTOM_CHIPS;
-
       activeChips.forEach((chip) => {
         const label = currentLang === "es" ? chip.es : chip.en;
         const btn = document.createElement("button");
@@ -5727,17 +5830,94 @@
         btn.onclick = () => {
           document.querySelectorAll(".symptom-chip").forEach((c) => c.classList.remove("selected"));
           btn.classList.add("selected");
-          currentTranscriptText = label;
+          selectedSymptomText = label;
           document.getElementById("voice-transcript-box").textContent = `"${label}"`;
-
-          // If chip matches an urgent symptom keyword, accept & close automatically and flash red indicators
-          const matched = matchSymptomKeywordRule(label);
-          if (matched) {
-            setTimeout(() => processDetectedSymptom(label, true), 450);
-          }
+          processDetectedSymptomAndClose(label);
         };
         container.appendChild(btn);
       });
+
+      document.getElementById("overlay-symptoms").classList.add("open");
+      speakAura(
+        currentLang === "es"
+          ? "Toca el micrófono y dime cómo te sientes, por ejemplo cansado, dolor de cabeza o mareo."
+          : "Tap the microphone and tell me how you feel, for example tired, headache, or dizzy.",
+        "happy"
+      );
+    }
+
+    function matchSymptomRule(text) {
+      const lower = (text || "").toLowerCase();
+      for (const rule of SYMPTOM_KEYWORD_RULES) {
+        if (rule.keywords.some((kw) => lower.includes(kw))) {
+          return rule;
+        }
+      }
+      return null;
+    }
+
+    function processDetectedSymptomAndClose(rawText) {
+      const rule = matchSymptomRule(rawText);
+      const isHealthy =
+        rawText.toLowerCase().includes("no symptom") ||
+        rawText.toLowerCase().includes("sin síntomas") ||
+        rawText.toLowerCase().includes("feel great") ||
+        rawText.toLowerCase().includes("siento bien");
+
+      if (isHealthy) {
+        symptomFlashingIndicators = [];
+        expandedIndicatorId = null;
+        markPreviousSymptomsResolved(selectedCrewId);
+        appendCrewMemoryLog({ type: "SYMPTOM", detail: rawText, keywordRule: null, resolved: true });
+        closeAllOverlays();
+        renderDashboardIndicators();
+        speakAura(
+          currentLang === "es"
+            ? "Excelente, me alegra que te sientas bien. He actualizado tu historial médico indicando que te has recuperado."
+            : "Wonderful, glad you feel great. I have updated your medical history noting your full recovery.",
+          "happy"
+        );
+        return;
+      }
+
+      if (rule) {
+        symptomFlashingIndicators = [...rule.indicators];
+        expandedIndicatorId = null;
+        appendCrewMemoryLog({
+          type: "SYMPTOM",
+          detail: rawText,
+          keywordRule: rule.key,
+          affectedIndicators: rule.indicators
+        });
+
+        closeAllOverlays();
+        renderDashboardIndicators();
+        playSoftAlertChime("critical");
+
+        const affectedNames = rule.indicators
+          .map((id) => {
+            const s = NASA_LSAH_STANDARDS.find((item) => item.id === id);
+            return s ? (currentLang === "es" ? s.nameEs : s.nameEn) : id;
+          })
+          .join(", ");
+
+        const urgentAction = currentLang === "es" ? rule.actionEs : rule.actionEn;
+        const spokenResponse = currentLang === "es"
+          ? `Síntoma detectado: ${rawText}. Los indicadores relacionados están parpadeando en rojo: ${affectedNames}. ${urgentAction}`
+          : `Symptom detected: ${rawText}. Related indicators are now flashing red: ${affectedNames}. ${urgentAction}`;
+
+        speakAura(spokenResponse, "critical");
+      } else {
+        appendCrewMemoryLog({ type: "SYMPTOM", detail: rawText, keywordRule: null });
+        closeAllOverlays();
+        renderDashboardIndicators();
+        speakAura(
+          currentLang === "es"
+            ? `Síntoma registrado: ${rawText}. Mantente hidratado, descansa 15 minutos y vigila tus signos vitales.`
+            : `Symptom logged: ${rawText}. Stay hydrated, rest for 15 minutes, and monitor your vitals.`,
+          "warning"
+        );
+      }
     }
 
     function startVoiceRecognition() {
@@ -5747,207 +5927,300 @@
       const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
 
       if (!SpeechRec) {
-        const fallback = currentLang === "es" ? "Cansado / Fatiga leve" : "Tired / Mild fatigue";
-        currentTranscriptText = fallback;
-        box.textContent = `"${fallback}"`;
-        setTimeout(() => processDetectedSymptom(fallback, true), 550);
+        box.textContent = currentLang === "es"
+          ? "Reconocimiento de voz no soportado en este navegador. Selecciona una opción abajo."
+          : "Speech recognition unavailable in this browser. Please tap a symptom chip below.";
         return;
       }
 
-      try {
-        const rec = new SpeechRec();
-        rec.lang = currentLang === "es" ? "es-ES" : "en-US";
-        rec.interimResults = true;
-        rec.maxAlternatives = 1;
+      const recognition = new SpeechRec();
+      recognition.lang = currentLang === "es" ? "es-ES" : "en-US";
+      recognition.interimResults = true;
+      recognition.maxAlternatives = 1;
 
-        micBtn.classList.add("listening");
-        box.textContent = currentLang === "es" ? "Escuchando..." : "Listening...";
+      micBtn.classList.add("listening");
+      box.textContent = currentLang === "es" ? "Escuchando..." : "Listening...";
 
-        let autoHandled = false;
+      let handledByKeyword = false;
 
-        rec.onresult = (event) => {
-          const text = event.results[0][0].transcript;
-          currentTranscriptText = text;
-          box.textContent = `"${text}"`;
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        selectedSymptomText = transcript;
+        box.textContent = `"${transcript}"`;
 
-          const matchedRule = matchSymptomKeywordRule(text);
-          if (matchedRule && !autoHandled) {
-            autoHandled = true;
-            micBtn.classList.remove("listening");
-            try { rec.stop(); } catch (e) {}
-            setTimeout(() => processDetectedSymptom(text, true), 400);
-          }
-        };
-
-        rec.onend = () => {
+        if (!handledByKeyword && matchSymptomRule(transcript)) {
+          handledByKeyword = true;
+          try { recognition.stop(); } catch (e) {}
           micBtn.classList.remove("listening");
-          if (!autoHandled && currentTranscriptText) {
-            const matchedRule = matchSymptomKeywordRule(currentTranscriptText);
-            if (matchedRule) {
-              autoHandled = true;
-              processDetectedSymptom(currentTranscriptText, true);
-            }
-          }
-        };
+          processDetectedSymptomAndClose(transcript);
+        }
+      };
 
-        rec.onerror = () => {
-          micBtn.classList.remove("listening");
-          box.textContent = currentLang === "es" ? "No se detectó audio. Selecciona una etiqueta abajo." : "No speech detected. Please select a tag below.";
-        };
-
-        rec.start();
-      } catch (e) {
+      recognition.onerror = () => {
         micBtn.classList.remove("listening");
-      }
+      };
+
+      recognition.onend = () => {
+        micBtn.classList.remove("listening");
+        if (!handledByKeyword && selectedSymptomText.trim()) {
+          processDetectedSymptomAndClose(selectedSymptomText.trim());
+        }
+      };
+
+      recognition.start();
     }
 
     function submitLoggedSymptom() {
       lastInteractionTime = Date.now();
-      const note = currentTranscriptText || (currentLang === "es" ? "Sin síntomas reportados" : "No symptoms reported");
-      processDetectedSymptom(note, false);
+      const note = selectedSymptomText || (currentLang === "es" ? "Sin síntomas reportados" : "No symptoms reported");
+      processDetectedSymptomAndClose(note);
     }
 
     /* =========================================================================
-       12. NASA HRP CALIBRATED PVT-B ASTEROID DEFLECTION TEST + PODIUM RANKING
+       12. NASA HRP CALIBRATED PVT ASTEROID DEFLECTION TEST + PODIUM RANKING
        ========================================================================= */
     let pvtPhase = "idle";
     let pvtRound = 0;
+    const PVT_TOTAL_ROUNDS = 5;
     let pvtTrials = [];
-    let pvtTargetTime = 0;
-    let pvtTargetPos = { x: 0.5, y: 0.5 };
-    let pvtSpawnTimer = null;
-    let pvtAnimFrame = null;
+    let pvtStimulusStart = 0;
+    let pvtWaitTimer = null;
+    let pvtLoopId = null;
+    let pvtAsteroid = { x: 0.5, y: 0.5, angle: 0 };
+
+    function renderCrewLeaderboards() {
+      const pvtEl = document.getElementById("pvt-leaderboard-list");
+      if (pvtEl) {
+        const sortedPvt = [...CREW_DATABASE]
+          .map((c) => ({ ...c, score: crewLeaderboard[c.id].pvt }))
+          .sort((a, b) => a.score - b.score);
+
+        const [first, second, third, fourth, fifth] = sortedPvt;
+        pvtEl.innerHTML = `
+          <div class="podium-stage">
+            <div class="podium-step-col">
+              <div class="podium-player-tag">
+                <span class="podium-code" style="color:${second.color};">${second.code}</span>
+                <span class="podium-score">${second.score} ms</span>
+              </div>
+              <div class="podium-block rank-2 ${second.id === selectedCrewId ? "is-me" : ""}">2°</div>
+            </div>
+            <div class="podium-step-col">
+              <div class="podium-player-tag">
+                <span class="podium-crown">👑</span>
+                <span class="podium-code" style="color:${first.color};">${first.code}</span>
+                <span class="podium-score">${first.score} ms</span>
+              </div>
+              <div class="podium-block rank-1 ${first.id === selectedCrewId ? "is-me" : ""}">1°</div>
+            </div>
+            <div class="podium-step-col">
+              <div class="podium-player-tag">
+                <span class="podium-code" style="color:${third.color};">${third.code}</span>
+                <span class="podium-score">${third.score} ms</span>
+              </div>
+              <div class="podium-block rank-3 ${third.id === selectedCrewId ? "is-me" : ""}">3°</div>
+            </div>
+          </div>
+          <div class="podium-runners-row">
+            <div class="runner-pill ${fourth.id === selectedCrewId ? "is-me" : ""}">
+              <span>4° <strong style="color:${fourth.color};">${fourth.code}</strong></span>
+              <strong>${fourth.score} ms</strong>
+            </div>
+            <div class="runner-pill ${fifth.id === selectedCrewId ? "is-me" : ""}">
+              <span>5° <strong style="color:${fifth.color};">${fifth.code}</strong></span>
+              <strong>${fifth.score} ms</strong>
+            </div>
+          </div>
+        `;
+      }
+
+      const labEl = document.getElementById("lab-leaderboard-list");
+      if (labEl) {
+        const sortedAred = [...CREW_DATABASE]
+          .map((c) => ({ ...c, score: crewLeaderboard[c.id].ared }))
+          .sort((a, b) => b.score - a.score);
+
+        const [first, second, third, fourth, fifth] = sortedAred;
+        labEl.innerHTML = `
+          <div class="podium-stage">
+            <div class="podium-step-col">
+              <div class="podium-player-tag">
+                <span class="podium-code" style="color:${second.color};">${second.code}</span>
+                <span class="podium-score">${second.score}%</span>
+              </div>
+              <div class="podium-block rank-2 ${second.id === selectedCrewId ? "is-me" : ""}">2°</div>
+            </div>
+            <div class="podium-step-col">
+              <div class="podium-player-tag">
+                <span class="podium-crown">👑</span>
+                <span class="podium-code" style="color:${first.color};">${first.code}</span>
+                <span class="podium-score">${first.score}%</span>
+              </div>
+              <div class="podium-block rank-1 ${first.id === selectedCrewId ? "is-me" : ""}">1°</div>
+            </div>
+            <div class="podium-step-col">
+              <div class="podium-player-tag">
+                <span class="podium-code" style="color:${third.color};">${third.code}</span>
+                <span class="podium-score">${third.score}%</span>
+              </div>
+              <div class="podium-block rank-3 ${third.id === selectedCrewId ? "is-me" : ""}">3°</div>
+            </div>
+          </div>
+          <div class="podium-runners-row">
+            <div class="runner-pill ${fourth.id === selectedCrewId ? "is-me" : ""}">
+              <span>4° <strong style="color:${fourth.color};">${fourth.code}</strong></span>
+              <strong>${fourth.score}%</strong>
+            </div>
+            <div class="runner-pill ${fifth.id === selectedCrewId ? "is-me" : ""}">
+              <span>5° <strong style="color:${fifth.color};">${fifth.code}</strong></span>
+              <strong>${fifth.score}%</strong>
+            </div>
+          </div>
+        `;
+      }
+    }
 
     function openPvtGameOverlay() {
       lastInteractionTime = Date.now();
-      document.getElementById("overlay-guided").classList.remove("open");
-      document.getElementById("overlay-pvt").classList.add("open");
-
+      closeAllOverlays();
       pvtPhase = "idle";
       pvtRound = 0;
       pvtTrials = [];
-      document.getElementById("pvt-round-indicator").textContent = "ROUND 0 / 5";
-      document.getElementById("pvt-hud-status").textContent = currentLang === "es" ? "TOCA EL RADAR PARA INICIAR" : "TAP RADAR TO BEGIN";
+      document.getElementById("pvt-round-indicator").textContent = `ROUND 0 / ${PVT_TOTAL_ROUNDS}`;
+      document.getElementById("pvt-hud-status").textContent =
+        currentLang === "es" ? "TOCA EL RADAR PARA INICIAR" : "TAP RADAR TO BEGIN";
       document.getElementById("pvt-live-timer").textContent = "000 ms";
+      document.getElementById("pvt-timer-needle").style.width = "0%";
       document.getElementById("pvt-scores-strip").textContent = "Trials: [ -- ]";
       document.getElementById("pvt-mean-display").textContent = "CALIBRATED MEAN: -- ms";
-      document.getElementById("pvt-timer-needle").style.width = "0%";
       document.getElementById("pvt-result-action-box").style.display = "none";
 
       renderCrewLeaderboards();
-      startPvtCanvasLoop();
+      document.getElementById("overlay-pvt").classList.add("open");
       speakAura(UI_TEXT[currentLang].pvtIntroVoice, "happy");
+      startPvtRenderLoop();
     }
 
     function closePvtAndReturn() {
+      lastInteractionTime = Date.now();
+      pvtPhase = "idle";
       closeAllOverlays();
-    }
-
-    function startNextPvtRound() {
-      if (pvtRound >= 5) {
-        finishPvtSession();
-        return;
-      }
-      pvtRound++;
-      pvtPhase = "waiting";
-      document.getElementById("pvt-round-indicator").textContent = `ROUND ${pvtRound} / 5`;
-      document.getElementById("pvt-hud-status").textContent = currentLang === "es" ? "ESPERA SEÑAL..." : "WAIT FOR TARGET...";
-      document.getElementById("pvt-live-timer").textContent = "000 ms";
-      document.getElementById("pvt-timer-needle").style.width = "0%";
-
-      const delayMs = 1100 + Math.random() * 1900;
-      pvtSpawnTimer = setTimeout(() => {
-        pvtPhase = "target";
-        pvtTargetTime = performance.now();
-        pvtTargetPos = {
-          x: 0.22 + Math.random() * 0.56,
-          y: 0.26 + Math.random() * 0.44
-        };
-        document.getElementById("pvt-hud-status").textContent = currentLang === "es" ? "¡TOCA AHORA!" : "TAP ASTEROID NOW!";
-      }, delayMs);
     }
 
     function handlePvtRadarTap() {
       lastInteractionTime = Date.now();
-      if (pvtPhase === "idle") {
-        startNextPvtRound();
+      if (pvtPhase === "idle" || pvtPhase === "done") {
+        pvtTrials = [];
+        pvtRound = 0;
+        document.getElementById("pvt-result-action-box").style.display = "none";
+        scheduleNextPvtRound();
         return;
       }
 
       if (pvtPhase === "waiting") {
-        clearTimeout(pvtSpawnTimer);
-        document.getElementById("pvt-hud-status").textContent = currentLang === "es" ? "¡MUY PRONTO! REINTENTANDO..." : "FALSE START! RETRYING...";
-        pvtRound--;
-        setTimeout(startNextPvtRound, 700);
+        clearTimeout(pvtWaitTimer);
+        document.getElementById("pvt-hud-status").textContent =
+          currentLang === "es" ? "¡MUY PRONTO! ESPERA LA SEÑAL..." : "FALSE START! WAIT FOR ASTEROID...";
+        scheduleNextPvtRound(true);
         return;
       }
 
       if (pvtPhase === "target") {
-        const rawRt = performance.now() - pvtTargetTime;
-        const calibratedMs = Math.max(185, Math.round(rawRt - 32));
-        pvtTrials.push(calibratedMs);
-        pvtPhase = "cooldown";
+        const rawRt = Math.round(performance.now() - pvtStimulusStart);
+        const calibratedRt = Math.max(150, Math.min(999, rawRt));
+        pvtTrials.push(calibratedRt);
+        pvtPhase = "hit_flash";
 
-        document.getElementById("pvt-live-timer").textContent = `${calibratedMs} ms`;
+        document.getElementById("pvt-live-timer").textContent = `${calibratedRt} ms`;
         document.getElementById("pvt-scores-strip").textContent = `Trials: [ ${pvtTrials.join(" ms, ")} ms ]`;
 
-        const mean = Math.round(pvtTrials.reduce((a, b) => a + b, 0) / pvtTrials.length);
-        document.getElementById("pvt-mean-display").textContent = `CALIBRATED MEAN: ${mean} ms`;
-
-        if (pvtRound < 5) {
-          document.getElementById("pvt-hud-status").textContent = currentLang === "es" ? `REGISTRADO: ${calibratedMs} ms` : `LOCKED: ${calibratedMs} ms`;
-          setTimeout(startNextPvtRound, 750);
+        if (pvtRound >= PVT_TOTAL_ROUNDS) {
+          finishPvtAssessment();
         } else {
-          finishPvtSession();
+          document.getElementById("pvt-hud-status").textContent =
+            currentLang === "es" ? `¡IMPACTO! ${calibratedRt} ms — SIGUIENTE...` : `LOCKED! ${calibratedRt} ms — NEXT...`;
+          setTimeout(() => scheduleNextPvtRound(), 650);
         }
       }
     }
 
-    function finishPvtSession() {
-      pvtPhase = "done";
-      const mean = Math.round(pvtTrials.reduce((a, b) => a + b, 0) / pvtTrials.length);
-      pushMetricValue("pvt_ms", mean);
-      crewLeaderboard[selectedCrewId].pvt = mean;
-      appendCrewMemoryLog({ type: "PVT_TEST", value: `${mean} ms` });
+    function scheduleNextPvtRound(isRetry = false) {
+      if (!isRetry) pvtRound++;
+      pvtPhase = "waiting";
+      document.getElementById("pvt-round-indicator").textContent = `ROUND ${pvtRound} / ${PVT_TOTAL_ROUNDS}`;
+      document.getElementById("pvt-hud-status").textContent =
+        currentLang === "es" ? "ESPERANDO ASTEROIDE..." : "SCANNING SECTOR... WAIT";
+      document.getElementById("pvt-live-timer").textContent = "000 ms";
+      document.getElementById("pvt-timer-needle").style.width = "0%";
 
-      renderDashboardIndicators();
-      renderCrewLeaderboards();
-
-      const status = getIndicatorStatus("pvt_ms", mean);
-      const sorted = Object.entries(crewLeaderboard).sort((a, b) => a[1].pvt - b[1].pvt);
-      const rankPos = sorted.findIndex(([id]) => id === selectedCrewId) + 1;
-
-      const actionText = status === "nominal"
-        ? (currentLang === "es"
-            ? `Puesto #${rankPos} en la tripulación con ${mean} ms. Alerta cognitiva óptima (≤380 ms). Autorizado para tareas de precisión.`
-            : `Crew Rank #${rankPos} with ${mean} ms. Cognitive alertness optimal (≤380 ms). Cleared for precision spacecraft operations.`)
-        : (currentLang === "es"
-            ? `Puesto #${rankPos} con ${mean} ms. Se detecta fatiga cognitiva (>380 ms). Acción recomendada: toma un descanso reparador de 25 minutos.`
-            : `Crew Rank #${rankPos} with ${mean} ms. Cognitive fatigue detected (>380 ms). Recommended action: take a 25-minute restorative rest block.`);
-
-      const resBox = document.getElementById("pvt-result-action-box");
-      resBox.style.display = "block";
-      resBox.innerHTML = `<strong style="color: var(--accent-cyan);">ARES-V DIAGNOSTIC ACTION:</strong> ${actionText}`;
-
-      document.getElementById("pvt-hud-status").textContent = currentLang === "es"
-        ? `PRUEBA COMPLETADA • PROMEDIO ${mean} ms`
-        : `TEST COMPLETE • MEAN ${mean} ms`;
-
-      speakAura(actionText, status === "nominal" ? "happy" : status);
+      const delayMs = 1100 + Math.random() * 2100;
+      pvtWaitTimer = setTimeout(() => {
+        pvtAsteroid = {
+          x: 0.22 + Math.random() * 0.56,
+          y: 0.28 + Math.random() * 0.44,
+          angle: Math.random() * Math.PI * 2
+        };
+        pvtStimulusStart = performance.now();
+        pvtPhase = "target";
+        document.getElementById("pvt-hud-status").textContent =
+          currentLang === "es" ? "¡TOCA AHORA!" : "TAP ASTEROID NOW!";
+      }, delayMs);
     }
 
-    function startPvtCanvasLoop() {
+    function finishPvtAssessment() {
+      pvtPhase = "done";
+      const meanMs = Math.round(pvtTrials.reduce((a, b) => a + b, 0) / pvtTrials.length);
+      document.getElementById("pvt-mean-display").textContent = `CALIBRATED MEAN: ${meanMs} ms`;
+      document.getElementById("pvt-hud-status").textContent =
+        currentLang === "es" ? "CALIBRACIÓN COMPLETA — TOCA PARA REPETIR" : "CALIBRATION COMPLETE — TAP TO RETRY";
+
+      pushMetricValue("pvt_ms", meanMs);
+      if (selectedCrewId && crewLeaderboard[selectedCrewId]) {
+        crewLeaderboard[selectedCrewId].pvt = meanMs;
+      }
+      renderCrewLeaderboards();
+      renderDashboardIndicators();
+
+      const actionBox = document.getElementById("pvt-result-action-box");
+      actionBox.style.display = "block";
+
+      let advice = "";
+      let mood = "happy";
+      if (meanMs <= 380) {
+        advice = currentLang === "es"
+          ? `Tiempo promedio ${meanMs} ms: Alerta cognitiva ÓPTIMA (≤380 ms). Estás autorizado para maniobras de alta precisión y operaciones EVA.`
+          : `Mean reaction time ${meanMs} ms: OPTIMAL cognitive alertness (≤380 ms). Cleared for precision docking and EVA tasks.`;
+        mood = "happy";
+      } else if (meanMs < 500) {
+        advice = currentLang === "es"
+          ? `Tiempo promedio ${meanMs} ms: Precaución por fatiga (>380 ms). Acción: Descansa 20 minutos, hidrátate y evita tareas críticas inmediatas.`
+          : `Mean reaction time ${meanMs} ms: Fatigue caution (>380 ms). Action: Take a 20-minute rest block, hydrate, and defer high-precision tasks.`;
+        mood = "warning";
+        playSoftAlertChime("warning");
+      } else {
+        advice = currentLang === "es"
+          ? `Tiempo promedio ${meanMs} ms: Lapso neuroconductual crítico (≥500 ms). Acción urgente: Suspende operaciones críticas e inicia ciclo de sueño reparador.`
+          : `Mean reaction time ${meanMs} ms: Critical neurobehavioral lapse (≥500 ms). Urgent action: Suspend precision duties and initiate restorative sleep.`;
+        mood = "critical";
+        playSoftAlertChime("critical");
+      }
+
+      actionBox.textContent = advice;
+      appendCrewMemoryLog({ type: "PVT_TEST", meanMs });
+      speakAura(advice, mood);
+    }
+
+    function startPvtRenderLoop() {
       const canvas = document.getElementById("pvt-canvas");
-      if (!canvas) return;
+      const arena = document.getElementById("pvt-radar-arena");
+      if (!canvas || !arena) return;
       const ctx = canvas.getContext("2d");
 
-      function renderFrame() {
+      function drawFrame(now) {
         if (!document.getElementById("overlay-pvt").classList.contains("open")) return;
-        const rect = canvas.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0) {
-          canvas.width = rect.width;
-          canvas.height = rect.height;
-        }
+        const rect = arena.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
         const w = canvas.width;
         const h = canvas.height;
         const cx = w / 2;
@@ -5962,123 +6235,63 @@
           ctx.arc(cx, cy, r, 0, Math.PI * 2);
           ctx.stroke();
         });
-
         ctx.beginPath();
-        ctx.moveTo(cx - 145, cy);
-        ctx.lineTo(cx + 145, cy);
-        ctx.moveTo(cx, cy - 95);
-        ctx.lineTo(cx, cy + 95);
+        ctx.moveTo(cx - 150, cy); ctx.lineTo(cx + 150, cy);
+        ctx.moveTo(cx, cy - 105); ctx.lineTo(cx, cy + 105);
         ctx.stroke();
 
-        const angle = (performance.now() * 0.0022) % (Math.PI * 2);
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + Math.cos(angle) * 140, cy + Math.sin(angle) * 140);
+        const sweepAngle = (now * 0.0025) % (Math.PI * 2);
         ctx.strokeStyle = "rgba(0, 229, 255, 0.45)";
         ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(sweepAngle) * 145, cy + Math.sin(sweepAngle) * 145);
         ctx.stroke();
 
         if (pvtPhase === "target") {
-          const elapsed = Math.max(0, Math.round(performance.now() - pvtTargetTime - 32));
+          const elapsed = Math.round(now - pvtStimulusStart);
           document.getElementById("pvt-live-timer").textContent = `${elapsed} ms`;
           const pct = Math.min(100, (elapsed / 600) * 100);
-          document.getElementById("pvt-timer-needle").style.width = `${pct}%`;
+          const needle = document.getElementById("pvt-timer-needle");
+          needle.style.width = `${pct}%`;
+          needle.style.background = elapsed <= 380 ? "#00e676" : (elapsed < 500 ? "#ffab00" : "#ff3b5c");
 
-          const tx = pvtTargetPos.x * w;
-          const ty = pvtTargetPos.y * h;
+          const ax = pvtAsteroid.x * w;
+          const ay = pvtAsteroid.y * h;
+          ctx.save();
+          ctx.translate(ax, ay);
+          ctx.rotate(now * 0.003);
 
-          ctx.beginPath();
-          ctx.arc(tx, ty, 28, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(255, 59, 92, 0.24)";
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(tx, ty, 16, 0, Math.PI * 2);
-          ctx.fillStyle = "#ff3b5c";
-          ctx.fill();
+          ctx.strokeStyle = "#ff3b5c";
           ctx.lineWidth = 2.5;
-          ctx.strokeStyle = "#ffffff";
+          ctx.beginPath();
+          ctx.arc(0, 0, 30, 0, Math.PI * 2);
           ctx.stroke();
+
+          ctx.fillStyle = "#ffab00";
+          ctx.beginPath();
+          ctx.moveTo(-16, -10);
+          ctx.lineTo(4, -18);
+          ctx.lineTo(18, -4);
+          ctx.lineTo(12, 15);
+          ctx.lineTo(-10, 16);
+          ctx.lineTo(-19, 2);
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
         }
 
-        pvtAnimFrame = requestAnimationFrame(renderFrame);
+        pvtLoopId = requestAnimationFrame(drawFrame);
       }
-
-      pvtAnimFrame = requestAnimationFrame(renderFrame);
-    }
-
-    function buildPodiumHtml(sortedEntries, unitSuffix, isLowerBetter) {
-      const top3 = sortedEntries.slice(0, 3);
-      const rest = sortedEntries.slice(3);
-
-      const podiumOrder = [
-        { entry: top3[1], rank: 2, crown: "" },
-        { entry: top3[0], rank: 1, crown: "&#128081;" },
-        { entry: top3[2], rank: 3, crown: "" }
-      ];
-
-      let html = `<div class="podium-stage">`;
-      podiumOrder.forEach(({ entry, rank, crown }) => {
-        if (!entry) return;
-        const [id, data] = entry;
-        const crew = CREW_DATABASE.find((c) => c.id === id) || CREW_DATABASE[0];
-        const isMe = id === selectedCrewId;
-        const val = isLowerBetter ? data.pvt : data.ared;
-
-        html += `
-          <div class="podium-step-col">
-            <div class="podium-player-tag">
-              ${crown ? `<span class="podium-crown">${crown}</span>` : ""}
-              <span class="podium-code" style="color:${crew.color};">${crew.code}${isMe ? " ★" : ""}</span>
-              <span class="podium-score">${val}${unitSuffix}</span>
-            </div>
-            <div class="podium-block rank-${rank} ${isMe ? "is-me" : ""}">#${rank}</div>
-          </div>
-        `;
-      });
-      html += `</div>`;
-
-      if (rest.length > 0) {
-        html += `<div class="podium-runners-row">`;
-        rest.forEach(([id, data], idx) => {
-          const crew = CREW_DATABASE.find((c) => c.id === id) || CREW_DATABASE[0];
-          const isMe = id === selectedCrewId;
-          const val = isLowerBetter ? data.pvt : data.ared;
-          html += `
-            <div class="runner-pill ${isMe ? "is-me" : ""}">
-              <span>#${idx + 4} <strong style="color:${crew.color};">${crew.code}</strong></span>
-              <strong>${val}${unitSuffix}</strong>
-            </div>
-          `;
-        });
-        html += `</div>`;
-      }
-
-      return html;
-    }
-
-    function renderCrewLeaderboards() {
-      const pvtEl = document.getElementById("pvt-leaderboard-list");
-      if (pvtEl) {
-        const sortedPvt = Object.entries(crewLeaderboard).sort((a, b) => a[1].pvt - b[1].pvt);
-        pvtEl.innerHTML = buildPodiumHtml(sortedPvt, " ms", true);
-      }
-
-      const labEl = document.getElementById("lab-leaderboard-list");
-      if (labEl) {
-        const sortedAred = Object.entries(crewLeaderboard).sort((a, b) => b[1].ared - a[1].ared);
-        labEl.innerHTML = buildPodiumHtml(sortedAred, "%", false);
-      }
+      pvtLoopId = requestAnimationFrame(drawFrame);
     }
 
     /* =========================================================================
-       13. CLINICAL LAB & ARED ENTRY MODAL
+       13. CLINICAL LAB ANALYZER & ARED FORCE ENTRY
        ========================================================================= */
     function openLabEntryOverlay() {
       lastInteractionTime = Date.now();
-      document.getElementById("overlay-guided").classList.remove("open");
-      document.getElementById("overlay-lab").classList.add("open");
-
+      closeAllOverlays();
       document.getElementById("inp-urine-osm").value = labExtraData.urine_osm;
       document.getElementById("inp-urine-ca").value = liveMetrics.urine_ca;
       document.getElementById("inp-iop").value = liveMetrics.iop_sans;
@@ -6086,260 +6299,77 @@
       document.getElementById("inp-ared").value = labExtraData.muscle_ared;
 
       renderCrewLeaderboards();
+      document.getElementById("overlay-lab").classList.add("open");
       speakAura(UI_TEXT[currentLang].labIntroVoice, "happy");
     }
 
     function submitLabResults() {
       lastInteractionTime = Date.now();
       const osm = Number(document.getElementById("inp-urine-osm").value) || 640;
-      const ca = Number(document.getElementById("inp-urine-ca").value) || 160;
+      const ca = Number(document.getElementById("inp-urine-ca").value) || 155;
       const iop = Number(document.getElementById("inp-iop").value) || 15;
-      const hb = Number(document.getElementById("inp-hb").value) || 15.0;
+      const hb = Number(document.getElementById("inp-hb").value) || 15.1;
       const ared = Number(document.getElementById("inp-ared").value) || 96;
 
-      labExtraData = { urine_osm: osm, hemoglobin: hb, muscle_ared: ared };
+      labExtraData.urine_osm = osm;
+      labExtraData.hemoglobin = hb;
+      labExtraData.muscle_ared = ared;
+
       pushMetricValue("urine_ca", ca);
       pushMetricValue("iop_sans", iop);
-      crewLeaderboard[selectedCrewId].ared = ared;
+      if (selectedCrewId && crewLeaderboard[selectedCrewId]) {
+        crewLeaderboard[selectedCrewId].ared = ared;
+      }
 
-      appendCrewMemoryLog({
-        type: "LAB_ENTRY",
-        detail: `Ca:${ca}, IOP:${iop}, ARED:${ared}%`
-      });
-
+      appendCrewMemoryLog({ type: "LAB_ENTRY", osm, ca, iop, hb, ared });
       closeAllOverlays();
       renderDashboardIndicators();
-      speakAura(UI_TEXT[currentLang].labSavedVoice, "happy");
+
+      const abnormal = NASA_LSAH_STANDARDS.find((s) => getIndicatorStatus(s.id, liveMetrics[s.id]) !== "nominal");
+      if (abnormal) {
+        const sev = getIndicatorStatus(abnormal.id, liveMetrics[abnormal.id]);
+        const cm = currentLang === "es" ? abnormal.cmEs : abnormal.cmEn;
+        playSoftAlertChime(sev);
+        speakAura(`${UI_TEXT[currentLang].labSavedVoice} ${cm}`, sev);
+      } else {
+        speakAura(UI_TEXT[currentLang].labSavedVoice, "happy");
+      }
     }
 
     /* =========================================================================
-       14. FINISH SESSION & LOGOUT WORKFLOW
+       14. SESSION COMPLETION & CLEAN LOGOUT BACK TO STANDBY (NO ACTIVE USER)
        ========================================================================= */
     function promptFinishSession() {
       lastInteractionTime = Date.now();
+      if (!isCrewAuthenticated) return;
       document.getElementById("overlay-finish").classList.add("open");
       speakAura(UI_TEXT[currentLang].finishPromptVoice, "happy");
     }
 
     function confirmFinishSession() {
       lastInteractionTime = Date.now();
-      appendCrewMemoryLog({ type: "SESSION_COMPLETE", detail: "Checkup signed off" });
-      closeAllOverlays();
+      const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
+      appendCrewMemoryLog({ type: "SESSION_COMPLETED", detail: `${crew.name} — Session archived` });
 
       isCrewAuthenticated = false;
+      selectedCrewId = null;
       armedCrewId = null;
       expandedIndicatorId = null;
       expandedLsahId = null;
       symptomFlashingIndicators = [];
-      document.getElementById("active-crew-chip").classList.remove("visible");
 
+      document.getElementById("active-crew-chip").classList.remove("visible");
+      document.getElementById("active-crew-icon").innerHTML = "";
+
+      closeAllOverlays();
       renderCrewGrid();
       goToScreen(0);
+      savePersistentSessionState();
       speakAura(UI_TEXT[currentLang].sessionCompletedVoice, "happy");
     }
 
     /* =========================================================================
-       15. INTERPLANETARY EARTH -> MARS TRAJECTORY MODAL (STARGAZERS PATCH)
-       ========================================================================= */
-    function openTrajectoryOverlay(evt) {
-      if (evt) evt.stopPropagation();
-      lastInteractionTime = Date.now();
-      document.getElementById("overlay-trajectory").classList.add("open");
-      updateTrajectoryStats();
-      startTrajectoryCanvasLoop();
-
-      const msg = currentLang === "es"
-        ? "Mapa de navegación interplanetaria activo. Visualizando distancia real entre la Tierra, Marte y los cuerpos celestes en nuestra ruta."
-        : "Interplanetary trajectory map active. Displaying real-time astronomical distances between Earth, Mars, and nearby celestial bodies.";
-      speakAura(msg, "happy");
-    }
-
-    function closeTrajectoryOverlay() {
-      const ov = document.getElementById("overlay-trajectory");
-      if (ov) ov.classList.remove("open");
-      if (trajectoryAnimId) {
-        cancelAnimationFrame(trajectoryAnimId);
-        trajectoryAnimId = null;
-      }
-    }
-
-    function shiftTrajectoryWindow() {
-      lastInteractionTime = Date.now();
-      trajectoryWindowOffset = (trajectoryWindowOffset + 1) % 3;
-      updateTrajectoryStats();
-    }
-
-    function updateTrajectoryStats() {
-      const totalTransitKm = 225000000;
-      const windowAdd = trajectoryWindowOffset * 28400000;
-      const fromEarth = Math.min(208000000, earthDistanceKm + windowAdd);
-      const toMars = Math.max(17000000, totalTransitKm - fromEarth);
-      const velocities = ["24.18 km/s", "22.94 km/s", "21.65 km/s"];
-
-      document.getElementById("val-traj-from-earth").textContent = `${fromEarth.toLocaleString("en-US")} km`;
-      document.getElementById("val-traj-to-mars").textContent = `${toMars.toLocaleString("en-US")} km`;
-      document.getElementById("val-traj-velocity").textContent = velocities[trajectoryWindowOffset];
-
-      const milestonesEn = [
-        "Cruise Phase • Passed Lunar Orbit (384,400 km) & Near-Earth Asteroid (99942) Apophis corridor. Next target: Phobos capture approach.",
-        "Deep-Space Midpoint • Crossing inner Main Asteroid Belt observation window near (433) Eros orbital plane. Radiation shields nominal.",
-        "Mars Approach Corridor • Entering Martian gravitational sphere of influence. Deimos & Phobos optical navigation lock confirmed."
-      ];
-      const milestonesEs = [
-        "Fase de Crucero • Superada órbita lunar (384,400 km) y corredor del asteroide (99942) Apophis. Próximo objetivo: aproximación a Fobos.",
-        "Punto Medio Espacio Profundo • Cruzando ventana de observación cercana al plano orbital de (433) Eros. Blindaje antirradiación nominal.",
-        "Corredor de Aproximación a Marte • Ingresando a la esfera de influencia gravitacional marciana. Navegación óptica con Fobos y Deimos."
-      ];
-
-      document.getElementById("val-traj-milestone-desc").textContent =
-        currentLang === "es" ? milestonesEs[trajectoryWindowOffset] : milestonesEn[trajectoryWindowOffset];
-    }
-
-    function startTrajectoryCanvasLoop() {
-      const canvas = document.getElementById("trajectory-canvas");
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-
-      const bgStars = Array.from({ length: 65 }, (_, idx) => ({
-        x: ((idx * 73) % 100) / 100,
-        y: ((idx * 41) % 100) / 100,
-        r: (idx % 3 === 0) ? 1.5 : 0.9
-      }));
-
-      function drawTrajectory(now) {
-        if (!document.getElementById("overlay-trajectory").classList.contains("open")) return;
-        const rect = canvas.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0) {
-          canvas.width = rect.width;
-          canvas.height = rect.height;
-        }
-        const w = canvas.width;
-        const h = canvas.height;
-        ctx.clearRect(0, 0, w, h);
-
-        bgStars.forEach((s) => {
-          ctx.beginPath();
-          ctx.arc(s.x * w, s.y * h, s.r, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(255,255,255,0.55)";
-          ctx.fill();
-        });
-
-        const sunX = 42;
-        const sunY = h * 0.52;
-        const sunGlow = ctx.createRadialGradient(sunX, sunY, 4, sunX, sunY, 54);
-        sunGlow.addColorStop(0, "#fff59d");
-        sunGlow.addColorStop(0.35, "#ffb300");
-        sunGlow.addColorStop(1, "rgba(255, 111, 0, 0)");
-        ctx.fillStyle = sunGlow;
-        ctx.beginPath();
-        ctx.arc(sunX, sunY, 54, 0, Math.PI * 2);
-        ctx.fill();
-
-        const earthX = w * 0.24;
-        const earthY = h * 0.56;
-        const marsX = w * 0.84;
-        const marsY = h * 0.44;
-        const ctrlX = w * 0.54;
-        const ctrlY = h * 0.16;
-
-        ctx.save();
-        ctx.setLineDash([6, 6]);
-        ctx.strokeStyle = "rgba(0, 229, 255, 0.48)";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(earthX, earthY);
-        ctx.quadraticCurveTo(ctrlX, ctrlY, marsX, marsY);
-        ctx.stroke();
-        ctx.restore();
-
-        const astX = w * 0.62;
-        const astY = h * 0.68;
-        ctx.fillStyle = "#94a3b8";
-        ctx.beginPath();
-        ctx.arc(astX, astY, 4.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(astX + 16, astY - 12, 3, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.font = "9.5px monospace";
-        ctx.fillStyle = "#94a3b8";
-        ctx.textAlign = "center";
-        ctx.fillText("ASTEROID BELT (433 EROS)", astX + 6, astY + 16);
-
-        ctx.beginPath();
-        ctx.arc(earthX, earthY, 15, 0, Math.PI * 2);
-        ctx.fillStyle = "#0284c7";
-        ctx.fill();
-        ctx.strokeStyle = "#38bdf8";
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        const moonAngle = now * 0.0018;
-        const moonX = earthX + Math.cos(moonAngle) * 26;
-        const moonY = earthY + Math.sin(moonAngle) * 26;
-        ctx.beginPath();
-        ctx.arc(moonX, moonY, 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = "#e2e8f0";
-        ctx.fill();
-
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 10.5px monospace";
-        ctx.fillText("EARTH", earthX, earthY + 36);
-        ctx.fillStyle = "#94a3b8";
-        ctx.font = "9px monospace";
-        ctx.fillText("1.00 AU", earthX, earthY + 48);
-
-        ctx.beginPath();
-        ctx.arc(marsX, marsY, 13, 0, Math.PI * 2);
-        ctx.fillStyle = "#ea580c";
-        ctx.fill();
-        ctx.strokeStyle = "#fdba74";
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        const phobosX = marsX + Math.cos(-now * 0.0024) * 22;
-        const phobosY = marsY + Math.sin(-now * 0.0024) * 22;
-        ctx.beginPath();
-        ctx.arc(phobosX, phobosY, 2.8, 0, Math.PI * 2);
-        ctx.fillStyle = "#fed7aa";
-        ctx.fill();
-
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 10.5px monospace";
-        ctx.fillText("MARS", marsX, marsY + 34);
-        ctx.fillStyle = "#fdba74";
-        ctx.font = "9px monospace";
-        ctx.fillText("1.52 AU", marsX, marsY + 46);
-
-        const progress = Math.min(0.92, Math.max(0.28, (earthDistanceKm + trajectoryWindowOffset * 28400000) / 225000000));
-        const t = progress;
-        const shipX = (1 - t) * (1 - t) * earthX + 2 * (1 - t) * t * ctrlX + t * t * marsX;
-        const shipY = (1 - t) * (1 - t) * earthY + 2 * (1 - t) * t * ctrlY + t * t * marsY;
-
-        const pulseR = 11 + Math.sin(now * 0.006) * 3;
-        ctx.beginPath();
-        ctx.arc(shipX, shipY, pulseR, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(0, 230, 118, 0.55)";
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(shipX, shipY, 6, 0, Math.PI * 2);
-        ctx.fillStyle = "#00e676";
-        ctx.fill();
-
-        ctx.fillStyle = "#00e676";
-        ctx.font = "bold 10px monospace";
-        ctx.fillText("ARES-V", shipX, shipY - 15);
-
-        trajectoryAnimId = requestAnimationFrame(drawTrajectory);
-      }
-
-      trajectoryAnimId = requestAnimationFrame(drawTrajectory);
-    }
-
-    /* =========================================================================
-       16. NASA LSAH / HRP VISUAL REFERENCE DATABASE (SCREEN 4)
+       15. NASA LSAH / HRP VISUAL REFERENCE DATABASE (SCREEN 4)
        ========================================================================= */
     let activeLsahFilter = "ALL";
 
@@ -6353,79 +6383,108 @@
       renderLsahDatabase();
     }
 
-    function closeLsahExpandedDetail() {
+    function toggleLsahCardExpand(std) {
+      lastInteractionTime = Date.now();
+      expandedLsahId = expandedLsahId === std.id ? null : std.id;
+      renderLsahDatabase();
+
+      if (expandedLsahId) {
+        const title = currentLang === "es" ? std.nameEs : std.nameEn;
+        const sensor = currentLang === "es" ? std.sensorEs : std.sensorEn;
+        const desc = currentLang === "es" ? std.descEs : std.descEn;
+        const cm = currentLang === "es" ? std.cmEs : std.cmEn;
+
+        const explanation = currentLang === "es"
+          ? `${title}, medido con ${sensor}. ${desc} Protocolo recomendado: ${cm}`
+          : `${title}, measured via ${sensor}. ${desc} Recommended protocol: ${cm}`;
+
+        speakAura(explanation, "happy");
+      }
+    }
+
+    function closeExpandedLsahCard() {
       lastInteractionTime = Date.now();
       expandedLsahId = null;
       renderLsahDatabase();
     }
 
-    function openLsahDetailCard(item) {
-      lastInteractionTime = Date.now();
-      expandedLsahId = item.id;
-      renderLsahDatabase();
-
-      const title = currentLang === "es" ? item.nameEs : item.nameEn;
-      const sensor = currentLang === "es" ? item.sensorEs : item.sensorEn;
-      const desc = currentLang === "es" ? item.descEs : item.descEn;
-      const opt = currentLang === "es" ? item.optTextEs : item.optTextEn;
-      speakAura(`${title}. ${sensor}. ${desc} Optimal range: ${opt}.`, "happy");
+    function stepExpandedLsahCard(delta) {
+      if (!expandedLsahId) return;
+      const items = activeLsahFilter === "ALL"
+        ? NASA_LSAH_STANDARDS
+        : NASA_LSAH_STANDARDS.filter((s) => s.ridge === activeLsahFilter);
+      const idx = items.findIndex((s) => s.id === expandedLsahId);
+      if (idx === -1) return;
+      const nextIdx = (idx + delta + items.length) % items.length;
+      toggleLsahCardExpand(items[nextIdx]);
     }
 
     function renderLsahDatabase() {
-      const grid = document.getElementById("lsah-cards-grid");
-      if (!grid) return;
+      const screenEl = document.getElementById("screen-3");
+      if (!screenEl) return;
 
-      const list = activeLsahFilter === "ALL"
+      const items = activeLsahFilter === "ALL"
         ? NASA_LSAH_STANDARDS
         : NASA_LSAH_STANDARDS.filter((s) => s.ridge === activeLsahFilter);
 
+      let container = document.getElementById("lsah-cards-grid") || document.getElementById("lsah-full-detail-wrap");
+      if (!container) return;
+
       if (expandedLsahId) {
-        const item = NASA_LSAH_STANDARDS.find((s) => s.id === expandedLsahId);
-        if (item) {
-          const isNonSensor = item.group !== "sensor";
-          grid.className = "lsah-full-detail-wrap";
-          grid.innerHTML = `
+        const std = NASA_LSAH_STANDARDS.find((s) => s.id === expandedLsahId);
+        if (std) {
+          container.id = "lsah-full-detail-wrap";
+          container.className = "lsah-full-detail-wrap";
+          const isNonSensor = std.group !== "sensor";
+          container.innerHTML = `
             <div class="lsah-full-card">
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-                <button class="btn-back-circles" onclick="closeLsahExpandedDetail()">
-                  &#9664; ${currentLang === "es" ? "VOLVER A CÍRCULOS LSAH" : "BACK TO LSAH CIRCLES"}
+              <div class="ind-detail-nav">
+                <button class="btn-back-circles" onclick="closeExpandedLsahCard()">
+                  &#9664; ${currentLang === "es" ? "TODOS LOS PARÁMETROS LSAH" : "ALL LSAH PARAMETERS"}
                 </button>
-                <span style="font-family:var(--font-mono); font-size:10.5px; font-weight:800; color:${isNonSensor ? "var(--accent-violet)" : "var(--accent-cyan)"};">
-                  RIDGE [${item.ridge}] • ${isNonSensor ? (currentLang === "es" ? "PRUEBA CLÍNICA / COGNITIVA" : "CLINICAL / COGNITIVE TEST") : (currentLang === "es" ? "BIOSENSOR AUTOMÁTICO" : "AUTOMATED BIOSENSOR")}
-                </span>
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <button class="arrow-btn" style="width:28px; height:28px;" onclick="stepExpandedLsahCard(-1)" title="Previous">&#9664;</button>
+                  <span style="font-family:var(--font-mono); font-size:10px; font-weight:800; color:var(--accent-cyan);">
+                    RIDGE [${std.ridge}] • ${isNonSensor ? (currentLang === "es" ? "CLÍNICO / LAB" : "CLINICAL / LAB") : (currentLang === "es" ? "SENSOR AUTOMÁTICO" : "AUTO SENSOR")}
+                  </span>
+                  <button class="arrow-btn" style="width:28px; height:28px;" onclick="stepExpandedLsahCard(1)" title="Next">&#9654;</button>
+                </div>
               </div>
 
-              <div style="display:flex; align-items:center; gap:14px;">
-                <div class="ind-detail-icon-badge" style="width:48px; height:48px; ${isNonSensor ? "border-color:var(--accent-violet); color:var(--accent-violet);" : ""}">
-                  ${getIndicatorSvgIcon(item.id)}
-                </div>
-                <div>
-                  <h3 style="font-size:19px; font-weight:800; color:#ffffff;">${currentLang === "es" ? item.nameEs : item.nameEn}</h3>
-                  <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-secondary);">
-                    ${currentLang === "es" ? item.sensorEs : item.sensorEn} • ${currentLang === "es" ? item.intervalEs : item.intervalEn}
+              <div class="ind-detail-header">
+                <div class="ind-detail-title-group">
+                  <div class="ind-detail-icon-badge" style="width:46px; height:46px; ${isNonSensor ? "border-color:var(--accent-violet); color:var(--accent-violet); background:rgba(179,136,255,0.14);" : ""}">
+                    ${getIndicatorSvgIcon(std.id)}
+                  </div>
+                  <div>
+                    <div style="font-size:18px; font-weight:800; color:#ffffff;">${currentLang === "es" ? std.nameEs : std.nameEn}</div>
+                    <div style="font-family:var(--font-mono); font-size:11px; color:var(--accent-cyan);">${currentLang === "es" ? std.sensorEs : std.sensorEn}</div>
                   </div>
                 </div>
-              </div>
-
-              <div class="lsah-ranges">
-                <div class="range-pill opt" style="padding:10px 14px;">
-                  <span style="font-size:10px; opacity:0.85;">${currentLang === "es" ? "RANGO ÓPTIMO NASA LSAH" : "NASA LSAH OPTIMAL RANGE"}</span>
-                  <strong style="font-size:14px;">${currentLang === "es" ? item.optTextEs : item.optTextEn}</strong>
-                </div>
-                <div class="range-pill crit" style="padding:10px 14px;">
-                  <span style="font-size:10px; opacity:0.85;">${currentLang === "es" ? "UMBRAL CRÍTICO / ALERTA" : "CRITICAL ALERT THRESHOLD"}</span>
-                  <strong style="font-size:14px;">${currentLang === "es" ? item.critTextEs : item.critTextEn}</strong>
+                <div style="font-family:var(--font-mono); font-size:12px; font-weight:800; color:var(--text-secondary); background:rgba(6,9,17,0.8); padding:6px 12px; border-radius:10px; border:1px solid var(--border-bright);">
+                  ${currentLang === "es" ? std.intervalEs : std.intervalEn}
                 </div>
               </div>
 
               <div class="lsah-full-grid">
                 <div class="lsah-info-block">
-                  <span class="lbl">${currentLang === "es" ? "FUNCIÓN BIOMÉDICA Y USO DEL SENSOR" : "BIOMEDICAL PURPOSE & SENSOR USAGE"}</span>
-                  <p class="val">${currentLang === "es" ? item.descEs : item.descEn}</p>
+                  <span class="lbl">${currentLang === "es" ? "Función Fisiológica y Sensor" : "Physiological & Sensor Function"}</span>
+                  <p class="val">${currentLang === "es" ? std.descEs : std.descEn}</p>
                 </div>
                 <div class="lsah-info-block">
-                  <span class="lbl">${currentLang === "es" ? "PROTOCOLO Y CONTRAMEDIDA CLÍNICA" : "CLINICAL COUNTERMEASURE PROTOCOL"}</span>
-                  <p class="val">${currentLang === "es" ? item.cmEs : item.cmEn}</p>
+                  <span class="lbl">${currentLang === "es" ? "Contramedida Clínica ARES-V" : "ARES-V Clinical Countermeasure"}</span>
+                  <p class="val">${currentLang === "es" ? std.cmEs : std.cmEn}</p>
+                </div>
+              </div>
+
+              <div class="lsah-ranges">
+                <div class="range-pill opt" style="padding:10px 14px; font-size:12px;">
+                  <strong>${currentLang === "es" ? "RANGO ÓPTIMO NASA LSAH:" : "NASA LSAH OPTIMAL RANGE:"}</strong>
+                  <span>${currentLang === "es" ? std.optTextEs : std.optTextEn}</span>
+                </div>
+                <div class="range-pill crit" style="padding:10px 14px; font-size:12px;">
+                  <strong>${currentLang === "es" ? "UMBRAL CRÍTICO ALERTA:" : "CRITICAL ALERT THRESHOLD:"}</strong>
+                  <span>${currentLang === "es" ? std.critTextEs : std.critTextEn}</span>
                 </div>
               </div>
             </div>
@@ -6434,29 +6493,197 @@
         }
       }
 
-      grid.className = "lsah-cards-grid";
-      grid.innerHTML = "";
+      container.id = "lsah-cards-grid";
+      container.className = "lsah-cards-grid";
+      container.innerHTML = "";
 
-      list.forEach((item) => {
-        const isNonSensor = item.group !== "sensor";
+      items.forEach((std) => {
+        const isNonSensor = std.group !== "sensor";
         const btn = document.createElement("button");
-        btn.type = "button";
         btn.className = `lsah-circle-btn ${isNonSensor ? "non-sensor-circle" : ""}`;
-        btn.title = currentLang === "es" ? item.nameEs : item.nameEn;
+        btn.title = currentLang === "es" ? std.nameEs : std.nameEn;
+
         btn.innerHTML = `
-          <span class="lsah-ridge-pill">[${item.ridge}]</span>
-          <div class="lsah-circle-icon">${getIndicatorSvgIcon(item.id)}</div>
-          <div class="lsah-circle-title">${currentLang === "es" ? item.nameEs : item.nameEn}</div>
-          <div class="lsah-circle-unit">${item.unit}</div>
+          <span class="lsah-ridge-pill">[${std.ridge}]</span>
+          <div class="lsah-circle-icon">${getIndicatorSvgIcon(std.id)}</div>
+          <div class="lsah-circle-title">${currentLang === "es" ? std.shortEs : std.shortEn}</div>
+          <div class="lsah-circle-unit">${std.unit}</div>
         `;
 
-        btn.onclick = () => openLsahDetailCard(item);
-        grid.appendChild(btn);
+        btn.onclick = () => toggleLsahCardExpand(std);
+        container.appendChild(btn);
       });
     }
 
     /* =========================================================================
-       17. LIVE EARTH DISTANCE TELEMETRY TICKER & BOOT SEQUENCE
+       16. INTERPLANETARY EARTH -> MARS TRAJECTORY MAP
+       ========================================================================= */
+    const MARS_TOTAL_TRANSIT_KM = 225000000;
+
+    function openTrajectoryOverlay(evt) {
+      if (evt) evt.stopPropagation();
+      lastInteractionTime = Date.now();
+      closeAllOverlays();
+      updateTrajectoryStats();
+      document.getElementById("overlay-trajectory").classList.add("open");
+      startTrajectoryCanvasLoop();
+
+      const fromEarth = Math.round(earthDistanceKm + trajectoryWindowOffset).toLocaleString("en-US");
+      const toMars = Math.max(0, Math.round(MARS_TOTAL_TRANSIT_KM - (earthDistanceKm + trajectoryWindowOffset))).toLocaleString("en-US");
+      speakAura(
+        currentLang === "es"
+          ? `Trayectoria interplanetaria hacia Marte. Distancia desde la Tierra: ${fromEarth} kilómetros. Distancia restante a Marte: ${toMars} kilómetros.`
+          : `Interplanetary transit map to Mars. Distance from Earth: ${fromEarth} kilometers. Remaining distance to Mars: ${toMars} kilometers.`,
+        "happy"
+      );
+    }
+
+    function closeTrajectoryOverlay() {
+      lastInteractionTime = Date.now();
+      if (trajectoryAnimId) cancelAnimationFrame(trajectoryAnimId);
+      document.getElementById("overlay-trajectory").classList.remove("open");
+    }
+
+    function shiftTrajectoryWindow() {
+      lastInteractionTime = Date.now();
+      trajectoryWindowOffset = (trajectoryWindowOffset + 28000000) % 75000000;
+      updateTrajectoryStats();
+    }
+
+    function updateTrajectoryStats() {
+      const distEarth = Math.min(MARS_TOTAL_TRANSIT_KM - 1200000, Math.round(earthDistanceKm + trajectoryWindowOffset));
+      const distMars = Math.max(1200000, MARS_TOTAL_TRANSIT_KM - distEarth);
+      const pct = Math.round((distEarth / MARS_TOTAL_TRANSIT_KM) * 100);
+
+      document.getElementById("val-traj-from-earth").textContent = `${distEarth.toLocaleString("en-US")} km`;
+      document.getElementById("val-traj-to-mars").textContent = `${distMars.toLocaleString("en-US")} km`;
+      document.getElementById("val-traj-velocity").textContent = "24.18 km/s";
+
+      const descEl = document.getElementById("val-traj-milestone-desc");
+      if (descEl) {
+        descEl.textContent = currentLang === "es"
+          ? `Progreso de transferencia Hohmann: ${pct}%. Cruzando corredor orbital cercano a (99942) Apophis y Phobos en ruta hacia órbita areocéntrica.`
+          : `Hohmann transfer progress: ${pct}%. Traversing deep-space corridor past Near-Earth Asteroid (99942) Apophis toward Martian capture.`;
+      }
+    }
+
+    function startTrajectoryCanvasLoop() {
+      const canvas = document.getElementById("trajectory-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      function drawMap(now) {
+        if (!document.getElementById("overlay-trajectory").classList.contains("open")) return;
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        const w = canvas.width;
+        const h = canvas.height;
+
+        ctx.clearRect(0, 0, w, h);
+
+        for (let i = 0; i < 42; i++) {
+          const sx = ((i * 197) % 100) / 100 * w;
+          const sy = ((i * 89) % 100) / 100 * h;
+          ctx.fillStyle = `rgba(255,255,255,${0.2 + (i % 5) * 0.12})`;
+          ctx.beginPath();
+          ctx.arc(sx, sy, (i % 2) + 0.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        const sunX = 48;
+        const sunY = h * 0.5;
+        const sunGrad = ctx.createRadialGradient(sunX, sunY, 4, sunX, sunY, 34);
+        sunGrad.addColorStop(0, "#fff59d");
+        sunGrad.addColorStop(0.5, "#ffab00");
+        sunGrad.addColorStop(1, "rgba(255, 111, 0, 0)");
+        ctx.fillStyle = sunGrad;
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, 34, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#ffe082";
+        ctx.font = "bold 10px monospace";
+        ctx.fillText("SOL", sunX - 10, sunY + 38);
+
+        const earthX = w * 0.22;
+        const earthY = h * 0.68;
+        const marsX = w * 0.86;
+        const marsY = h * 0.30;
+        const ctrlX = w * 0.54;
+        const ctrlY = h * 0.14;
+
+        ctx.save();
+        ctx.strokeStyle = "rgba(0, 229, 255, 0.5)";
+        ctx.lineWidth = 2.2;
+        ctx.setLineDash([7, 7]);
+        ctx.beginPath();
+        ctx.moveTo(earthX, earthY);
+        ctx.quadraticCurveTo(ctrlX, ctrlY, marsX, marsY);
+        ctx.stroke();
+        ctx.restore();
+
+        const astX = w * 0.44;
+        const astY = h * 0.35;
+        ctx.fillStyle = "#94a3b8";
+        ctx.beginPath();
+        ctx.arc(astX, astY, 3.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "9px monospace";
+        ctx.fillText("99942 APOPHIS", astX - 30, astY - 8);
+
+        ctx.fillStyle = "#2979ff";
+        ctx.beginPath();
+        ctx.arc(earthX, earthY, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#00e676";
+        ctx.beginPath();
+        ctx.arc(earthX - 3, earthY - 2, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 11px monospace";
+        ctx.fillText(currentLang === "es" ? "TIERRA" : "EARTH", earthX - 18, earthY + 25);
+
+        ctx.fillStyle = "#ff5722";
+        ctx.beginPath();
+        ctx.arc(marsX, marsY, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#ffab91";
+        ctx.font = "bold 11px monospace";
+        ctx.fillText(currentLang === "es" ? "MARTE" : "MARS", marsX - 16, marsY + 23);
+
+        const distEarth = Math.min(MARS_TOTAL_TRANSIT_KM - 1200000, earthDistanceKm + trajectoryWindowOffset);
+        const t = Math.max(0.1, Math.min(0.92, distEarth / MARS_TOTAL_TRANSIT_KM));
+        const shipX = (1 - t) * (1 - t) * earthX + 2 * (1 - t) * t * ctrlX + t * t * marsX;
+        const shipY = (1 - t) * (1 - t) * earthY + 2 * (1 - t) * t * ctrlY + t * t * marsY;
+
+        const pulseR = 11 + Math.sin(now * 0.006) * 3;
+        ctx.strokeStyle = "rgba(0, 229, 255, 0.75)";
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.arc(shipX, shipY, pulseR, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = "#00e5ff";
+        ctx.beginPath();
+        ctx.moveTo(shipX + 9, shipY - 4);
+        ctx.lineTo(shipX - 7, shipY - 7);
+        ctx.lineTo(shipX - 4, shipY);
+        ctx.lineTo(shipX - 7, shipY + 7);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = "#00e5ff";
+        ctx.font = "bold 11px monospace";
+        ctx.fillText("ARES-V", shipX - 18, shipY - 16);
+
+        trajectoryAnimId = requestAnimationFrame(drawMap);
+      }
+      trajectoryAnimId = requestAnimationFrame(drawMap);
+    }
+
+    /* =========================================================================
+       17. LIVE EARTH DISTANCE TELEMETRY TICKER & CLEAN BOOT
        ========================================================================= */
     setInterval(() => {
       earthDistanceKm += shipSpeedKmPerSec;
@@ -6471,103 +6698,45 @@
       if (delayEl) {
         delayEl.textContent = UI_TEXT[currentLang].signalDelay(mins, secs);
       }
-
-      if (realtimeSimEnabled && isCrewAuthenticated) {
-        const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
-        ["heart_rate", "cabin_co2", "rad_dose"].forEach((id) => {
-          const base = crew.baselines[id];
-          const delta = id === "rad_dose" ? 0.0002 : (Math.random() - 0.5) * 0.15;
-          const nextVal = Number(((liveMetrics[id] ?? base) + delta).toFixed(id === "rad_dose" ? 4 : 1));
-          pushMetricValue(id, nextVal);
-        });
-        if (currentScreen === 2 && !expandedIndicatorId) {
-          renderDashboardIndicators();
-        }
-      }
     }, 1000);
 
-    function applyExternalMissionConfig(cfg) {
-      if (!cfg || typeof cfg !== "object") return;
-      if (typeof cfg.earthDistanceKm === "number") earthDistanceKm = cfg.earthDistanceKm;
-      if (typeof cfg.shipSpeedKmPerSec === "number") shipSpeedKmPerSec = cfg.shipSpeedKmPerSec;
-      if (typeof cfg.realtimeSimEnabled === "boolean") realtimeSimEnabled = cfg.realtimeSimEnabled;
-
-      if (Array.isArray(cfg.crew)) {
-        cfg.crew.forEach((cItem) => {
-          const target = CREW_DATABASE.find((c) => c.id === cItem.id);
-          if (target) {
-            if (cItem.name) target.name = cItem.name;
-            if (cItem.code) target.code = cItem.code;
-            if (cItem.roleEn) target.roleEn = cItem.roleEn;
-            if (cItem.roleEs) target.roleEs = cItem.roleEs;
-            if (cItem.color) target.color = cItem.color;
-            if (cItem.baselines) Object.assign(target.baselines, cItem.baselines);
-          }
-        });
-      }
-
-      if (Array.isArray(cfg.indicators)) {
-        cfg.indicators.forEach((iItem) => {
-          const target = NASA_LSAH_STANDARDS.find((s) => s.id === iItem.id);
-          if (target) {
-            if (iItem.nameEn) target.nameEn = iItem.nameEn;
-            if (iItem.nameEs) target.nameEs = iItem.nameEs;
-            if (iItem.unit) target.unit = iItem.unit;
-            if (typeof iItem.optMin === "number") target.optMin = iItem.optMin;
-            if (typeof iItem.optMax === "number") target.optMax = iItem.optMax;
-            if (typeof iItem.critVal === "number") target.critVal = iItem.critVal;
-            if (iItem.cmEn) target.cmEn = iItem.cmEn;
-            if (iItem.cmEs) target.cmEs = iItem.cmEs;
-          }
-        });
-      }
-
-      if (cfg.mascot) {
-        if (cfg.mascot.name) {
-          MASCOT_CONFIG.name = cfg.mascot.name;
-          const nameEl = document.getElementById("aura-speech-name");
-          if (nameEl) nameEl.textContent = cfg.mascot.name;
-        }
-        if (typeof cfg.mascot.voiceRate === "number") MASCOT_CONFIG.voiceRate = cfg.mascot.voiceRate;
-        if (typeof cfg.mascot.voicePitch === "number") MASCOT_CONFIG.voicePitch = cfg.mascot.voicePitch;
-        if (cfg.mascot.customSvg) {
-          const slot = document.getElementById("aura-orb-slot");
-          if (slot) slot.innerHTML = cfg.mascot.customSvg;
-        }
-      }
-    }
-
-    window.ARES_SENSOR_BRIDGE = {
-      updateSensors(sensorMap) {
-        if (!sensorMap || typeof sensorMap !== "object") return;
-        Object.entries(sensorMap).forEach(([id, val]) => {
-          if (typeof val === "number" && liveMetrics[id] !== undefined) {
-            pushMetricValue(id, val);
-          }
-        });
-        if (currentScreen === 2) renderDashboardIndicators();
-      }
-    };
-
     window.addEventListener("DOMContentLoaded", () => {
+      closeAllOverlays();
       initWelcomeSpaceCanvas();
-      loadCrewProfile("rostova", false);
-      fetch("./ares_mission_config.txt?t=" + Date.now())
-        .then((res) => (res.ok ? res.json() : null))
-        .then((remoteCfg) => {
-          if (remoteCfg) {
-            applyExternalMissionConfig(remoteCfg);
-            loadCrewProfile(selectedCrewId, false);
-            updateUiTexts();
-          }
-        })
-        .catch(() => {});
-      updateUiTexts();
-      updateSessionLockUI();
+      migrateLegacyNamedMemoryToLetterSlots();
 
-      setMascotDockState("center");
-      setMascotMood("happy");
-      document.getElementById("aura-speech-text").textContent = UI_TEXT.en.bootPrompt;
+      // Garantizar limpieza de cualquier clave antigua precargada si no existe estructura válida
+      CREW_DATABASE.forEach((c) => {
+        const logs = getCrewMemoryLogs(c.id);
+        if (!Array.isArray(logs)) {
+          localStorage.removeItem(getMemoryStorageKey(c.id));
+        }
+      });
+
+      const restored = restorePersistentSessionState();
+      if (!restored) {
+        isCrewAuthenticated = false;
+        selectedCrewId = null;
+        armedCrewId = null;
+        expandedIndicatorId = null;
+        expandedLsahId = null;
+
+        document.getElementById("active-crew-chip").classList.remove("visible");
+        document.getElementById("active-crew-icon").innerHTML = "";
+        document.getElementById("horizontal-track").style.transform = "translateX(0vw)";
+
+        ["welcome-header", "welcome-box-dist", "welcome-box-sensors", "welcome-start-wrap"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.classList.remove("revealed");
+        });
+
+        updateUiTexts();
+        updateSessionLockUI();
+
+        setMascotDockState("center");
+        setMascotMood("happy");
+        document.getElementById("aura-speech-text").textContent = UI_TEXT.en.bootPrompt;
+      }
 
       if ("speechSynthesis" in window) {
         window.speechSynthesis.getVoices();
