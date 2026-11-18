@@ -47,7 +47,6 @@
       font-family: var(--font-sans);
     }
 
-    /* Subtle starfield / spacecraft grid background */
     body::before {
       content: "";
       position: fixed;
@@ -405,7 +404,6 @@
       transition: all 0.3s ease;
     }
 
-    /* Mascot mood colors */
     .aura-mascot-wrapper.mood-warning .aura-custom-chassis {
       filter: drop-shadow(0 0 14px rgba(255, 171, 0, 0.65));
     }
@@ -419,7 +417,6 @@
       filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 12px rgba(0, 229, 255, 0.35));
     }
 
-    /* Expressive Eyes with directional gaze (left, right, up) & natural blinking */
     .aura-eyes {
       display: flex;
       align-items: center;
@@ -427,15 +424,9 @@
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .aura-eyes.look-left {
-      transform: translate(-5px, 0px);
-    }
-    .aura-eyes.look-right {
-      transform: translate(5px, 0px);
-    }
-    .aura-eyes.look-up {
-      transform: translate(0px, -4px);
-    }
+    .aura-eyes.look-left { transform: translate(-5px, 0px); }
+    .aura-eyes.look-right { transform: translate(5px, 0px); }
+    .aura-eyes.look-up { transform: translate(0px, -4px); }
 
     .aura-eye {
       width: 11px;
@@ -448,12 +439,8 @@
     }
 
     .aura-mascot-wrapper.mood-happy .aura-eye {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
       background: #0b3954;
       box-shadow: 0 0 6px rgba(0, 180, 216, 0.5);
-      animation: eyeBlink 3.4s infinite ease-in-out;
     }
 
     .aura-mascot-wrapper.mood-warning .aura-eye {
@@ -470,7 +457,6 @@
       height: 10px;
     }
 
-    /* Mouth formed by 5 Voice Waveform Bars arranged into a friendly Smile Curve */
     .aura-wave {
       display: flex;
       align-items: center;
@@ -505,13 +491,8 @@
     .aura-mascot-wrapper.mood-happy .aura-wave span:nth-child(4) { transform: translateY(-0.5px) rotate(8deg); }
     .aura-mascot-wrapper.mood-happy .aura-wave span:nth-child(5) { transform: translateY(-4.5px) rotate(18deg); }
 
-    .aura-mascot-wrapper.mood-warning .aura-wave span {
-      background: #b45309;
-    }
-
-    .aura-mascot-wrapper.mood-critical .aura-wave span {
-      background: #dc2626;
-    }
+    .aura-mascot-wrapper.mood-warning .aura-wave span { background: #b45309; }
+    .aura-mascot-wrapper.mood-critical .aura-wave span { background: #dc2626; }
 
     .aura-mascot-wrapper.speaking .aura-wave span {
       animation: waveSpeak 0.42s infinite ease-in-out alternate;
@@ -521,7 +502,7 @@
     .aura-mascot-wrapper.speaking .aura-wave span:nth-child(4) { animation-delay: 0.12s; }
     .aura-mascot-wrapper.speaking .aura-wave span:nth-child(5) { animation-delay: 0.05s; }
 
-    /* Floating Speech Subtitle Pill — Always visible above modals */
+    /* Floating Speech Subtitle Pill — Auto-fades smoothly 5s after ARES finishes speaking */
     .aura-speech-pill {
       position: fixed;
       z-index: 455;
@@ -536,8 +517,8 @@
       line-height: 1.4;
       width: 310px;
       max-width: calc(100vw - 165px);
-      pointer-events: auto;
-      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+      transition: opacity 0.65s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
       opacity: 0;
       transform: translateY(10px);
     }
@@ -545,6 +526,7 @@
     .aura-speech-pill.visible {
       opacity: 1;
       transform: translateY(0);
+      pointer-events: auto;
     }
 
     .aura-speech-pill.pos-center {
@@ -1112,7 +1094,7 @@
       justify-content: center;
       position: relative;
       min-height: 0;
-      gap: 6px;
+      gap: 8px;
     }
 
     .body-svg-stage svg {
@@ -1204,6 +1186,7 @@
       cursor: pointer;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.65), 0 0 18px rgba(0, 230, 118, 0.22);
       transition: all 0.2s ease;
@@ -1215,6 +1198,11 @@
       color: #060911;
       box-shadow: 0 0 28px rgba(0, 230, 118, 0.55);
       transform: translateY(-2px);
+    }
+
+    /* Mobile-only inline SATISFIED button below RAPID SCAN */
+    .mobile-inline-satisfied-btn {
+      display: none;
     }
 
     /* GAME-STYLE PODIUM RANKING */
@@ -2004,7 +1992,7 @@
       animation: pulseFast 0.65s infinite;
     }
 
-    /* KPI DYNAMIC TELEMETRY BAR STYLES (READ-ONLY COMPUTED FROM INDICATORS) */
+    /* KPI DYNAMIC TELEMETRY BAR STYLES */
     .kpi-sliders-list {
       display: flex;
       flex-direction: column;
@@ -2080,7 +2068,7 @@
       }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 860px) and (min-width: 769px) {
       .dashboard-split {
         grid-template-columns: 1fr;
         overflow-y: auto;
@@ -2224,7 +2212,7 @@
         font-size: 9px;
       }
 
-      /* Mobile Screen 3: Medical Dashboard — Deep Scrollable Bottom Clearance */
+      /* Mobile Screen 3: Medical Dashboard — SATISFIED visible right below RAPID SCAN */
       .dashboard-screen {
         padding: 8px 10px;
         gap: 8px;
@@ -2284,11 +2272,11 @@
       }
 
       .body-svg-stage {
-        gap: 12px;
+        gap: 10px;
       }
 
       .body-svg-stage svg {
-        max-height: 245px;
+        max-height: 240px;
       }
 
       .btn-rapid-scan {
@@ -2298,21 +2286,21 @@
       }
 
       .finish-session-dock {
-        position: fixed;
-        left: 50%;
-        bottom: 14px;
-        transform: translateX(-50%);
-        z-index: 145;
+        display: none !important;
       }
 
-      .btn-finish-session {
-        padding: 9px 18px;
-        font-size: 10.5px;
+      .mobile-inline-satisfied-btn {
+        display: flex !important;
+        width: 92%;
+        max-width: 310px;
+        padding: 11px 14px;
+        font-size: 11.5px;
+        justify-content: center;
       }
 
-      /* Mobile Screen 4: LSAH Database */
+      /* Mobile Screen 4: LSAH Database — 3x2 RIDGE grid + NLSP logo next to STARGAZERS */
       .lsah-topbar {
-        gap: 6px;
+        gap: 8px;
       }
 
       .lsah-topbar h2 {
@@ -2320,16 +2308,21 @@
       }
 
       .ridge-tabs {
-        overflow-x: auto;
-        flex-wrap: nowrap;
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
         width: 100%;
-        padding-bottom: 2px;
+        overflow: visible;
+        flex-wrap: wrap;
       }
 
       .ridge-tab {
         white-space: nowrap;
-        padding: 5px 9px;
-        font-size: 10px;
+        padding: 6px 4px;
+        font-size: 9px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .lsah-cards-grid {
@@ -2350,7 +2343,7 @@
         grid-template-columns: 1fr;
       }
 
-      /* Mobile Interplanetary Map Fixes (Guaranteed Visible Height & Responsive Layout) */
+      /* Mobile Interplanetary Map Fixes */
       .trajectory-canvas-wrap {
         height: 215px !important;
         min-height: 215px !important;
@@ -2366,21 +2359,35 @@
         align-items: stretch;
       }
 
-      /* Mobile Floating Badges & Mascot */
+      /* Mobile Floating Badges & NLSP Portal right beside STARGAZERS */
       .stargazers-corner-badge {
         width: 48px;
         height: 48px;
         bottom: 10px;
         left: 10px;
+        z-index: 150;
       }
 
       .nlsp-portal-dock {
-        left: 66px;
-        bottom: 10px;
+        position: fixed !important;
+        left: 64px !important;
+        bottom: 10px !important;
+        z-index: 150 !important;
+        display: flex !important;
       }
 
       .btn-nlsp-portal {
         padding: 4px 8px;
+        border-radius: 12px;
+      }
+
+      .btn-nlsp-portal svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .nlsp-text-stack {
+        font-size: 7.5px;
       }
 
       .aura-mascot-wrapper.state-docked {
@@ -2390,7 +2397,6 @@
       }
 
       .aura-speech-pill.pos-docked {
-        display: block;
         bottom: 68px;
         right: 10px;
         left: 10px;
@@ -2400,7 +2406,7 @@
         padding: 8px 11px;
       }
 
-      /* Mobile Modals — Extra Bottom Scroll Clearance & Clean Flex Sizing */
+      /* Mobile Modals — Extra Bottom Scroll Clearance */
       .touch-overlay {
         padding: 10px 10px 145px 10px;
         align-items: flex-start;
@@ -2751,12 +2757,19 @@
     </nav>
 
     <div class="topbar-controls">
-      <div class="active-crew-chip" id="active-crew-chip" onclick="openCrewHistoryOverlay()" title="Active Crew Clinical History • Tap to view & export .TXT report">
+      <div class="active-crew-chip" id="active-crew-chip" onclick="openCrewHistoryOverlay()" title="Active Crew Clinical History • Tap to view, import & export .TXT report">
         <span id="active-crew-icon"></span>
       </div>
 
       <button class="ctrl-btn" id="lang-toggle-btn" onclick="toggleLanguage()" title="Switch Language / Cambiar Idioma">
         <span id="lang-label" style="display: inline-flex; align-items: center; gap: 6px;"></span>
+      </button>
+
+      <button class="ctrl-btn icon-only-btn" id="voice-profile-btn" onclick="openVoiceSettingsOverlay()" title="Voice Profile / Cambiar Voz de ARES" aria-label="Voice Settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+        </svg>
       </button>
 
       <button class="ctrl-btn icon-only-btn" id="voice-toggle-btn" onclick="toggleVoiceMute()" title="Toggle Voice Synthesis" aria-label="Toggle Voice">
@@ -2772,7 +2785,7 @@
   <!-- =========================================================================
        VIRTUAL MASCOT ASSISTANT ("ARES") & FLOATING SPEECH SUBTITLE PILL
        ========================================================================= -->
-  <div class="aura-mascot-wrapper state-center mood-happy" id="aura-mascot" onclick="handleMascotTap()" ondblclick="handleMascotDoubleTap(event)" title="Tap ARES to repeat • Double-tap after login for a space joke or motivational phrase">
+  <div class="aura-mascot-wrapper state-center mood-happy" id="aura-mascot" onclick="handleMascotTap()" ondblclick="handleMascotDoubleTap(event)" title="Tap ARES to show/repeat • Double-tap to confirm recovery or hear a space phrase">
     <div class="aura-orb-container" id="aura-orb-slot">
       <!-- Custom Robot Visor Model SVG -->
       <svg class="aura-custom-chassis" viewBox="0 0 240 225" xmlns="http://www.w3.org/2000/svg">
@@ -2799,17 +2812,13 @@
           </radialGradient>
         </defs>
 
-        <!-- Top Red Antenna Beacon & Metallic Collar -->
         <path d="M103 44 L106 36 L134 36 L137 44 Z" fill="#94a3b8" stroke="#0b0f19" stroke-width="3" stroke-linejoin="round" />
         <circle cx="120" cy="22" r="18" fill="url(#botRedBeacon)" stroke="#0b0f19" stroke-width="3.2" />
         <ellipse cx="113" cy="15" rx="6" ry="3.5" transform="rotate(-28 113 15)" fill="#ffffff" opacity="0.65" />
 
-        <!-- Main Purple Oval Helmet Shell -->
         <ellipse cx="120" cy="105" rx="112" ry="66" fill="url(#botPurpleShell)" stroke="#0b0f19" stroke-width="3.8" />
-        <!-- Inner Purple Rim Highlight -->
         <ellipse cx="120" cy="105" rx="105" ry="59" fill="none" stroke="#a855f7" stroke-width="2" opacity="0.55" />
 
-        <!-- Panel Seam Lines & Rivets -->
         <g stroke="#0b0f19" stroke-width="2.4" stroke-linecap="round" opacity="0.85">
           <line x1="45" y1="60" x2="57" y2="71" />
           <line x1="195" y1="60" x2="183" y2="71" />
@@ -2827,13 +2836,10 @@
           <circle cx="196" cy="140" r="2.2" />
         </g>
 
-        <!-- Light-Blue Glass Visor Lens -->
         <ellipse cx="120" cy="105" rx="86" ry="49" fill="url(#botVisorGlass)" stroke="#0b0f19" stroke-width="3.6" />
-        <!-- Glass Specular Reflections -->
         <path d="M52 94 C58 68, 92 61, 125 62 C92 66, 65 75, 58 98 Z" fill="#ffffff" opacity="0.65" />
         <path d="M180 78 C191 88, 194 104, 188 117 C189 103, 185 89, 175 81 Z" fill="#ffffff" opacity="0.5" />
 
-        <!-- Two Floating Indigo/Blue Spheres Below -->
         <g>
           <circle cx="58" cy="194" r="24" fill="url(#botBlueFoot)" stroke="#0b0f19" stroke-width="3.6" />
           <ellipse cx="49" cy="184" rx="6.5" ry="3.8" transform="rotate(-32 49 184)" fill="#93c5fd" opacity="0.65" />
@@ -2846,7 +2852,6 @@
         </g>
       </svg>
 
-      <!-- Animated Eyes & Smile Waveform Inside the Visor -->
       <div class="aura-core" id="aura-face-core">
         <div class="aura-eyes" id="aura-eyes">
           <div class="aura-eye"></div>
@@ -3070,7 +3075,7 @@
            SCREEN 3: MAIN ASTRONAUT MEDICAL DASHBOARD
            --------------------------------------------------------------------- -->
       <section class="screen dashboard-screen" id="screen-2">
-        <div class="sim-bar">
+        <div class="sim-bar" id="sim-bar-container">
           <span class="sim-bar-label" id="sim-bar-label">EVENT SIMULATOR:</span>
           <div class="sim-btn-list">
             <button class="sim-btn sim-crit" onclick="simulateSpaceEvent('solar')" id="sim-btn-solar">Solar Flare (Radiation)</button>
@@ -3238,11 +3243,19 @@
                 </svg>
                 <span id="txt-rapid-scan">RUN RAPID BIOSENSOR SCAN</span>
               </button>
+
+              <!-- Mobile-only SATISFIED button directly below RAPID SCAN -->
+              <button class="btn-finish-session mobile-inline-satisfied-btn" onclick="promptFinishSession()" id="btn-finish-session-mobile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="txt-finish-session-mobile">SATISFIED</span>
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Centered Finish / Satisfied Session Floating Button on Dashboard -->
+        <!-- Desktop/Laptop Centered Finish / Satisfied Session Floating Button -->
         <div class="finish-session-dock">
           <button class="btn-finish-session" onclick="promptFinishSession()" id="btn-finish-session">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
@@ -3265,7 +3278,7 @@
             </p>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; width: 100%;">
             <div class="ridge-tabs" id="ridge-tabs">
               <button class="ridge-tab active" data-ridge="ALL" onclick="selectLsahFilter('ALL')">ALL (12)</button>
               <button class="ridge-tab" data-ridge="R" onclick="selectLsahFilter('R')">[R] RADIATION</button>
@@ -3624,6 +3637,37 @@
   </div>
 
   <!-- =========================================================================
+       SLIDE-IN OVERLAY 8: ARES VOICE SELECTOR & SYNTHESIS TUNING
+       ========================================================================= -->
+  <div class="touch-overlay" id="overlay-voice-settings">
+    <div class="overlay-card" style="max-width: 520px;">
+      <div class="overlay-header">
+        <div class="overlay-title" id="voice-set-title">ARES // VOICE SYNTHESIS PROFILE</div>
+        <button class="btn-close-overlay" onclick="closeAllOverlays()">CLOSE</button>
+      </div>
+      <div class="lab-field">
+        <label id="lbl-voice-select">VOZ DEL SISTEMA (NAVEGADOR / DISPOSITIVO)</label>
+        <select id="sel-ares-voice" onchange="handleVoiceSelectionChange(this.value)" style="background: rgba(6, 9, 17, 0.9); border: 1px solid var(--border-bright); border-radius: 8px; padding: 8px 10px; color: #ffffff; font-family: var(--font-mono); font-size: 12px;"></select>
+      </div>
+      <div class="lab-form-grid">
+        <div class="lab-field">
+          <label id="lbl-voice-rate">VELOCIDAD (0.75 – 1.35)</label>
+          <input type="number" id="inp-voice-rate" step="0.05" min="0.75" max="1.35" onchange="handleVoiceParamChange()" />
+        </div>
+        <div class="lab-field">
+          <label id="lbl-voice-pitch">TONO / PITCH (0.70 – 1.40)</label>
+          <input type="number" id="inp-voice-pitch" step="0.05" min="0.70" max="1.40" onchange="handleVoiceParamChange()" />
+        </div>
+      </div>
+      <div class="action-btn-row">
+        <button class="btn-primary-touch" onclick="testSelectedVoice()" id="btn-test-voice">
+          PROBAR VOZ DE ARES
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
        JAVASCRIPT: EDITABLE NASA LSAH DATABASE, CREW PROFILES, EDGE-AI & VOICE
        ========================================================================= -->
   <script>
@@ -3638,6 +3682,7 @@
       warningColor: "#ffab00",
       criticalColor: "#ff3b5c",
       scanningColor: "#00e676",
+      voiceName: "",
       voiceRate: 1.03,
       voicePitch: 1.06,
       customSvg: null,
@@ -4216,11 +4261,11 @@
         "Why didn't the sun go to college? Because it already had a million degrees! And speaking of degrees, cabin temperature is 21.5 Celsius.",
         "How do you organize a space party? You planet! Don't worry, I already scheduled your ARED workout right after.",
         "What is an astronaut's favorite part of a computer? The space bar! Keep your posture relaxed during telemetry review.",
-        "Why did the cow go to outer space? To see the moooon! Meanwhile, we're cruising steadily toward Mars.",
+        "Why did the cow go to outer space? To see the moon! Meanwhile, we're cruising steadily toward Mars.",
         "I tried to catch some fog in the airlock earlier... I mist! Good thing our humidity sensors never miss a drop."
       ],
       es: [
-        "¿Por qué el Sol no fue a la universidad? ¡Porque ya tenía millones de grados! Y hablando de grados, la cabina está a 21.5 °C.",
+        "¿Por qué el Sol no fue a la universidad? ¡Porque ya tenía millones de grados! Y hablando de grados, la cabina está a 21.5 grados Celsius.",
         "¿Cómo se organiza una fiesta en el espacio? ¡Se planea-ta! No te preocupes, ya agendé tu sesión de ejercicio ARED después.",
         "¿Cuál es la tecla favorita de un astronauta? ¡La barra espaciadora! Mantén una postura cómoda mientras revisas los indicadores.",
         "¿Qué hace una abeja en el espacio? ¡Zumba-ción gravitacional! Por suerte nuestros giroscopios están al cien por ciento.",
@@ -4419,12 +4464,15 @@
     let currentScreen = 0;
     let previousScreenBeforeLsah = 0;
     let isVoiceMuted = false;
+    let simulatorMode = true;
     let selectedCrewId = null;
     let armedCrewId = null;
     let expandedIndicatorId = null;
     let expandedLsahId = null;
     let lastSpokenText = "";
     let mascotClickTimer = null;
+    let speechBubbleFadeTimer = null;
+    let pendingFollowUpPrompt = false;
     let lastInteractionTime = Date.now();
     let jokeIndex = 0;
     let quoteIndex = 0;
@@ -4457,12 +4505,27 @@
     let audioCtx = null;
 
     /* =========================================================================
-       2B. EXTERNAL CONFIG FILE LOADER (ares_mission_config.txt) FOR CREW PHOTOS, LOGO & MASCOT
+       2B. EXTERNAL CONFIG FILE LOADER (ares_mission_config.txt)
        ========================================================================= */
+    function updateSimulatorModeVisibility() {
+      const simBar = document.getElementById("sim-bar-container");
+      const restoreBtn = document.getElementById("sim-btn-restore");
+      if (simBar) {
+        simBar.style.display = simulatorMode ? "flex" : "none";
+      }
+      if (restoreBtn) {
+        restoreBtn.style.display = simulatorMode ? "inline-block" : "none";
+      }
+    }
+
     function applyExternalMissionConfig(cfg) {
       if (!cfg || typeof cfg !== "object") return;
 
       if (cfg.mission) {
+        if (typeof cfg.mission.simulatorMode === "boolean") {
+          simulatorMode = cfg.mission.simulatorMode;
+          updateSimulatorModeVisibility();
+        }
         if (!isNaN(Number(cfg.mission.earthDistanceKm)) && Number(cfg.mission.earthDistanceKm) > 0) {
           earthDistanceKm = Number(cfg.mission.earthDistanceKm);
         }
@@ -4481,10 +4544,12 @@
           if (speechNameEl) speechNameEl.textContent = cfg.mascot.name;
         }
         if (cfg.mascot.primaryColor) MASCOT_CONFIG.primaryColor = cfg.mascot.primaryColor;
+        if (typeof cfg.mascot.voiceName === "string" && cfg.mascot.voiceName.trim()) {
+          MASCOT_CONFIG.voiceName = cfg.mascot.voiceName.trim();
+        }
         if (!isNaN(Number(cfg.mascot.voiceRate))) MASCOT_CONFIG.voiceRate = Number(cfg.mascot.voiceRate);
         if (!isNaN(Number(cfg.mascot.voicePitch))) MASCOT_CONFIG.voicePitch = Number(cfg.mascot.voicePitch);
 
-        // Custom Mascot Image URL (e.g. "assets/ares_avatar.png")
         if (cfg.mascot.customImageUrl && cfg.mascot.customImageUrl.trim()) {
           MASCOT_CONFIG.customImageUrl = cfg.mascot.customImageUrl.trim();
           const slot = document.getElementById("aura-orb-slot");
@@ -4497,7 +4562,6 @@
           if (slot) slot.innerHTML = MASCOT_CONFIG.customSvg;
         }
 
-        // Custom Corner Team / Mission Logo URL (e.g. "assets/mission_logo.png")
         if (cfg.mascot.teamLogoUrl && cfg.mascot.teamLogoUrl.trim()) {
           MASCOT_CONFIG.teamLogoUrl = cfg.mascot.teamLogoUrl.trim();
           const badge = document.getElementById("stargazers-logo-badge");
@@ -4559,9 +4623,7 @@
         const txt = await res.text();
         const parsed = JSON.parse(txt);
         applyExternalMissionConfig(parsed);
-      } catch (e) {
-        // Fallback silently to built-in defaults if opened via file:// or offline without server
-      }
+      } catch (e) {}
     }
 
     /* =========================================================================
@@ -4732,6 +4794,8 @@
       document.getElementById("body-map-title").textContent = t.bodyMapTitle;
       document.getElementById("txt-rapid-scan").textContent = t.rapidScan;
       document.getElementById("txt-finish-session").textContent = t.finishSession;
+      const mobSatisfiedTxt = document.getElementById("txt-finish-session-mobile");
+      if (mobSatisfiedTxt) mobSatisfiedTxt.textContent = t.finishSession;
 
       document.getElementById("lsah-db-title").textContent = t.lsahTitle;
       document.getElementById("lsah-db-sub").textContent = t.lsahSub;
@@ -4773,6 +4837,7 @@
       document.getElementById("kpi-overlay-title").textContent = t.kpiTitle;
       document.getElementById("kpi-overlay-sub").textContent = t.kpiSub;
 
+      updateSimulatorModeVisibility();
       updateWelcomeTelemetryCounters();
       renderCrewGrid();
       if (isCrewAuthenticated && selectedCrewId && currentScreen === 2) {
@@ -4832,8 +4897,85 @@
     }
 
     /* =========================================================================
-       4. MASCOT RELIABLE VOICE ENGINE, GAZE, JOKES & DOUBLE-TAP (POST-LOGIN ONLY)
+       4. MASCOT VOICE ENGINE, PHONETIC UNIT NORMALIZER, 5S AUTO-FADE & VOICE PICKER
        ========================================================================= */
+    function formatSpeechForNaturalTts(rawText, lang) {
+      let s = String(rawText || "");
+      if (lang === "es") {
+        s = s
+          .replace(/ARES-V/gi, "Ares Cinco")
+          .replace(/PVT-B/gi, "P V T")
+          .replace(/PVT/g, "P V T")
+          .replace(/LSAH/g, "L S A H")
+          .replace(/HRP/g, "H R P")
+          .replace(/NLSP/g, "N L S P")
+          .replace(/ARED/g, "Ared")
+          .replace(/LBNP/g, "L B N P")
+          .replace(/SANS/g, "SANS")
+          .replace(/SpO₂|SpO2/gi, "saturación de oxígeno")
+          .replace(/CO₂|CO2/gi, "dióxido de carbono")
+          .replace(/Ca²⁺|Ca2\+/gi, "calcio")
+          .replace(/\bO₂\b|\bO2\b/g, "oxígeno")
+          .replace(/mSv\/h/gi, "milisieverts por hora")
+          .replace(/\bmSv\b/gi, "milisieverts")
+          .replace(/km\/s/gi, "kilómetros por segundo")
+          .replace(/km\/h/gi, "kilómetros por hora")
+          .replace(/\bkm\b/gi, "kilómetros")
+          .replace(/mmHg/gi, "milímetros de mercurio")
+          .replace(/mOsm\/kg/gi, "miliosmoles por kilogramo")
+          .replace(/mg\/24h/gi, "miligramos en veinticuatro horas")
+          .replace(/g\/dL/gi, "gramos por decilitro")
+          .replace(/CFU\/cm²|UFC\/cm²/gi, "unidades formadoras de colonias por centímetro cuadrado")
+          .replace(/\bmL\b/g, "mililitros")
+          .replace(/\bL\b/g, "litros")
+          .replace(/\bms\b/g, "milisegundos")
+          .replace(/\bbpm\b|\blpm\b/gi, "latidos por minuto")
+          .replace(/\bhrs\b/gi, "horas")
+          .replace(/≤/g, "menor o igual a ")
+          .replace(/≥/g, "mayor o igual a ")
+          .replace(/</g, "menor a ")
+          .replace(/>/g, "mayor a ");
+      } else {
+        s = s
+          .replace(/ARES-V/gi, "Ares Five")
+          .replace(/PVT-B/gi, "P V T")
+          .replace(/SpO₂|SpO2/gi, "oxygen saturation")
+          .replace(/CO₂|CO2/gi, "carbon dioxide")
+          .replace(/Ca²⁺|Ca2\+/gi, "calcium")
+          .replace(/\bO₂\b|\bO2\b/g, "oxygen")
+          .replace(/mSv\/h/gi, "millisieverts per hour")
+          .replace(/\bmSv\b/gi, "millisieverts")
+          .replace(/km\/s/gi, "kilometers per second")
+          .replace(/km\/h/gi, "kilometers per hour")
+          .replace(/\bkm\b/gi, "kilometers")
+          .replace(/mmHg/gi, "millimeters of mercury")
+          .replace(/mOsm\/kg/gi, "milliosmoles per kilogram")
+          .replace(/mg\/24h/gi, "milligrams per 24 hours")
+          .replace(/g\/dL/gi, "grams per deciliter")
+          .replace(/CFU\/cm²/gi, "colony forming units per square centimeter")
+          .replace(/\bmL\b/g, "milliliters")
+          .replace(/\bms\b/g, "milliseconds")
+          .replace(/\bbpm\b/gi, "beats per minute")
+          .replace(/\bhrs\b/gi, "hours")
+          .replace(/≤/g, "less than or equal to ")
+          .replace(/≥/g, "greater than or equal to ")
+          .replace(/</g, "less than ")
+          .replace(/>/g, "greater than ");
+      }
+      return s;
+    }
+
+    function scheduleSpeechBubbleAutoHide() {
+      if (speechBubbleFadeTimer) clearTimeout(speechBubbleFadeTimer);
+      if (!hasBootedWithLanguage) return;
+      speechBubbleFadeTimer = setTimeout(() => {
+        const pill = document.getElementById("aura-speech-pill");
+        if (pill && hasBootedWithLanguage) {
+          pill.classList.remove("visible");
+        }
+      }, 5000);
+    }
+
     function setMascotDockState(state) {
       const mascot = document.getElementById("aura-mascot");
       const pill = document.getElementById("aura-speech-pill");
@@ -4886,9 +5028,12 @@
       }
     }, 3000);
 
-    function speakAura(text, mood = "happy") {
+    function speakAura(text, mood = "happy", isFollowUp = false) {
       lastSpokenText = text;
+      pendingFollowUpPrompt = Boolean(isFollowUp);
       setMascotMood(mood);
+
+      if (speechBubbleFadeTimer) clearTimeout(speechBubbleFadeTimer);
 
       const pill = document.getElementById("aura-speech-pill");
       const textEl = document.getElementById("aura-speech-text");
@@ -4897,9 +5042,15 @@
       textEl.textContent = text;
       pill.classList.add("visible");
 
+      const spokenPhoneticText = formatSpeechForNaturalTts(text, currentLang);
+
       if (isVoiceMuted || !("speechSynthesis" in window)) {
         mascot.classList.add("speaking");
-        setTimeout(() => mascot.classList.remove("speaking"), Math.min(4500, Math.max(1400, text.length * 42)));
+        const silentDuration = Math.min(4500, Math.max(1400, text.length * 42));
+        setTimeout(() => {
+          mascot.classList.remove("speaking");
+          scheduleSpeechBubbleAutoHide();
+        }, silentDuration);
         return;
       }
 
@@ -4909,7 +5060,7 @@
           window.speechSynthesis.resume();
         }
 
-        const utter = new SpeechSynthesisUtterance(text);
+        const utter = new SpeechSynthesisUtterance(spokenPhoneticText);
         activeUtteranceRef = utter;
         utter.lang = currentLang === "es" ? "es-ES" : "en-US";
         utter.rate = MASCOT_CONFIG.voiceRate;
@@ -4918,7 +5069,12 @@
 
         const voices = window.speechSynthesis.getVoices();
         if (voices && voices.length > 0) {
-          if (currentLang === "es") {
+          const customSelected = MASCOT_CONFIG.voiceName
+            ? voices.find((v) => v.name === MASCOT_CONFIG.voiceName)
+            : null;
+          if (customSelected) {
+            utter.voice = customSelected;
+          } else if (currentLang === "es") {
             const esVoice =
               voices.find((v) => v.lang.startsWith("es") && (v.name.includes("Google") || v.name.includes("Monica") || v.name.includes("Paulina") || v.name.includes("Helena") || v.name.includes("Natural"))) ||
               voices.find((v) => v.lang.startsWith("es"));
@@ -4933,20 +5089,24 @@
 
         const fallbackMouthTimer = setTimeout(() => {
           mascot.classList.remove("speaking");
-        }, Math.min(12000, Math.max(2200, text.length * 65)));
+          scheduleSpeechBubbleAutoHide();
+        }, Math.min(14000, Math.max(2400, spokenPhoneticText.length * 68)));
 
         utter.onstart = () => {
           mascot.classList.add("speaking");
+          if (speechBubbleFadeTimer) clearTimeout(speechBubbleFadeTimer);
         };
         utter.onend = () => {
           clearTimeout(fallbackMouthTimer);
           mascot.classList.remove("speaking");
           activeUtteranceRef = null;
+          scheduleSpeechBubbleAutoHide();
         };
         utter.onerror = () => {
           clearTimeout(fallbackMouthTimer);
           mascot.classList.remove("speaking");
           activeUtteranceRef = null;
+          scheduleSpeechBubbleAutoHide();
         };
 
         setTimeout(() => {
@@ -4955,11 +5115,56 @@
             window.speechSynthesis.speak(utter);
           } catch (innerErr) {
             mascot.classList.remove("speaking");
+            scheduleSpeechBubbleAutoHide();
           }
         }, 40);
       } catch (e) {
         mascot.classList.remove("speaking");
+        scheduleSpeechBubbleAutoHide();
       }
+    }
+
+    function openVoiceSettingsOverlay() {
+      lastInteractionTime = Date.now();
+      const sel = document.getElementById("sel-ares-voice");
+      const rateInp = document.getElementById("inp-voice-rate");
+      const pitchInp = document.getElementById("inp-voice-pitch");
+      if (!sel) return;
+
+      const voices = ("speechSynthesis" in window) ? window.speechSynthesis.getVoices() : [];
+      const autoLabel = currentLang === "es" ? "Automática (Recomendada del idioma)" : "Automatic (Language Recommended)";
+      sel.innerHTML = `<option value="">${autoLabel}</option>` +
+        voices.map((v) => `<option value="${v.name}" ${MASCOT_CONFIG.voiceName === v.name ? "selected" : ""}>${v.name} (${v.lang})</option>`).join("");
+
+      rateInp.value = MASCOT_CONFIG.voiceRate;
+      pitchInp.value = MASCOT_CONFIG.voicePitch;
+      document.getElementById("overlay-voice-settings").classList.add("open");
+    }
+
+    function handleVoiceSelectionChange(voiceName) {
+      MASCOT_CONFIG.voiceName = voiceName || "";
+      try {
+        localStorage.setItem("ares_v_voice_prefs", JSON.stringify({
+          voiceName: MASCOT_CONFIG.voiceName,
+          voiceRate: MASCOT_CONFIG.voiceRate,
+          voicePitch: MASCOT_CONFIG.voicePitch
+        }));
+      } catch (e) {}
+    }
+
+    function handleVoiceParamChange() {
+      const r = Number(document.getElementById("inp-voice-rate").value);
+      const p = Number(document.getElementById("inp-voice-pitch").value);
+      if (!isNaN(r) && r >= 0.7 && r <= 1.4) MASCOT_CONFIG.voiceRate = r;
+      if (!isNaN(p) && p >= 0.6 && p <= 1.5) MASCOT_CONFIG.voicePitch = p;
+      handleVoiceSelectionChange(MASCOT_CONFIG.voiceName);
+    }
+
+    function testSelectedVoice() {
+      const sample = currentLang === "es"
+        ? "Hola, soy ARES. Todos los indicadores biomédicos y sensores de cabina están operando con normalidad."
+        : "Hello, I am ARES. All biomedical indicators and cabin sensors are operating within optimal thresholds.";
+      speakAura(sample, "happy");
     }
 
     function isUrgentOrTestActive() {
@@ -5007,6 +5212,29 @@
 
       if (!hasBootedWithLanguage || !isCrewAuthenticated) return;
 
+      // If ARES was asking a follow-up question about a previous symptom, double-tap confirms recovery!
+      if (pendingFollowUpPrompt) {
+        pendingFollowUpPrompt = false;
+        symptomFlashingIndicators = [];
+        markPreviousSymptomsResolved(selectedCrewId);
+        appendCrewMemoryLog({
+          type: "SYMPTOM_RECOVERY",
+          detail: currentLang === "es"
+            ? "Tripulante confirmó recuperación por doble toque en ARES"
+            : "Crew member confirmed full symptom recovery via ARES double-tap",
+          resolved: true
+        });
+        renderDashboardIndicators();
+        triggerCelebrateSpin();
+        speakAura(
+          currentLang === "es"
+            ? "Excelente, me alegra mucho saber que ya te sientes bien. He marcado tu síntoma anterior como recuperado en tu historial."
+            : "Wonderful, I am very glad to hear you feel well now. I have marked your previous symptom as recovered in your clinical history.",
+          "happy"
+        );
+        return;
+      }
+
       if (isUrgentOrTestActive()) {
         if (lastSpokenText) speakAura(lastSpokenText, "warning");
         return;
@@ -5027,7 +5255,7 @@
       mascotClickTimer = setTimeout(() => {
         if (lastSpokenText) {
           const hasAlert = Object.keys(liveMetrics).some((k) => getIndicatorStatus(k, liveMetrics[k]) !== "nominal") || symptomFlashingIndicators.length > 0;
-          speakAura(lastSpokenText, hasAlert ? "warning" : "happy");
+          speakAura(lastSpokenText, hasAlert ? "warning" : "happy", pendingFollowUpPrompt);
         }
       }, 240);
     }
@@ -5051,7 +5279,7 @@
       lastInteractionTime = Date.now();
       const followUp = getAdaptiveSymptomFollowUp(selectedCrewId);
       if (followUp) {
-        speakAura(followUp, "happy");
+        speakAura(followUp, "happy", true);
       } else {
         tellRandomSpaceJoke();
       }
@@ -5228,7 +5456,7 @@
     }
 
     /* =========================================================================
-       7. ADAPTIVE ASTRONAUT MEMORY & PERSONALIZED CREW TELEMETRY ENGINE
+       7. ADAPTIVE ASTRONAUT MEMORY, IMPORT/EXPORT .TXT & TELEMETRY ENGINE
        ========================================================================= */
     const MAX_EDGE_MEMORY_RECORDS_PER_SLOT = 10000;
     const MEMORY_ZERO_RESET_FLAG = "ares_v_memory_zero_v2";
@@ -5419,7 +5647,10 @@
       if (!pastSymptom) return null;
       const rule = SYMPTOM_KEYWORD_RULES.find((r) => r.key === pastSymptom.keywordRule);
       if (!rule) return null;
-      return currentLang === "es" ? rule.followUpEs : rule.followUpEn;
+      const hint = currentLang === "es"
+        ? " (Haz doble toque sobre mí si ya te sientes bien, o reporta si aún persiste)."
+        : " (Double-tap me if you feel well now, or log if it persists).";
+      return (currentLang === "es" ? rule.followUpEs : rule.followUpEn) + hint;
     }
 
     function updateMemoryCounterBadge() {
@@ -5506,7 +5737,21 @@
         });
       }
 
+      const backupPayload = {
+        aresVClinicalBackup: true,
+        crewId: targetId,
+        slotKey: slotLetter.toLowerCase(),
+        exportedAt: now.toISOString(),
+        liveMetrics: { ...liveMetrics },
+        labExtraData: { ...labExtraData },
+        logs: chronologicalLogs
+      };
+
       lines.push("");
+      lines.push("3. BLOQUE DE RESTAURACIÓN DE CONTEXTO ARES-V (NO MODIFICAR):");
+      lines.push("ARES_V_JSON_START");
+      lines.push(JSON.stringify(backupPayload));
+      lines.push("ARES_V_JSON_END");
       lines.push("FIN DEL INFORME CLÍNICO // GENERADO LOCALMENTE POR ARES-V EDGE-AI CORE");
 
       const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
@@ -5518,6 +5763,93 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+    }
+
+    function triggerImportCrewReportTxt() {
+      let fileInput = document.getElementById("ares-txt-report-importer");
+      if (!fileInput) {
+        fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.id = "ares-txt-report-importer";
+        fileInput.accept = ".txt";
+        fileInput.style.display = "none";
+        document.body.appendChild(fileInput);
+      }
+      fileInput.value = "";
+      fileInput.onchange = (evt) => {
+        const file = evt.target.files && evt.target.files[0];
+        if (!file || !selectedCrewId) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const content = String(e.target.result || "");
+          try {
+            let importedLogs = [];
+            let importedMetrics = null;
+            let importedLab = null;
+
+            const startIdx = content.indexOf("ARES_V_JSON_START");
+            const endIdx = content.indexOf("ARES_V_JSON_END");
+            if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+              const jsonRaw = content.slice(startIdx + "ARES_V_JSON_START".length, endIdx).trim();
+              const parsed = JSON.parse(jsonRaw);
+              if (Array.isArray(parsed.logs)) importedLogs = parsed.logs;
+              if (parsed.liveMetrics && typeof parsed.liveMetrics === "object") importedMetrics = parsed.liveMetrics;
+              if (parsed.labExtraData && typeof parsed.labExtraData === "object") importedLab = parsed.labExtraData;
+            } else {
+              // Fallback parser for human-readable .TXT lines
+              const blockMatches = content.split("--------------------------------------------------------------------------------");
+              blockMatches.forEach((blk) => {
+                const typeMatch = blk.match(/TIPO:\s*([A-Z_]+)/);
+                const detailMatch = blk.match(/DETALLE\s*:\s*(.+)/);
+                if (typeMatch) {
+                  importedLogs.push({
+                    id: `imp_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+                    slot: getCrewSlotLetter(selectedCrewId).toUpperCase(),
+                    timestamp: new Date().toISOString(),
+                    type: typeMatch[1].trim(),
+                    detail: detailMatch ? detailMatch[1].trim() : "Imported historical record",
+                    resolved: false
+                  });
+                }
+              });
+            }
+
+            if (importedLogs.length > 0) {
+              const existing = getCrewMemoryLogs(selectedCrewId);
+              const existingIds = new Set(existing.map((l) => l.id));
+              const newUnique = importedLogs.filter((l) => !existingIds.has(l.id));
+              const combined = [...newUnique.reverse(), ...existing].slice(0, MAX_EDGE_MEMORY_RECORDS_PER_SLOT);
+              localStorage.setItem(getMemoryStorageKey(selectedCrewId), JSON.stringify(combined));
+            }
+            if (importedMetrics) {
+              Object.assign(liveMetrics, importedMetrics);
+            }
+            if (importedLab) {
+              Object.assign(labExtraData, importedLab);
+            }
+
+            updateMemoryCounterBadge();
+            renderDashboardIndicators();
+            savePersistentSessionState();
+            openCrewHistoryOverlay();
+
+            const followUp = getAdaptiveSymptomFollowUp(selectedCrewId);
+            const confirmMsg = currentLang === "es"
+              ? `Historial clínico importado con éxito (${importedLogs.length} registros restaurados). ${followUp || "Tu contexto médico está actualizado."}`
+              : `Clinical history successfully imported (${importedLogs.length} records restored). ${followUp || "Your medical context is up to date."}`;
+            speakAura(confirmMsg, "happy", Boolean(followUp));
+          } catch (err) {
+            speakAura(
+              currentLang === "es"
+                ? "No se pudo leer el archivo de historial. Verifica que sea un informe .TXT generado por ARES-V."
+                : "Could not parse the clinical report file. Please ensure it is a valid ARES-V .TXT report.",
+              "warning"
+            );
+          }
+        };
+        reader.readAsText(file);
+      };
+      fileInput.click();
     }
 
     function openCrewHistoryOverlay() {
@@ -5537,7 +5869,7 @@
 
       const itemsHtml = logs.length === 0
         ? `<div style="padding: 22px; text-align: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: 12px;">
-            ${currentLang === "es" ? `0 registros previos en ${storageKey}. Cada avance y evento se guardará aquí (capacidad hasta 10,000 registros).` : `0 prior records in ${storageKey}. Every progress step and event auto-saves here (up to 10,000 records capacity).`}
+            ${currentLang === "es" ? `0 registros previos en ${storageKey}. Puedes importar un informe .TXT previo o comenzar a registrar eventos.` : `0 prior records in ${storageKey}. You can import a previous .TXT report or begin recording events.`}
            </div>`
         : logs.slice(0, 150).map((log) => {
             const dt = new Date(log.timestamp);
@@ -5584,14 +5916,17 @@
             </div>
             <button class="btn-close-overlay" onclick="closeAllOverlays()">CLOSE</button>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 8px; max-height: 295px; overflow-y: auto; padding-right: 4px;">
+          <div style="display: flex; flex-direction: column; gap: 8px; max-height: 280px; overflow-y: auto; padding-right: 4px;">
             ${itemsHtml}
           </div>
           <div class="action-btn-row">
             <button class="btn-primary-touch" onclick="downloadCrewClinicalReportTxt('${crew.id}')">
-              ${currentLang === "es" ? "DESCARGAR INFORME COMPLETO (.TXT)" : "DOWNLOAD FULL REPORT (.TXT)"}
+              ${currentLang === "es" ? "DESCARGAR INFORME (.TXT)" : "DOWNLOAD REPORT (.TXT)"}
             </button>
-            <button class="btn-secondary-touch" style="flex: 0 0 auto; min-width: 165px;" onclick="resetLearningMemory()">
+            <button class="btn-secondary-touch" onclick="triggerImportCrewReportTxt()">
+              ${currentLang === "es" ? "IMPORTAR HISTORIAL (.TXT)" : "IMPORT HISTORY (.TXT)"}
+            </button>
+            <button class="btn-secondary-touch" style="flex: 0 0 auto; min-width: 155px;" onclick="resetLearningMemory()">
               ${currentLang === "es" ? `LIMPIAR SLOT ${slotLetter} (0)` : `CLEAR SLOT ${slotLetter} (0)`}
             </button>
           </div>
@@ -5606,6 +5941,7 @@
         localStorage.removeItem(getMemoryStorageKey(selectedCrewId));
       } catch (e) {}
       symptomFlashingIndicators = [];
+      pendingFollowUpPrompt = false;
       loadCrewProfile(selectedCrewId, false);
       savePersistentSessionState();
       if (document.getElementById("overlay-crew-history")?.classList.contains("open")) {
@@ -5646,9 +5982,9 @@
       if (announce) {
         const followUp = getAdaptiveSymptomFollowUp(crew.id);
         if (followUp) {
-          speakAura(`${UI_TEXT[currentLang].crewConfirmed(crew.name)} ${followUp}`, "happy");
+          speakAura(`${UI_TEXT[currentLang].crewConfirmed(crew.name)} ${followUp}`, "happy", true);
         } else {
-          speakAura(UI_TEXT[currentLang].crewConfirmed(crew.name), "happy");
+          speakAura(UI_TEXT[currentLang].crewConfirmed(crew.name), "happy", false);
         }
       }
     }
@@ -6150,6 +6486,7 @@
     }
 
     function simulateSpaceEvent(type) {
+      if (!simulatorMode) return;
       lastInteractionTime = Date.now();
       const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
 
@@ -6354,6 +6691,7 @@
     }
 
     function processDetectedSymptomAndClose(rawText) {
+      pendingFollowUpPrompt = false;
       const rule = matchSymptomRule(rawText);
       const isHealthy =
         rawText.toLowerCase().includes("no symptom") ||
@@ -6834,7 +7172,7 @@
     }
 
     /* =========================================================================
-       14. SESSION COMPLETION & CLEAN LOGOUT BACK TO STANDBY (NO ACTIVE USER)
+       14. SESSION COMPLETION & CLEAN LOGOUT BACK TO STANDBY
        ========================================================================= */
     function promptFinishSession() {
       lastInteractionTime = Date.now();
@@ -6854,6 +7192,7 @@
       expandedIndicatorId = null;
       expandedLsahId = null;
       symptomFlashingIndicators = [];
+      pendingFollowUpPrompt = false;
 
       document.getElementById("active-crew-chip").classList.remove("visible");
       document.getElementById("active-crew-icon").innerHTML = "";
@@ -7258,7 +7597,6 @@
         ctx.stroke();
         ctx.restore();
 
-        // Draw the 10 selectable waypoint markers along the quadratic Bezier curve
         TRANSIT_WAYPOINTS.forEach((wp, idx) => {
           const wt = Math.max(0.03, Math.min(0.97, wp.earthKm / MARS_TOTAL_TRANSIT_KM));
           const wx = (1 - wt) * (1 - wt) * earthX + 2 * (1 - wt) * wt * ctrlX + wt * wt * marsX;
@@ -7347,6 +7685,17 @@
     window.addEventListener("DOMContentLoaded", () => {
       closeAllOverlays();
       initWelcomeSpaceCanvas();
+
+      try {
+        const savedVoice = localStorage.getItem("ares_v_voice_prefs");
+        if (savedVoice) {
+          const vp = JSON.parse(savedVoice);
+          if (vp.voiceName) MASCOT_CONFIG.voiceName = vp.voiceName;
+          if (vp.voiceRate) MASCOT_CONFIG.voiceRate = vp.voiceRate;
+          if (vp.voicePitch) MASCOT_CONFIG.voicePitch = vp.voicePitch;
+        }
+      } catch (e) {}
+
       loadExternalMissionConfigFile();
 
       try {

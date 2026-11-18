@@ -1,5 +1,6 @@
 {
   "mission": {
+    "simulatorMode": true,
     "earthDistanceKm": 142850400,
     "shipSpeedKmPerSec": 18,
     "realtimeSimEnabled": false,
@@ -8,6 +9,7 @@
   "mascot": {
     "name": "ARES",
     "primaryColor": "#00e5ff",
+    "voiceName": "",
     "voiceRate": 1.03,
     "voicePitch": 1.06,
     "customImageUrl": "",
