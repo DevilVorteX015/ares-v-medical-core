@@ -1,10 +1,21 @@
 {
-  "earthDistanceKm": 142850400,
-  "shipSpeedKmPerSec": 24.18,
-  "realtimeSimEnabled": true,
+  "mission": {
+    "earthDistanceKm": 142850400,
+    "shipSpeedKmPerSec": 18,
+    "realtimeSimEnabled": false,
+    "realtimeSimIntervalSec": 4
+  },
+  "mascot": {
+    "name": "ARES",
+    "primaryColor": "#00e5ff",
+    "voiceRate": 1.03,
+    "voicePitch": 1.06,
+    "customSvg": ""
+  },
   "crew": [
     {
       "id": "rostova",
+      "slotKey": "a",
       "code": "CDR",
       "name": "CDR. ELENA ROSTOVA",
       "roleEn": "Mission Commander • Flight Surgeon Backup",
@@ -28,6 +39,7 @@
     },
     {
       "id": "vance",
+      "slotKey": "b",
       "code": "PLT",
       "name": "PLT. MARCUS VANCE",
       "roleEn": "Vehicle Pilot • EVA Specialist",
@@ -51,6 +63,7 @@
     },
     {
       "id": "takahashi",
+      "slotKey": "c",
       "code": "MS1",
       "name": "MS-1. KENJI TAKAHASHI",
       "roleEn": "Mission Specialist 1 • Biomedical Officer",
@@ -74,6 +87,7 @@
     },
     {
       "id": "mendoza",
+      "slotKey": "d",
       "code": "MS2",
       "name": "MS-2. SOFIA MENDOZA",
       "roleEn": "Mission Specialist 2 • Astrobiology & ECLSS",
@@ -97,6 +111,7 @@
     },
     {
       "id": "okafor",
+      "slotKey": "e",
       "code": "ENG",
       "name": "ENG. DAVID OKAFOR",
       "roleEn": "Chief Flight Engineer • Radiation Shielding",
@@ -122,6 +137,8 @@
   "indicators": [
     {
       "id": "rad_dose",
+      "nameEn": "Radiation Accumulated",
+      "nameEs": "Radiación Acumulada",
       "unit": "mSv",
       "optMin": 0.1,
       "optMax": 2.5,
@@ -131,6 +148,8 @@
     },
     {
       "id": "rad_rate",
+      "nameEn": "Solar Particle Flux",
+      "nameEs": "Flujo Partículas Solares",
       "unit": "mSv/h",
       "optMin": 0.01,
       "optMax": 0.08,
@@ -140,6 +159,8 @@
     },
     {
       "id": "sleep_eff",
+      "nameEn": "Sleep Efficiency",
+      "nameEs": "Eficiencia del Sueño",
       "unit": "%",
       "optMin": 85,
       "optMax": 98,
@@ -149,6 +170,8 @@
     },
     {
       "id": "sleep_dur",
+      "nameEn": "Sleep Duration",
+      "nameEs": "Duración del Sueño",
       "unit": "hrs",
       "optMin": 7.0,
       "optMax": 9.0,
@@ -158,6 +181,8 @@
     },
     {
       "id": "heart_rate",
+      "nameEn": "Resting Heart Rate",
+      "nameEs": "Frecuencia Cardíaca",
       "unit": "bpm",
       "optMin": 55,
       "optMax": 85,
@@ -167,6 +192,8 @@
     },
     {
       "id": "sys_bp",
+      "nameEn": "Systolic Blood Pressure",
+      "nameEs": "Presión Arterial Sistólica",
       "unit": "mmHg",
       "optMin": 110,
       "optMax": 125,
@@ -176,25 +203,31 @@
     },
     {
       "id": "spo2_sat",
+      "nameEn": "Oxygen Saturation (SpO₂)",
+      "nameEs": "Saturación Oxígeno (SpO₂)",
       "unit": "%",
       "optMin": 95,
       "optMax": 100,
       "critVal": 92,
-      "cmEn": "Verify cabin O2 partial pressure regulator and breathe supplemental O2 for 10 minutes.",
-      "cmEs": "Verifica el regulador de oxígeno en cabina y respira O2 suplementario por 10 minutos."
+      "cmEn": "Verify cabin O₂ partial pressure regulator and breathe supplemental O₂ for 10 minutes.",
+      "cmEs": "Verifica el regulador de oxígeno en cabina y respira O₂ suplementario por 10 minutos."
     },
     {
       "id": "cabin_co2",
+      "nameEn": "Cabin CO₂ Pressure",
+      "nameEs": "Presión CO₂ Cabina",
       "unit": "mmHg",
       "optMin": 1.5,
       "optMax": 2.2,
       "critVal": 3.5,
-      "cmEn": "Purge CDRA CO2 scrubber bed #2 immediately and maximize module airflow fans for 15 minutes.",
-      "cmEs": "Purga el lecho depurador CO2 #2 de inmediato y activa ventilación máxima por 15 minutos."
+      "cmEn": "Purge CDRA CO₂ scrubber bed #2 immediately and maximize module airflow fans for 15 minutes.",
+      "cmEs": "Purga el lecho depurador CO₂ #2 de inmediato y activa ventilación máxima por 15 minutos."
     },
     {
       "id": "cabin_micro",
-      "unit": "CFU/cm2",
+      "nameEn": "Habitat Microbial Load",
+      "nameEs": "Carga Microbiana Cabina",
+      "unit": "CFU/cm²",
       "optMin": 5,
       "optMax": 50,
       "critVal": 200,
@@ -203,6 +236,8 @@
     },
     {
       "id": "pvt_ms",
+      "nameEn": "Psychomotor Vigilance (PVT)",
+      "nameEs": "Vigilancia Psicomotora (PVT)",
       "unit": "ms",
       "optMin": 180,
       "optMax": 380,
@@ -212,6 +247,8 @@
     },
     {
       "id": "urine_ca",
+      "nameEn": "Urinary Calcium Loss",
+      "nameEs": "Calcio Urinario (24h)",
       "unit": "mg/24h",
       "optMin": 100,
       "optMax": 220,
@@ -221,6 +258,8 @@
     },
     {
       "id": "iop_sans",
+      "nameEn": "Intraocular Pressure (SANS)",
+      "nameEs": "Presión Intraocular (SANS)",
       "unit": "mmHg",
       "optMin": 10,
       "optMax": 19,
@@ -228,12 +267,5 @@
       "cmEn": "Apply Lower Body Negative Pressure (Chibis LBNP) for 30 minutes to redistribute cephalic fluids.",
       "cmEs": "Aplica Presión Negativa Inferior (Chibis LBNP) por 30 minutos para redistribuir fluidos."
     }
-  ],
-  "mascot": {
-    "name": "ARES",
-    "primaryColor": "#00e5ff",
-    "voiceRate": 1.03,
-    "voicePitch": 1.06,
-    "customSvg": null
-  }
+  ]
 }
