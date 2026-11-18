@@ -10,6 +10,8 @@
     "primaryColor": "#00e5ff",
     "voiceRate": 1.03,
     "voicePitch": 1.06,
+    "customImageUrl": "",
+    "teamLogoUrl": "",
     "customSvg": ""
   },
   "crew": [
@@ -22,6 +24,7 @@
       "roleEs": "Comandante de Misión • Respaldo Médico",
       "color": "#00E5FF",
       "visorTint": "#38bdf8",
+      "photoUrl": "",
       "baselines": {
         "rad_dose": 0.58,
         "rad_rate": 0.03,
@@ -46,6 +49,7 @@
       "roleEs": "Piloto de Nave • Especialista EVA",
       "color": "#00E676",
       "visorTint": "#34d399",
+      "photoUrl": "",
       "baselines": {
         "rad_dose": 0.61,
         "rad_rate": 0.03,
@@ -70,6 +74,7 @@
       "roleEs": "Especialista de Misión 1 • Oficial Biomédico",
       "color": "#FFAB00",
       "visorTint": "#fbbf24",
+      "photoUrl": "",
       "baselines": {
         "rad_dose": 0.56,
         "rad_rate": 0.03,
@@ -94,6 +99,7 @@
       "roleEs": "Especialista de Misión 2 • Astrobiología",
       "color": "#FF4081",
       "visorTint": "#f472b6",
+      "photoUrl": "",
       "baselines": {
         "rad_dose": 0.59,
         "rad_rate": 0.03,
@@ -118,6 +124,7 @@
       "roleEs": "Ingeniero Jefe de Vuelo • Blindaje",
       "color": "#B388FF",
       "visorTint": "#c084fc",
+      "photoUrl": "",
       "baselines": {
         "rad_dose": 0.64,
         "rad_rate": 0.03,

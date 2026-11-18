@@ -200,6 +200,7 @@
       background: rgba(17, 25, 43, 0.95);
       border: 1.5px solid var(--border-bright);
       cursor: pointer;
+      overflow: hidden;
       transition: all 0.2s ease;
     }
 
@@ -213,10 +214,12 @@
       display: flex;
     }
 
-    .active-crew-chip svg {
-      width: 24px;
-      height: 24px;
+    .active-crew-chip svg,
+    .active-crew-chip img {
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
+      object-fit: cover;
       display: block;
     }
 
@@ -232,8 +235,15 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       transition: all 0.18s ease;
+    }
+
+    .ctrl-btn.icon-only-btn {
+      width: 34px;
+      height: 34px;
+      padding: 0;
     }
 
     .ctrl-btn:hover {
@@ -334,6 +344,7 @@
       z-index: 140;
       cursor: pointer;
       border-radius: 50%;
+      overflow: hidden;
       transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), filter 0.24s ease;
       filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.75));
     }
@@ -343,9 +354,12 @@
       filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.55));
     }
 
-    .stargazers-corner-badge svg {
+    .stargazers-corner-badge svg,
+    .stargazers-corner-badge img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
       display: block;
     }
 
@@ -597,6 +611,8 @@
     .trajectory-canvas-wrap {
       width: 100%;
       height: 245px;
+      min-height: 215px;
+      flex-shrink: 0;
       border-radius: 18px;
       background: radial-gradient(circle at 50% 50%, #0f1b33 0%, #050811 100%);
       border: 1.5px solid var(--border-bright);
@@ -614,6 +630,7 @@
       display: grid;
       grid-template-columns: repeat(10, minmax(0, 1fr));
       gap: 5px;
+      flex-shrink: 0;
     }
 
     .traj-wp-btn {
@@ -646,6 +663,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
+      flex-shrink: 0;
     }
 
     .traj-stat-card {
@@ -682,6 +700,7 @@
       gap: 12px;
       font-size: 12px;
       color: var(--text-primary);
+      flex-shrink: 0;
     }
 
     .aura-speech-label {
@@ -773,12 +792,21 @@
       text-align: left;
       opacity: 0;
       transform: translateY(16px);
-      transition: all 0.7s ease;
+      transition: all 0.3s ease;
     }
 
     .welcome-stat-box.revealed {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    #welcome-box-dist {
+      cursor: pointer;
+    }
+
+    #welcome-box-dist:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 22px rgba(0, 229, 255, 0.22);
     }
 
     .stat-label {
@@ -936,9 +964,12 @@
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.65);
     }
 
-    .crew-avatar-frame svg {
+    .crew-avatar-frame svg,
+    .crew-avatar-frame img {
       width: 100%;
       height: 100%;
+      border-radius: 13px;
+      object-fit: cover;
       display: block;
     }
 
@@ -2103,6 +2134,12 @@
         font-size: 10px;
       }
 
+      .ctrl-btn.icon-only-btn {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+      }
+
       .nav-pills {
         padding: 3px;
         gap: 4px;
@@ -2155,7 +2192,7 @@
       .crew-screen {
         justify-content: flex-start;
         overflow-y: auto;
-        padding-bottom: 110px;
+        padding-bottom: 135px;
       }
 
       .crew-header h2 {
@@ -2187,7 +2224,7 @@
         font-size: 9px;
       }
 
-      /* Mobile Screen 3: Medical Dashboard */
+      /* Mobile Screen 3: Medical Dashboard — Deep Scrollable Bottom Clearance */
       .dashboard-screen {
         padding: 8px 10px;
         gap: 8px;
@@ -2213,8 +2250,9 @@
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-        gap: 12px;
-        padding-bottom: 118px;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        padding-bottom: 240px;
       }
 
       .indicators-column {
@@ -2240,24 +2278,36 @@
       }
 
       .body-column {
-        padding: 8px 4px 12px 4px;
+        padding: 8px 4px 28px 4px;
         overflow: visible;
         flex-shrink: 0;
       }
 
+      .body-svg-stage {
+        gap: 12px;
+      }
+
       .body-svg-stage svg {
-        max-height: 250px;
+        max-height: 245px;
+      }
+
+      .btn-rapid-scan {
+        margin-top: 4px;
+        padding: 11px 14px;
+        font-size: 11px;
       }
 
       .finish-session-dock {
+        position: fixed;
         left: 50%;
         bottom: 14px;
         transform: translateX(-50%);
+        z-index: 145;
       }
 
       .btn-finish-session {
-        padding: 8px 14px;
-        font-size: 10px;
+        padding: 9px 18px;
+        font-size: 10.5px;
       }
 
       /* Mobile Screen 4: LSAH Database */
@@ -2285,7 +2335,7 @@
       .lsah-cards-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px 8px;
-        padding: 6px 4px 126px 4px;
+        padding: 6px 4px 165px 4px;
       }
 
       .lsah-circle-btn {
@@ -2300,8 +2350,20 @@
         grid-template-columns: 1fr;
       }
 
+      /* Mobile Interplanetary Map Fixes (Guaranteed Visible Height & Responsive Layout) */
+      .trajectory-canvas-wrap {
+        height: 215px !important;
+        min-height: 215px !important;
+        flex-shrink: 0 !important;
+      }
+
       .traj-waypoints-bar {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .traj-celestial-strip {
+        flex-direction: column;
+        align-items: stretch;
       }
 
       /* Mobile Floating Badges & Mascot */
@@ -2338,13 +2400,17 @@
         padding: 8px 11px;
       }
 
+      /* Mobile Modals — Extra Bottom Scroll Clearance & Clean Flex Sizing */
       .touch-overlay {
-        padding: 12px 12px 92px 12px;
+        padding: 10px 10px 145px 10px;
+        align-items: flex-start;
+        overflow-y: auto;
       }
 
       .overlay-card {
-        padding: 14px 16px;
-        max-height: calc(100vh - 105px);
+        padding: 14px 14px 48px 14px;
+        max-height: none;
+        overflow-y: visible;
       }
     }
 
@@ -2693,13 +2759,12 @@
         <span id="lang-label" style="display: inline-flex; align-items: center; gap: 6px;"></span>
       </button>
 
-      <button class="ctrl-btn" id="voice-toggle-btn" onclick="toggleVoiceMute()" title="Toggle Voice Synthesis">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" id="voice-icon">
+      <button class="ctrl-btn icon-only-btn" id="voice-toggle-btn" onclick="toggleVoiceMute()" title="Toggle Voice Synthesis" aria-label="Toggle Voice">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" id="voice-icon">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
         </svg>
-        <span id="voice-label">VOICE</span>
       </button>
     </div>
   </header>
@@ -2782,7 +2847,7 @@
       </svg>
 
       <!-- Animated Eyes & Smile Waveform Inside the Visor -->
-      <div class="aura-core">
+      <div class="aura-core" id="aura-face-core">
         <div class="aura-eyes" id="aura-eyes">
           <div class="aura-eye"></div>
           <div class="aura-eye"></div>
@@ -2809,7 +2874,7 @@
   </div>
 
   <!-- =========================================================================
-       DEVELOPER TEAM EMBLEM ("STARGAZERS")
+       DEVELOPER TEAM EMBLEM ("STARGAZERS" — CUSTOMIZABLE VIA teamLogoUrl)
        ========================================================================= -->
   <div class="stargazers-corner-badge" id="stargazers-logo-badge" onclick="openTrajectoryOverlay(event)" title="STARGAZERS Team • Tap to open Mars Transit Map">
     <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
@@ -2964,7 +3029,7 @@
           </div>
 
           <div class="welcome-telemetry-row">
-            <div class="welcome-stat-box" id="welcome-box-dist">
+            <div class="welcome-stat-box" id="welcome-box-dist" onclick="openTrajectoryOverlay(event)" title="Tap to view Earth to Mars Trajectory Map">
               <div class="stat-label" id="lbl-earth-dist">REAL-TIME DISTANCE FROM EARTH</div>
               <div class="stat-value" id="val-earth-dist">142,850,400 km</div>
               <div class="stat-sub">
@@ -3563,7 +3628,7 @@
        ========================================================================= -->
   <script>
     /* =========================================================================
-       0. EASY MASCOT CUSTOMIZATION CONFIG
+       0. EASY MASCOT & BRANDING CUSTOMIZATION CONFIG (OVERRIDABLE VIA ares_mission_config.txt)
        ========================================================================= */
     const MASCOT_CONFIG = {
       systemTitle: "ARES-V",
@@ -3575,7 +3640,9 @@
       scanningColor: "#00e676",
       voiceRate: 1.03,
       voicePitch: 1.06,
-      customSvg: null
+      customSvg: null,
+      customImageUrl: "",
+      teamLogoUrl: ""
     };
 
     /* =========================================================================
@@ -3591,6 +3658,7 @@
         roleEs: "Comandante de Misión • Respaldo Médico",
         color: "#00E5FF",
         visorTint: "#38bdf8",
+        photoUrl: "",
         baselines: {
           rad_dose: 0.58,
           rad_rate: 0.03,
@@ -3615,6 +3683,7 @@
         roleEs: "Piloto de Nave • Especialista EVA",
         color: "#00E676",
         visorTint: "#34d399",
+        photoUrl: "",
         baselines: {
           rad_dose: 0.61,
           rad_rate: 0.03,
@@ -3639,6 +3708,7 @@
         roleEs: "Especialista de Misión 1 • Oficial Biomédico",
         color: "#FFAB00",
         visorTint: "#fbbf24",
+        photoUrl: "",
         baselines: {
           rad_dose: 0.56,
           rad_rate: 0.03,
@@ -3663,6 +3733,7 @@
         roleEs: "Especialista de Misión 2 • Astrobiología",
         color: "#FF4081",
         visorTint: "#f472b6",
+        photoUrl: "",
         baselines: {
           rad_dose: 0.59,
           rad_rate: 0.03,
@@ -3687,6 +3758,7 @@
         roleEs: "Ingeniero Jefe de Vuelo • Blindaje",
         color: "#B388FF",
         visorTint: "#c084fc",
+        photoUrl: "",
         baselines: {
           rad_dose: 0.64,
           rad_rate: 0.03,
@@ -4385,6 +4457,114 @@
     let audioCtx = null;
 
     /* =========================================================================
+       2B. EXTERNAL CONFIG FILE LOADER (ares_mission_config.txt) FOR CREW PHOTOS, LOGO & MASCOT
+       ========================================================================= */
+    function applyExternalMissionConfig(cfg) {
+      if (!cfg || typeof cfg !== "object") return;
+
+      if (cfg.mission) {
+        if (!isNaN(Number(cfg.mission.earthDistanceKm)) && Number(cfg.mission.earthDistanceKm) > 0) {
+          earthDistanceKm = Number(cfg.mission.earthDistanceKm);
+        }
+        if (!isNaN(Number(cfg.mission.shipSpeedKmPerSec))) {
+          shipSpeedKmPerSec = Number(cfg.mission.shipSpeedKmPerSec);
+        }
+        if (typeof cfg.mission.realtimeSimEnabled === "boolean") {
+          realtimeSimEnabled = cfg.mission.realtimeSimEnabled;
+        }
+      }
+
+      if (cfg.mascot) {
+        if (cfg.mascot.name) {
+          MASCOT_CONFIG.name = cfg.mascot.name;
+          const speechNameEl = document.getElementById("aura-speech-name");
+          if (speechNameEl) speechNameEl.textContent = cfg.mascot.name;
+        }
+        if (cfg.mascot.primaryColor) MASCOT_CONFIG.primaryColor = cfg.mascot.primaryColor;
+        if (!isNaN(Number(cfg.mascot.voiceRate))) MASCOT_CONFIG.voiceRate = Number(cfg.mascot.voiceRate);
+        if (!isNaN(Number(cfg.mascot.voicePitch))) MASCOT_CONFIG.voicePitch = Number(cfg.mascot.voicePitch);
+
+        // Custom Mascot Image URL (e.g. "assets/ares_avatar.png")
+        if (cfg.mascot.customImageUrl && cfg.mascot.customImageUrl.trim()) {
+          MASCOT_CONFIG.customImageUrl = cfg.mascot.customImageUrl.trim();
+          const slot = document.getElementById("aura-orb-slot");
+          if (slot) {
+            slot.innerHTML = `<img src="${MASCOT_CONFIG.customImageUrl}" alt="${MASCOT_CONFIG.name}" style="width:100%; height:100%; object-fit:contain; border-radius:50%; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.65));" />`;
+          }
+        } else if (cfg.mascot.customSvg && cfg.mascot.customSvg.trim()) {
+          MASCOT_CONFIG.customSvg = cfg.mascot.customSvg.trim();
+          const slot = document.getElementById("aura-orb-slot");
+          if (slot) slot.innerHTML = MASCOT_CONFIG.customSvg;
+        }
+
+        // Custom Corner Team / Mission Logo URL (e.g. "assets/mission_logo.png")
+        if (cfg.mascot.teamLogoUrl && cfg.mascot.teamLogoUrl.trim()) {
+          MASCOT_CONFIG.teamLogoUrl = cfg.mascot.teamLogoUrl.trim();
+          const badge = document.getElementById("stargazers-logo-badge");
+          if (badge) {
+            badge.innerHTML = `<img src="${MASCOT_CONFIG.teamLogoUrl}" alt="Mission Logo" />`;
+          }
+        }
+      }
+
+      if (Array.isArray(cfg.crew)) {
+        cfg.crew.forEach((item) => {
+          const target = CREW_DATABASE.find((c) => c.id === item.id);
+          if (target) {
+            if (item.name) target.name = item.name;
+            if (item.code) target.code = item.code;
+            if (item.roleEn) target.roleEn = item.roleEn;
+            if (item.roleEs) target.roleEs = item.roleEs;
+            if (item.color) target.color = item.color;
+            if (item.visorTint) target.visorTint = item.visorTint;
+            if (typeof item.photoUrl === "string") target.photoUrl = item.photoUrl.trim();
+            if (item.baselines && typeof item.baselines === "object") {
+              Object.assign(target.baselines, item.baselines);
+            }
+          }
+        });
+      }
+
+      if (Array.isArray(cfg.indicators)) {
+        cfg.indicators.forEach((item) => {
+          const std = NASA_LSAH_STANDARDS.find((s) => s.id === item.id);
+          if (std) {
+            if (item.nameEn) std.nameEn = item.nameEn;
+            if (item.nameEs) std.nameEs = item.nameEs;
+            if (item.unit) std.unit = item.unit;
+            if (!isNaN(Number(item.optMin))) std.optMin = Number(item.optMin);
+            if (!isNaN(Number(item.optMax))) std.optMax = Number(item.optMax);
+            if (!isNaN(Number(item.critVal))) std.critVal = Number(item.critVal);
+            if (item.cmEn) std.cmEn = item.cmEn;
+            if (item.cmEs) std.cmEs = item.cmEs;
+          }
+        });
+      }
+
+      renderCrewGrid();
+      if (isCrewAuthenticated && selectedCrewId) {
+        const activeCrew = CREW_DATABASE.find((c) => c.id === selectedCrewId);
+        if (activeCrew) {
+          document.getElementById("active-crew-icon").innerHTML = buildCrewAvatarSvg(activeCrew);
+        }
+        if (currentScreen === 2) renderDashboardIndicators();
+      }
+      renderLsahDatabase();
+    }
+
+    async function loadExternalMissionConfigFile() {
+      try {
+        const res = await fetch(`ares_mission_config.txt?t=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) return;
+        const txt = await res.text();
+        const parsed = JSON.parse(txt);
+        applyExternalMissionConfig(parsed);
+      } catch (e) {
+        // Fallback silently to built-in defaults if opened via file:// or offline without server
+      }
+    }
+
+    /* =========================================================================
        3. INITIALIZATION, FLAGS & SOFT HARMONIC ALERT SOUND
        ========================================================================= */
     function getFlagSvg(lang) {
@@ -4491,6 +4671,31 @@
       requestAnimationFrame(drawSpace);
     }
 
+    function updateVoiceIconUi() {
+      const btn = document.getElementById("voice-toggle-btn");
+      const icon = document.getElementById("voice-icon");
+      const t = UI_TEXT[currentLang];
+      if (!btn || !icon) return;
+
+      btn.classList.toggle("muted", isVoiceMuted);
+      btn.title = isVoiceMuted ? t.voiceOff : t.voiceOn;
+      btn.setAttribute("aria-label", isVoiceMuted ? t.voiceOff : t.voiceOn);
+
+      if (isVoiceMuted) {
+        icon.innerHTML = `
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        `;
+      } else {
+        icon.innerHTML = `
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        `;
+      }
+    }
+
     function updateUiTexts() {
       const t = UI_TEXT[currentLang];
       const lsahBtn = document.getElementById("nav-lsah-btn");
@@ -4502,7 +4707,7 @@
 
       document.getElementById("topbar-subtitle").textContent = t.subtitle;
       document.getElementById("lang-label").innerHTML = `${getFlagSvg(currentLang)}<span>${currentLang.toUpperCase()}</span>`;
-      document.getElementById("voice-label").textContent = isVoiceMuted ? t.voiceOff : t.voiceOn;
+      updateVoiceIconUi();
 
       document.getElementById("boot-btn-en").innerHTML = `${getFlagSvg("en")}<span>ENGLISH</span>`;
       document.getElementById("boot-btn-es").innerHTML = `${getFlagSvg("es")}<span>ESPAÑOL</span>`;
@@ -4618,11 +4823,7 @@
 
     function toggleVoiceMute() {
       isVoiceMuted = !isVoiceMuted;
-      const btn = document.getElementById("voice-toggle-btn");
-      btn.classList.toggle("muted", isVoiceMuted);
-      document.getElementById("voice-label").textContent = isVoiceMuted
-        ? UI_TEXT[currentLang].voiceOff
-        : UI_TEXT[currentLang].voiceOn;
+      updateVoiceIconUi();
       if (isVoiceMuted && window.speechSynthesis) {
         window.speechSynthesis.cancel();
       } else if (!isVoiceMuted && lastSpokenText) {
@@ -4958,9 +5159,12 @@
     });
 
     /* =========================================================================
-       6. CREW BIOMETRIC SELECTION (TWO-TAP CONFIRMATION)
+       6. CREW BIOMETRIC SELECTION (SUPPORTS REAL PHOTOS VIA photoUrl OR VECTOR AVATAR)
        ========================================================================= */
     function buildCrewAvatarSvg(crew) {
+      if (crew.photoUrl && crew.photoUrl.trim()) {
+        return `<img src="${crew.photoUrl.trim()}" alt="${crew.name}" onerror="this.style.display='none'" />`;
+      }
       return `<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <rect width="80" height="80" rx="16" fill="#080d1a"/>
         <circle cx="40" cy="40" r="34" fill="none" stroke="${crew.color}" stroke-width="1.5" stroke-opacity="0.35"/>
@@ -5027,6 +5231,7 @@
        7. ADAPTIVE ASTRONAUT MEMORY & PERSONALIZED CREW TELEMETRY ENGINE
        ========================================================================= */
     const MAX_EDGE_MEMORY_RECORDS_PER_SLOT = 10000;
+    const MEMORY_ZERO_RESET_FLAG = "ares_v_memory_zero_v2";
 
     function getCrewSlotLetter(crewId) {
       const idx = CREW_DATABASE.findIndex((c) => c.id === crewId);
@@ -5039,6 +5244,16 @@
     function getMemoryStorageKey(crewId) {
       const letter = getCrewSlotLetter(crewId);
       return `ares_v_memory_${letter}`;
+    }
+
+    function resetAllAstronautMemorySlotsToZero() {
+      CREW_DATABASE.forEach((crew, idx) => {
+        const letter = crew.slotKey || String.fromCharCode(97 + idx);
+        try {
+          localStorage.removeItem(`ares_v_memory_${letter}`);
+          localStorage.removeItem(`ares_v_memory_${crew.id}`);
+        } catch (e) {}
+      });
     }
 
     function migrateLegacyNamedMemoryToLetterSlots() {
@@ -5818,7 +6033,6 @@
     function computeCrewHealthKpis() {
       const crew = CREW_DATABASE.find((c) => c.id === selectedCrewId) || CREW_DATABASE[0];
 
-      // 1. Overall Biometric Readiness Index (evaluates all 12 NASA LSAH indicators)
       let totalScore = 0;
       NASA_LSAH_STANDARDS.forEach((std) => {
         const val = liveMetrics[std.id] !== undefined ? liveMetrics[std.id] : crew.baselines[std.id];
@@ -5834,7 +6048,6 @@
       });
       const readinessVal = Math.max(0, Math.min(100, Math.round(totalScore / NASA_LSAH_STANDARDS.length)));
 
-      // 2. Cardiovascular, Autonomic & Fluid Stability (Heart Rate, Sys BP, SpO2, Cabin CO2, Urine Ca, IOP SANS)
       const hr = liveMetrics.heart_rate ?? crew.baselines.heart_rate;
       const bp = liveMetrics.sys_bp ?? crew.baselines.sys_bp;
       const spo2 = liveMetrics.spo2_sat ?? crew.baselines.spo2_sat;
@@ -5850,7 +6063,6 @@
       const iopPenalty = Math.max(0, iop - 19) * 5;
       const autonomicVal = Math.max(15, Math.min(100, Math.round(100 - hrPenalty - bpPenalty - spo2Penalty - co2Penalty - caPenalty - iopPenalty)));
 
-      // 3. Circadian, Radiation & Neuro-Cognitive Alertness (Sleep Eff, Sleep Dur, PVT, Rad Dose, Rad Rate, Microbes)
       const sleepEff = liveMetrics.sleep_eff ?? crew.baselines.sleep_eff;
       const sleepDur = liveMetrics.sleep_dur ?? crew.baselines.sleep_dur;
       const pvt = liveMetrics.pvt_ms ?? crew.baselines.pvt_ms;
@@ -6940,8 +7152,10 @@
       syncSelectedWaypointFromDistance();
       renderTrajectoryWaypointsBar();
       updateTrajectoryStats();
-      document.getElementById("overlay-trajectory").classList.add("open");
-      startTrajectoryCanvasLoop();
+      const modal = document.getElementById("overlay-trajectory");
+      modal.classList.add("open");
+      modal.scrollTop = 0;
+      requestAnimationFrame(() => startTrajectoryCanvasLoop());
 
       const fromEarth = Math.round(earthDistanceKm).toLocaleString("en-US");
       const toMars = Math.max(0, Math.round(MARS_TOTAL_TRANSIT_KM - earthDistanceKm)).toLocaleString("en-US");
@@ -6997,10 +7211,10 @@
       function drawMap(now) {
         if (!document.getElementById("overlay-trajectory").classList.contains("open")) return;
         const rect = canvas.parentElement.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-        const w = canvas.width;
-        const h = canvas.height;
+        const w = Math.max(280, Math.round(rect.width || canvas.clientWidth || 320));
+        const h = Math.max(210, Math.round(rect.height || canvas.clientHeight || 215));
+        if (canvas.width !== w) canvas.width = w;
+        if (canvas.height !== h) canvas.height = h;
 
         ctx.clearRect(0, 0, w, h);
 
@@ -7013,25 +7227,25 @@
           ctx.fill();
         }
 
-        const sunX = 48;
+        const sunX = Math.max(36, w * 0.08);
         const sunY = h * 0.5;
-        const sunGrad = ctx.createRadialGradient(sunX, sunY, 4, sunX, sunY, 34);
+        const sunGrad = ctx.createRadialGradient(sunX, sunY, 4, sunX, sunY, 30);
         sunGrad.addColorStop(0, "#fff59d");
         sunGrad.addColorStop(0.5, "#ffab00");
         sunGrad.addColorStop(1, "rgba(255, 111, 0, 0)");
         ctx.fillStyle = sunGrad;
         ctx.beginPath();
-        ctx.arc(sunX, sunY, 34, 0, Math.PI * 2);
+        ctx.arc(sunX, sunY, 30, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = "#ffe082";
         ctx.font = "bold 10px monospace";
-        ctx.fillText("SOL", sunX - 10, sunY + 38);
+        ctx.fillText("SOL", sunX - 10, sunY + 34);
 
-        const earthX = w * 0.20;
+        const earthX = w * 0.22;
         const earthY = h * 0.68;
         const marsX = w * 0.87;
         const marsY = h * 0.30;
-        const ctrlX = w * 0.53;
+        const ctrlX = w * 0.54;
         const ctrlY = h * 0.14;
 
         ctx.save();
@@ -7133,7 +7347,18 @@
     window.addEventListener("DOMContentLoaded", () => {
       closeAllOverlays();
       initWelcomeSpaceCanvas();
-      migrateLegacyNamedMemoryToLetterSlots();
+      loadExternalMissionConfigFile();
+
+      try {
+        if (!localStorage.getItem(MEMORY_ZERO_RESET_FLAG)) {
+          resetAllAstronautMemorySlotsToZero();
+          localStorage.setItem(MEMORY_ZERO_RESET_FLAG, "1");
+        } else {
+          migrateLegacyNamedMemoryToLetterSlots();
+        }
+      } catch (e) {
+        resetAllAstronautMemorySlotsToZero();
+      }
 
       CREW_DATABASE.forEach((c) => {
         const logs = getCrewMemoryLogs(c.id);
